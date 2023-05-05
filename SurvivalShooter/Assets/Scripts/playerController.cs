@@ -22,6 +22,8 @@ public class playerController : MonoBehaviour
     [SerializeField] float gravityValue = -9.81f;
     [Range(1, 3)]
     [SerializeField] int maxJumps = 1;
+    [Range(1f, 10f)]
+    [SerializeField] float interactDistance = 1.0f;
 
     [Header("----- Weapon Stats -----")]
     [Range(2, 300)]
@@ -36,6 +38,7 @@ public class playerController : MonoBehaviour
     private bool groundedPlayer;
     private int jumpedTimes = 0;
     private bool isShooting = false;
+    private bool isInteracting = false;
     private int HPOrig;
     private Vector3 scaleOrig;
 
@@ -55,6 +58,11 @@ public class playerController : MonoBehaviour
             if (Input.GetButton("Shoot") && !isShooting)
             {
                 StartCoroutine(Shoot());
+            }
+
+            if (Input.GetButton("Interact") && !isInteracting)
+            {
+                StartCoroutine(interact());
             }
         //}
 
@@ -133,6 +141,27 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
+    }
+
+    IEnumerator interact()
+    {
+        isInteracting = true;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, interactDistance))
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+
+            if (interactable != null)
+            {
+                interactable.interact();
+            }
+        }
+
+        yield return new WaitForSeconds(shootRate);
+
+        isInteracting = false;
     }
 
     public void AddHealth(int amount)
