@@ -43,6 +43,15 @@ public class WallBuy : MonoBehaviour, IInteractable
 
     public void interact()
     {
-        //gameManager.instance.playerScript.AddGun(gun, gun.getCost());
+        /*if (!gameManager.instance.playerScript.HasGun(gun)) 
+        {
+            //Adds the gun to the players inventory if they do not have the gun
+            //gameManager.instance.playerScript.AddGun(gun, gun.getCost());
+        }
+        else
+        {
+            //Adds 5 clips of ammo if they do have the gun
+            //gameManager.instance.playerScript.AddAmmo(gun, 5 * gun.getClipSize);
+        }*/
     }
 }
