@@ -14,6 +14,8 @@ public class playerController : MonoBehaviour
     [SerializeField] float playerSpeed = 2.0f;
     [Range(1f, 5f)]
     [SerializeField] float sprintMod = 3.0f;
+    [Range(1f, 5f)]
+    [SerializeField] float crouchMod = 3.0f;
     [Range(1f, 25f)]
     [SerializeField] float jumpHeight = 1.0f;
     [Range(-9f, -50f)]
@@ -57,6 +59,7 @@ public class playerController : MonoBehaviour
         //}
 
         Sprint();
+
         Crouch();
     }
 
@@ -102,10 +105,12 @@ public class playerController : MonoBehaviour
         if (Input.GetButtonDown("Crouch"))
         {
             transform.localScale = new Vector3(scaleOrig.x, scaleOrig.y/2, scaleOrig.z);
+            playerSpeed /= crouchMod;
         }
         else if (Input.GetButtonUp("Crouch"))
         {
             transform.localScale = scaleOrig;
+            playerSpeed *= crouchMod;
         }
     }
 
