@@ -40,6 +40,7 @@ public class playerController : MonoBehaviour
     {
         HPOrig = HP;
         //spawnPlayer();
+        controller = GetComponent<CharacterController>();
     }
 
     void Update()
