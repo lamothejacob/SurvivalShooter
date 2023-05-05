@@ -10,6 +10,16 @@ public class enemyAI : MonoBehaviour
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
+
+    [Header("----- Nav Mesh Stats -----")]
+    [SerializeField] float speed;
+    [SerializeField] float speedVariance;
+
+    private void Start()
+    {
+        agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
+    }
+
     void Update()
     {
         agent.SetDestination(new Vector3(0,1,0));
