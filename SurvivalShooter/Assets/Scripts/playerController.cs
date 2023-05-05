@@ -16,8 +16,8 @@ public class playerController : MonoBehaviour
     [SerializeField] float sprintMod = 3.0f;
     [Range(1f, 25f)]
     [SerializeField] float jumpHeight = 1.0f;
-    [Range(-10f, -50f)]
-    [SerializeField] float gravityValue = -10f;
+    [Range(-9f, -50f)]
+    [SerializeField] float gravityValue = -9.81f;
     [Range(1, 3)]
     [SerializeField] int maxJumps = 1;
 
@@ -35,12 +35,13 @@ public class playerController : MonoBehaviour
     private int jumpedTimes = 0;
     private bool isShooting = false;
     private int HPOrig;
+    private Vector3 scaleOrig;
 
     private void Start()
     {
         HPOrig = HP;
+        scaleOrig = transform.localScale;
         //spawnPlayer();
-        controller = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -56,6 +57,7 @@ public class playerController : MonoBehaviour
         //}
 
         Sprint();
+        Crouch();
     }
 
     void Movement()
@@ -92,6 +94,18 @@ public class playerController : MonoBehaviour
         else if (Input.GetButtonUp("Sprint"))
         {
             playerSpeed /= sprintMod;
+        }
+    }
+
+    void Crouch()
+    {
+        if (Input.GetButtonDown("Crouch"))
+        {
+            transform.localScale = new Vector3(scaleOrig.x, scaleOrig.y/2, scaleOrig.z);
+        }
+        else if (Input.GetButtonUp("Crouch"))
+        {
+            transform.localScale = scaleOrig;
         }
     }
 
