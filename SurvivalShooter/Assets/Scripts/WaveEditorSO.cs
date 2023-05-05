@@ -8,6 +8,7 @@ public class WaveEditorSO : ScriptableObject
 {
 
     #region Instance Variables
+    [SerializeField] Transform spawnPoint;
     [SerializeField] List<GameObject> enemyPrefabs;
 
     [SerializeField] float timeBetweenEnemySpawns = 1f;
@@ -19,6 +20,11 @@ public class WaveEditorSO : ScriptableObject
     public int GetEnemyCount()
     {
         return enemyPrefabs.Count;
+    }
+
+    public Transform GetSpawnPosition()
+    {
+        return spawnPoint;
     }
 
     public GameObject GetEnemyPrefab(int index)
