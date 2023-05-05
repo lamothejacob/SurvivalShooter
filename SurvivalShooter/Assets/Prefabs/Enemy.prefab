@@ -52,6 +52,8 @@ MonoBehaviour:
   HP: 10
   speed: 5
   speedVariance: 2
+  avoidRadius: 0.75
+  avoidRadiusVariance: 0.25
 --- !u!195 &5606722010635054386
 NavMeshAgent:
   m_ObjectHideFlags: 0

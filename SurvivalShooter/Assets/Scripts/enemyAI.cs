@@ -14,10 +14,13 @@ public class enemyAI : MonoBehaviour
     [Header("----- Nav Mesh Stats -----")]
     [SerializeField] float speed;
     [SerializeField] float speedVariance;
+    [SerializeField] float avoidRadius;
+    [SerializeField] float avoidRadiusVariance;
 
     private void Start()
     {
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
+        agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
     }
 
     void Update()
