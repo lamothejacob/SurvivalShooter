@@ -159,7 +159,7 @@ public class playerController : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(shootRate);
+        yield return new WaitForSeconds(0.1f);
 
         isInteracting = false;
     }
