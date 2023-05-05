@@ -30,7 +30,8 @@ public class EnemySpawner : MonoBehaviour
                 currentWave = wave;
                 for (int i = 0; i < currentWave.GetEnemyCount(); i++)
                 {
-                    Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetSpawnPosition().position, Quaternion.identity, transform);
+                    int spawnPos = Random.Range(0, currentWave.GetSpawnPointsCount());
+                    Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetSpawnPosition(spawnPos).position, Quaternion.identity, transform);
 
                     yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
                 }
