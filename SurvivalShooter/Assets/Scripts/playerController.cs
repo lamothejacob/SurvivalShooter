@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour//,IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -33,6 +33,11 @@ public class playerController : MonoBehaviour
     [Range(1, 10)]
     [SerializeField] int shootDamage;
 
+    [Header("----- Mechanics -----")]
+    [SerializeField] int points = 0;
+    [Range (0, 1)]
+    [SerializeField] int currentGun = 0;
+
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -41,18 +46,18 @@ public class playerController : MonoBehaviour
     private bool isInteracting = false;
     private int HPOrig;
     private Vector3 scaleOrig;
+    //private List<Gun> gunInventory;
 
     private void Start()
     {
         HPOrig = HP;
         scaleOrig = transform.localScale;
-        //spawnPlayer();
     }
 
     void Update()
     {
-        //if (gameManager.instance.activeMenu == null)
-        //{
+        if (gameManager.instance.activeMenu == null)
+        {
             Movement();
 
             if (Input.GetButton("Shoot") && !isShooting)
@@ -64,11 +69,13 @@ public class playerController : MonoBehaviour
             {
                 StartCoroutine(interact());
             }
-        //}
+        }
 
         Sprint();
 
         Crouch();
+
+        SwitchWeapon();
     }
 
     void Movement()
@@ -119,6 +126,14 @@ public class playerController : MonoBehaviour
         {
             transform.localScale = scaleOrig;
             playerSpeed *= crouchMod;
+        }
+    }
+
+    void SwitchWeapon()
+    {
+        if (Input.GetButtonDown("Switch"))
+        {
+            currentGun = currentGun == 0 ? 1 : 0;
         }
     }
 
@@ -176,14 +191,47 @@ public class playerController : MonoBehaviour
         if (HP <= 0)
         {
             HP = HPOrig;
-            //gameManager.instance.loseState();
+            gameManager.instance.loseState();
         }
     }
 
-    public void spawnPlayer()
+    /**public bool hasGun(Gun gun)
     {
-        controller.enabled = false;
-        //transform.position = gameManager.instance.playerSpawn.transform.position;
-        controller.enabled = true;
+        return gunInventory.Contains(gun);
     }
+
+    public void addGun(Gun gun, int cost)
+    {
+        if(points < cost)
+        {
+            return;
+        }
+
+        if(gunInventory.Count < 2)
+        {
+            gunInventory.Add(gun);
+        }
+        else
+        {
+            gunInventory[currentGun] = gun;
+        }
+
+        points -= cost;
+    }
+
+    public void addAmmo(Gun gun, int ammoAmount, int cost)
+    {
+        if (points < cost)
+        {
+            return;
+        }
+
+        if(!gunInventory.Contains(gun)) {
+            return;
+        }
+
+        gun.addAmmo(ammoAmount);
+
+        points -= cost;
+    }*/
 }
