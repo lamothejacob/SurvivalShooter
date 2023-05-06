@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenWaves = 1f;
     private WaveEditorSO currentWave;
     private bool isLooping = true;
+    private int enemyCounter = 0;
     #endregion
 
     private void Start()
@@ -32,12 +33,29 @@ public class EnemySpawner : MonoBehaviour
                 {
                     int spawnPos = Random.Range(0, currentWave.GetSpawnPointsCount());
                     Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetSpawnPosition(spawnPos).position, Quaternion.identity, transform);
+                    EnemyIncrement();
 
                     yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
                 }
+                yield return new WaitUntil(() => EnemiesLeft() == 0);
                 yield return new WaitForSeconds(timeBetweenWaves);
             }
         } while (isLooping);
 
+    }
+
+    private void EnemyIncrement()
+    {
+        enemyCounter++;
+    }
+
+    public void EnemyDecrement()
+    {
+        enemyCounter--;
+    }
+
+    public int EnemiesLeft()
+    {
+        return enemyCounter;
     }
 }

@@ -8,6 +8,8 @@ public class gameManager : MonoBehaviour
 
     [Header("----- Player References -----")]
     public GameObject player;
+    public GameObject enemySpawner;
+    public EnemySpawner enemySpawnerScript;
     public playerController playerScript;
 
     [Header("----- UI Stuff -----")]
@@ -24,12 +26,15 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
+        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
         timeScaleOriginal = Time.timeScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(enemySpawnerScript.EnemiesLeft());
         if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null || activeMenu == pauseMenu)
         {
             isPaused = !isPaused;
@@ -63,4 +68,6 @@ public class gameManager : MonoBehaviour
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
+
+
 }

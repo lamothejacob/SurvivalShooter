@@ -21,10 +21,26 @@ public class enemyAI : MonoBehaviour
     {
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
+        //temp line
+        StartCoroutine(death());
     }
 
     void Update()
     {
         agent.SetDestination(new Vector3(0,1,0));
+        
+    }
+
+    //temp function
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(10f);
+        Death();
+    }
+
+    private void Death()
+    {
+        gameManager.instance.enemySpawnerScript.EnemyDecrement();
+        Destroy(gameObject);
     }
 }
