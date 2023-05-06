@@ -27,8 +27,7 @@ public class enemyAI : MonoBehaviour
 
     void Update()
     {
-        agent.SetDestination(new Vector3(0,1,0));
-        
+        agent.SetDestination(gameManager.instance.player.transform.position);
     }
 
     //temp function
