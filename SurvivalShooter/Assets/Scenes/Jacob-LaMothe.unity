@@ -276,7 +276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428345263}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0, y: 2, z: -1.9852}
+  m_LocalPosition: {x: 9.69, y: 2, z: -5.614}
   m_LocalScale: {x: 0.2, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -296,7 +296,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Renderer: {fileID: 428345265}
-  gunPhoto: {fileID: 0}
+  scaleByHalf: 1
+  gunPhoto: {fileID: 2800000, guid: 2585cf3a90be4ec4ea2cecab669fbbc7, type: 3}
 --- !u!1 &494941615
 GameObject:
   m_ObjectHideFlags: 0
