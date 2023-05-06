@@ -25,14 +25,6 @@ public class playerController : MonoBehaviour//,IDamage
     [Range(1f, 10f)]
     [SerializeField] float interactDistance = 1.0f;
 
-    [Header("----- Weapon Stats -----")]
-    [Range(2, 300)]
-    [SerializeField] int shootDistance;
-    [Range(0.1f, 3f)]
-    [SerializeField] float shootRate;
-    [Range(1, 10)]
-    [SerializeField] int shootDamage;
-
     [Header("----- Mechanics -----")]
     [SerializeField] int points = 0;
     [Range (0, 1)]
@@ -62,20 +54,20 @@ public class playerController : MonoBehaviour//,IDamage
 
             if (Input.GetButton("Shoot") && !isShooting)
             {
-                StartCoroutine(Shoot());
+                //StartCoroutine(Shoot());
             }
 
             if (Input.GetButton("Interact") && !isInteracting)
             {
                 StartCoroutine(interact());
             }
+
+            SwitchWeapon();
         }
 
         Sprint();
 
         Crouch();
-
-        SwitchWeapon();
     }
 
     void Movement()
@@ -137,26 +129,27 @@ public class playerController : MonoBehaviour//,IDamage
         }
     }
 
-    IEnumerator Shoot()
+    /**IEnumerator Shoot()
     {
         isShooting = true;
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunInventory[currentGun].getFireRate()))
         {
-            /**IDamage damageable = hit.collider.GetComponent<IDamage>();
+            IDamage damageable = hit.collider.GetComponent<IDamage>();
 
             if (damageable != null)
             {
-                damageable.takeDamage(shootDamage);
-            }*/
+                damageable.takeDamage(gunInventory[currentGun].getDamage());
+                points += 10;
+            }
         }
 
-        yield return new WaitForSeconds(shootRate);
+        yield return new WaitForSeconds(gunInventory[currentGun].getFireRate());
 
         isShooting = false;
-    }
+    }**/
 
     IEnumerator interact()
     {
