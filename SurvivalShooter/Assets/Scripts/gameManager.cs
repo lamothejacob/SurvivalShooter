@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [Header("----- Player References -----")]
+    [Header("----- References -----")]
     public GameObject player;
     public GameObject enemySpawner;
     public EnemySpawner enemySpawnerScript;
     public playerController playerScript;
+    public gunDisplay displayScript;
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
@@ -30,6 +29,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        //displayScript = player.GetComponent<gunDisplay>();
         playerScript = player.GetComponent<playerController>();
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
