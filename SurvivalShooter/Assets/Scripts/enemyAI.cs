@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour
+public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] NavMeshAgent agent;
@@ -41,5 +41,15 @@ public class enemyAI : MonoBehaviour
     {
         gameManager.instance.enemySpawnerScript.EnemyDecrement();
         Destroy(gameObject);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
