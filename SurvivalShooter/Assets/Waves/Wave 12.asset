@@ -10,13 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47243e4c14f302347a0df1a472a4caa3, type: 3}
-  m_Name: Wave 1
+  m_Name: Wave 12
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 6359684105469281050, guid: 9cb3f3fbf3dbf424da0a929f9f35400f, type: 3}
   - {fileID: 4649338039060731480, guid: ef21d703d31329142a98fdc8738bce11, type: 3}
   - {fileID: 7905871609882956886, guid: 593b5e59667d0614aafb7b9f6987078a, type: 3}
   enemyPrefabs:
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
   - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
   - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
   - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}

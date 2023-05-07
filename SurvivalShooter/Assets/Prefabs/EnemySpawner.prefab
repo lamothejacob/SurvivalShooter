@@ -46,4 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveConfigs:
   - {fileID: 11400000, guid: 32d382c710aa8bd499e15feb264cd06c, type: 2}
+  - {fileID: 11400000, guid: 054f7d648fdc5ca4d945d99381f66dc9, type: 2}
+  - {fileID: 11400000, guid: aeed5516b1e420741981f2c6016a586e, type: 2}
+  - {fileID: 11400000, guid: 85771c63c3831414bafce8c07aadc2e7, type: 2}
+  - {fileID: 11400000, guid: c2a56ee3dcfd3a044b6d514de8913772, type: 2}
+  - {fileID: 11400000, guid: efb969d87ddba2144a6e518ca8121cf4, type: 2}
+  - {fileID: 11400000, guid: 6e5bd995140482f4898b424b4828795d, type: 2}
+  - {fileID: 11400000, guid: 4e60970cc23a64545953b8eda6304321, type: 2}
+  - {fileID: 11400000, guid: 849540f95feae7942a032e3d3f87d010, type: 2}
+  - {fileID: 11400000, guid: 8f83f0b0ab2799147a6156b0c07ed0ad, type: 2}
+  - {fileID: 11400000, guid: b718d7af6c9c93842a7676daa1beef83, type: 2}
   timeBetweenWaves: 10
