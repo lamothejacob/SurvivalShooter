@@ -126,7 +126,7 @@ public class playerController : MonoBehaviour,IDamage
 
     void SwitchWeapon()
     {
-        if (Input.GetButtonDown("Switch"))
+        if (Input.GetButtonDown("Switch") && gunInventory.Count > 1)
         {
             currentGun = currentGun == 0 ? 1 : 0;
             gameManager.instance.displayScript.setCurrentGun(gunInventory[currentGun]);
