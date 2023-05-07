@@ -11,9 +11,10 @@ public class WaveEditorSO : ScriptableObject
     [SerializeField] List<Transform> spawnPoints;
     [SerializeField] List<GameObject> enemyPrefabs;
 
-    [SerializeField] float timeBetweenEnemySpawns = 1f;
-    [SerializeField] float spawnTimeVariance = 0f;
-    [SerializeField] float minimumSpawnTime = 1f;
+    [SerializeField] int health; 
+    [SerializeField] float timeBetweenEnemySpawns;
+    [SerializeField] float spawnTimeVariance;
+    [SerializeField] float minimumSpawnTime;
 
     #endregion
 
@@ -41,5 +42,10 @@ public class WaveEditorSO : ScriptableObject
     {
         float spawnTime = Random.Range(timeBetweenEnemySpawns - spawnTimeVariance, timeBetweenEnemySpawns + spawnTimeVariance);
         return Mathf.Clamp(spawnTime, minimumSpawnTime, float.MaxValue);
+    }
+
+    public int getHealth()
+    {
+        return health;
     }
 }

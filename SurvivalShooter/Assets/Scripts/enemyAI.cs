@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
+    [SerializeField] Renderer color;
     [SerializeField] NavMeshAgent agent;
 
     [Header("----- Enemy Stats -----")]
@@ -21,20 +22,12 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
-        //temp line
-        StartCoroutine(death());
+        HP = gameManager.instance.enemySpawnerScript.GetCurrentWave().getHealth();
     }
 
     void Update()
     {
         agent.SetDestination(gameManager.instance.player.transform.position);
-    }
-
-    //temp function
-    IEnumerator death()
-    {
-        yield return new WaitForSeconds(10f);
-        Death();
     }
 
     private void Death()
@@ -45,11 +38,13 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void TakeDamage(int damage)
     {
+        color.material.color = Color.red;
         HP -= damage;
 
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            Death();
         }
+        color.material.color = Color.white;
     }
 }

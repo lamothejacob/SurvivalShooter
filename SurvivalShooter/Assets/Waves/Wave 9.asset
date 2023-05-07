@@ -32,6 +32,7 @@ MonoBehaviour:
   - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
   - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
   - {fileID: 5606722010635054388, guid: bed25d563f478324bba464957e83f324, type: 3}
+  health: 140
   timeBetweenEnemySpawns: 1
   spawnTimeVariance: 0.5
   minimumSpawnTime: 0.1
