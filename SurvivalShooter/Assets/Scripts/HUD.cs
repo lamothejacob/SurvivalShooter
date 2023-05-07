@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class HUD : MonoBehaviour
 {
     [Header("------ HUD Components ------")]
@@ -11,7 +12,7 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshPro waveInfo;
     [SerializeField] TextMeshPro enemies;
     [SerializeField] TextMeshPro points;
-    [SerializeField] Image healthBar;
+    [SerializeField] Slider healthBar;   
     [SerializeField] Image gunType;
     [SerializeField] Image miniMap; 
 
@@ -30,7 +31,8 @@ public class HUD : MonoBehaviour
 
 
     private bool bHUDVisible;
-    private float ammoLeft;
+    private int ammoLeft;
+    private int clipSize; 
     private float enemiesKilled;
     private float enemiesLeft;
     private float pointScored;
@@ -62,7 +64,10 @@ public class HUD : MonoBehaviour
     void UpdateHealthBar()
     {
         // Update Health Bar
-        // float currentLife = gameManager.instance.player.GetHP(); ADD THIS FUNCTION TO THE PLAYER CONTROLLER
+        int currentHP = gameManager.instance.playerScript.getHP();
+        
+        healthBar.value = currentHP;
+  
     }
 
     void UpdateWave()
@@ -74,17 +79,22 @@ public class HUD : MonoBehaviour
     void updatePoints()
     {
         // Add a get points method to the playerController
-       //oints.text = gameManager
+        points.text = gameManager.instance.playerScript.getPoints().ToString();
     }
 
     void DisplayAmmoIcons()
     {
         // Get the current guns clip size, divide it by the current ammo left. If the ammo is over 10, we will just use that
         // percentage to display the opacity of the bullets
+        //clipSize = gameManager.instance.playerScript.getCurrentGun().
+        
     }
 
     void DisplayKills()
     {
-        enemiesLeft = gameManager.instance.enemySpawnerScript.EnemiesLeft(); 
+        // This will display how many enemies are left in the game. I don't know if we want to display the kill count, or enemies left
+        enemiesLeft = gameManager.instance.enemySpawnerScript.EnemiesLeft();
+        enemies.text = enemiesLeft.ToString();
+        
     }
 }

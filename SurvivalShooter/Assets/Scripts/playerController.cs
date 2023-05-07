@@ -264,4 +264,19 @@ public class playerController : MonoBehaviour,IDamage
         
         points -= cost;
     }
+
+    public int getCurrentGun()
+    {
+        return currentGun; 
+    }
+
+    public int getHP()
+    {
+        return HP; 
+    }
+
+    public int getPoints()
+    {
+        return points;
+    }
 }
