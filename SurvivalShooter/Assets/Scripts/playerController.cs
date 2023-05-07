@@ -212,7 +212,7 @@ public class playerController : MonoBehaviour,IDamage
 
         foreach (Gun g in gunInventory)
         {
-            if (g == gun)
+            if (g.get2DTexture() == gun.get2DTexture())
             {
                 return true;
             }
@@ -251,7 +251,7 @@ public class playerController : MonoBehaviour,IDamage
 
         foreach (Gun g in gunInventory)
         {
-            if (g == gun)
+            if (g.get2DTexture() == gun.get2DTexture())
             {
                 g.addAmmo(ammoAmount);
             }

@@ -1,8 +1,5 @@
 using UnityEngine;
 
-#pragma warning disable CS0660
-#pragma warning disable CS0661
-
 public class Gun : MonoBehaviour
 {
     [SerializeField] Texture2D gunImage;
@@ -86,15 +83,5 @@ public class Gun : MonoBehaviour
             ammoInClip += reserveAmmo;
             reserveAmmo = 0;
         }
-    }
-
-    public static bool operator ==(Gun g1, Gun g2)
-    {
-        return g1.get2DTexture() == g2.get2DTexture();
-    }
-
-    public static bool operator !=(Gun g1, Gun g2)
-    {
-        return g1.get2DTexture() != g2.get2DTexture();
     }
 }
