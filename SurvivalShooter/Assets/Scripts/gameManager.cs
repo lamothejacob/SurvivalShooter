@@ -15,7 +15,12 @@ public class gameManager : MonoBehaviour
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
+    public GameObject mainMenu;
+    public GameObject settingsMain;
+    public GameObject settingsPause; 
+    public GameObject statsMenu;
     public GameObject loseMenu;
+    public GameObject HUD; 
 
     public bool isPaused;
     float timeScaleOriginal;
@@ -34,13 +39,13 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(enemySpawnerScript.EnemiesLeft());
+        
         if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null || activeMenu == pauseMenu)
         {
             isPaused = !isPaused;
-            pauseMenu.SetActive(isPaused);
             activeMenu = pauseMenu;
-
+            pauseMenu.SetActive(isPaused);
+           
             pauseState();
         }
     }
