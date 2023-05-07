@@ -16,15 +16,16 @@ public class gunDisplay : MonoBehaviour
     [SerializeField] List<KeyValuePair> gunPairList = new List<KeyValuePair>();
 
     //Unity inspector doesn't display dictionaries
-    Dictionary<Texture2D, GameObject> gunObjectPairs;
+    Dictionary<Texture2D, GameObject> gunObjectPairs = new Dictionary<Texture2D, GameObject>();
     GameObject currentActive;
 
-    private void Awake()
+    private void Start()
     {
         //Initialize dictionary
         foreach(KeyValuePair kvp in gunPairList)
         {
             gunObjectPairs.Add(kvp.key, kvp.val);
+            Debug.Log(gunObjectPairs[kvp.key]);
         }
     }
 

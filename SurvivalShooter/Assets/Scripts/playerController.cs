@@ -243,6 +243,7 @@ public class playerController : MonoBehaviour,IDamage
 
         points -= gun.getCost();
 
+        Debug.Log(currentGun);
         gameManager.instance.displayScript.setCurrentGun(gun);
     }
 

@@ -24,6 +24,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        displayScript = player.GetComponent<gunDisplay>();
         playerScript = player.GetComponent<playerController>();
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
