@@ -4,11 +4,12 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [Header("----- Player References -----")]
+    [Header("----- References -----")]
     public GameObject player;
     public GameObject enemySpawner;
     public EnemySpawner enemySpawnerScript;
     public playerController playerScript;
+    public gunDisplay displayScript;
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;

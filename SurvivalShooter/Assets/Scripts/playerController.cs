@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class playerController : MonoBehaviour,IDamage
@@ -231,6 +232,7 @@ public class playerController : MonoBehaviour,IDamage
         if(gunInventory.Count < 2)
         {
             gunInventory.Add(gun);
+            currentGun = gunInventory.Count - 1;
         }
         else
         {
@@ -240,6 +242,8 @@ public class playerController : MonoBehaviour,IDamage
         }
 
         points -= gun.getCost();
+
+        gameManager.instance.displayScript.setCurrentGun(gun);
     }
 
     public void addAmmo(Gun gun, int ammoAmount, int cost)
