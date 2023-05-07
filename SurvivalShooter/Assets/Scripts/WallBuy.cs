@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class WallBuy : MonoBehaviour, IInteractable
 {
-    //[SerializeField] Gun gun;
+    [SerializeField] Gun gun;
     [SerializeField] Renderer m_Renderer;
     [SerializeField] bool scaleByHalf;
 
-    [SerializeField] Texture2D gunPhoto; //Will be private once gun class is implemented
+    Texture2D gunPhoto;
     float width, height;
     Texture gunTexture;
 
     void Start()
     {
         //Gets the 2D texture from the Gun class
-        //gunPhoto = gun.get2DTexture();
+        gunPhoto = gun.get2DTexture();
 
         //Adjusts the width and height
         width = gunPhoto.width;
@@ -43,15 +40,16 @@ public class WallBuy : MonoBehaviour, IInteractable
 
     public void interact()
     {
-        /*if (!gameManager.instance.playerScript.HasGun(gun)) 
+        if (!gameManager.instance.playerScript.hasGun(gun)) 
         {
+            Gun newGun = Instantiate(gun);
             //Adds the gun to the players inventory if they do not have the gun
-            //gameManager.instance.playerScript.AddGun(gun, gun.getCost());
+            gameManager.instance.playerScript.addGun(newGun);
         }
         else
         {
             //Adds 5 clips of ammo if they do have the gun
-            //gameManager.instance.playerScript.AddAmmo(gun, 5 * gun.getClipSize);
-        }*/
+            gameManager.instance.playerScript.addAmmo(gun, gun.getReserveAmmo(), gun.getCost() / 2);
+        }
     }
 }

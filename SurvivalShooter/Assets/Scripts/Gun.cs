@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+#pragma warning disable CS0660
+#pragma warning disable CS0661
 
 public class Gun : MonoBehaviour
 {
@@ -8,35 +9,92 @@ public class Gun : MonoBehaviour
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] int cost;
-    [SerializeField] int clipSize;
     [SerializeField] int damage;
     [SerializeField] int shootDist;
     [SerializeField] float fireRate;
+    [SerializeField] int reserveAmmo;
+    [SerializeField] int clipSize;
 
+    int ammoInClip;
 
-    int getCost()
+    private void Start()
+    {
+        ammoInClip = clipSize;
+    }
+
+    public int getCost()
     {
         return cost;
     }
-    int getClipSize()
+    public int getClipSize()
     {
         return clipSize;
     }
-    int getDamage()
+    public int getDamage()
     {
         return damage;
     }
-    int getShootDist()
+    public int getShootDist()
     {
         return shootDist;
     }
-    float getFireRate()
+    public float getFireRate()
     {
         return fireRate;
     }
-    Texture2D get2DTexture()
+    public Texture2D get2DTexture()
     {
         return gunImage;
     }
 
+    public void addAmmo(int ammo)
+    {
+        reserveAmmo += ammo;
+    }
+
+    public void removeAmmo(int ammo)
+    {
+        ammoInClip -= ammo;
+    }
+
+    public int getAmmoInClip()
+    {
+        return ammoInClip;
+    }
+
+    public int getReserveAmmo()
+    {
+        return reserveAmmo;
+    }
+
+    public void reload()
+    {
+        if(ammoInClip == clipSize || reserveAmmo == 0)
+        {
+            return;
+        }
+
+        int amount = clipSize - ammoInClip;
+
+        if(reserveAmmo >= amount)
+        {
+            reserveAmmo -= amount;
+            ammoInClip += amount;
+        }
+        else
+        {
+            ammoInClip += reserveAmmo;
+            reserveAmmo = 0;
+        }
+    }
+
+    public static bool operator ==(Gun g1, Gun g2)
+    {
+        return g1.get2DTexture() == g2.get2DTexture();
+    }
+
+    public static bool operator !=(Gun g1, Gun g2)
+    {
+        return g1.get2DTexture() != g2.get2DTexture();
+    }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 662619540623452666}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,15 +52,15 @@ MonoBehaviour:
   controller: {fileID: 3674606059404510839}
   HP: 100
   playerSpeed: 4.25
-  sprintMod: 3
+  sprintMod: 2.5
   crouchMod: 3
   jumpHeight: 3
   gravityValue: -9.81
   maxJumps: 1
   interactDistance: 1
-  shootDistance: 122
-  shootRate: 0.6
-  shootDamage: 1
+  points: 0
+  currentGun: 0
+  gunInventory: []
 --- !u!143 &3674606059404510839
 CharacterController:
   m_ObjectHideFlags: 0

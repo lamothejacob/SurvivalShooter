@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour//,IDamage
+public class playerController : MonoBehaviour,IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -38,7 +38,7 @@ public class playerController : MonoBehaviour//,IDamage
     private bool isInteracting = false;
     private int HPOrig;
     private Vector3 scaleOrig;
-    //private List<Gun> gunInventory;
+    [SerializeField] List<Gun> gunInventory;
 
     private void Start()
     {
@@ -54,7 +54,7 @@ public class playerController : MonoBehaviour//,IDamage
 
             if (Input.GetButton("Shoot") && !isShooting)
             {
-                //StartCoroutine(Shoot());
+                StartCoroutine(Shoot());
             }
 
             if (Input.GetButton("Interact") && !isInteracting)
@@ -63,6 +63,8 @@ public class playerController : MonoBehaviour//,IDamage
             }
 
             SwitchWeapon();
+
+            Reload();
         }
 
         Sprint();
@@ -129,9 +131,24 @@ public class playerController : MonoBehaviour//,IDamage
         }
     }
 
-    /**IEnumerator Shoot()
+    void Reload()
     {
+        if (Input.GetButtonDown("Reload") && !isShooting)
+        {
+            gunInventory[currentGun].reload();
+        }
+    }
+
+    IEnumerator Shoot()
+    {
+        if(gunInventory.Count == 0 || gunInventory[currentGun].getAmmoInClip() == 0)
+        {
+            yield break;
+        }
+
         isShooting = true;
+
+        gunInventory[currentGun].removeAmmo(1);
 
         RaycastHit hit;
 
@@ -141,7 +158,7 @@ public class playerController : MonoBehaviour//,IDamage
 
             if (damageable != null)
             {
-                damageable.takeDamage(gunInventory[currentGun].getDamage());
+                damageable.TakeDamage(gunInventory[currentGun].getDamage());
                 points += 10;
             }
         }
@@ -149,7 +166,7 @@ public class playerController : MonoBehaviour//,IDamage
         yield return new WaitForSeconds(gunInventory[currentGun].getFireRate());
 
         isShooting = false;
-    }**/
+    }
 
     IEnumerator interact()
     {
@@ -167,7 +184,7 @@ public class playerController : MonoBehaviour//,IDamage
             }
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
 
         isInteracting = false;
     }
@@ -177,7 +194,7 @@ public class playerController : MonoBehaviour//,IDamage
         HP += amount;
     }
 
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         HP -= damage;
 
@@ -188,14 +205,25 @@ public class playerController : MonoBehaviour//,IDamage
         }
     }
 
-    /**public bool hasGun(Gun gun)
+    public bool hasGun(Gun gun)
     {
-        return gunInventory.Contains(gun);
+        if(gun == null) return false;
+        if(gunInventory.Count <=  0) return false;
+
+        foreach (Gun g in gunInventory)
+        {
+            if (g == gun)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public void addGun(Gun gun, int cost)
+    public void addGun(Gun gun)
     {
-        if(points < cost)
+        if(points < gun.getCost())
         {
             return;
         }
@@ -206,25 +234,29 @@ public class playerController : MonoBehaviour//,IDamage
         }
         else
         {
+            Destroy(gunInventory[currentGun]);
+            gunInventory[currentGun] = null;
             gunInventory[currentGun] = gun;
         }
 
-        points -= cost;
+        points -= gun.getCost();
     }
 
     public void addAmmo(Gun gun, int ammoAmount, int cost)
     {
-        if (points < cost)
+        if (points < cost || !hasGun(gun))
         {
             return;
         }
 
-        if(!gunInventory.Contains(gun)) {
-            return;
+        foreach (Gun g in gunInventory)
+        {
+            if (g == gun)
+            {
+                g.addAmmo(ammoAmount);
+            }
         }
-
-        gun.addAmmo(ammoAmount);
-
+        
         points -= cost;
-    }*/
+    }
 }
