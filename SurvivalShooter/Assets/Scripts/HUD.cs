@@ -74,7 +74,7 @@ public class HUD : MonoBehaviour
     void updatePoints()
     {
         // Add a get points method to the playerController
-        //pointScored = gameManager.instance.player.
+       //oints.text = gameManager
     }
 
     void DisplayAmmoIcons()

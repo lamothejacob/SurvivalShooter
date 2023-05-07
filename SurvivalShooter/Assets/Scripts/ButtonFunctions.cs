@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -86,7 +88,14 @@ public class ButtonFunctions : MonoBehaviour
 
     public void HUDVisible()
     {
-
+        if(bHUDVisible)
+        {
+            
+        }
+        else if(!bHUDVisible)
+        {
+            gameManager.instance.HUD.SetActive(false);
+        }
     }
     public void saveSettings()
     {
@@ -98,5 +107,25 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
         gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    // ******************************
+    // YOU LOSE MENU BUTTONS
+    // ******************************
+
+    public void tryAgain()
+    {
+        
+        gameManager.instance.unPausedState();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.loseMenu.SetActive(false);
+
+    }
+
+    public void youLoseQuit()
+    {
+        gameManager.instance.loseMenu.SetActive(false);
+        gameManager.instance.mainMenu.SetActive(true);
+        gameManager.instance.activeMenu = gameManager.instance.mainMenu; 
     }
 }
