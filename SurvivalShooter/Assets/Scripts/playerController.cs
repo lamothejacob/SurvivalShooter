@@ -129,6 +129,7 @@ public class playerController : MonoBehaviour,IDamage
         if (Input.GetButtonDown("Switch"))
         {
             currentGun = currentGun == 0 ? 1 : 0;
+            gameManager.instance.displayScript.setCurrentGun(gunInventory[currentGun]);
         }
     }
 
@@ -236,14 +237,13 @@ public class playerController : MonoBehaviour,IDamage
         }
         else
         {
-            Destroy(gunInventory[currentGun]);
+            Destroy(gunInventory[currentGun].gameObject);
             gunInventory[currentGun] = null;
             gunInventory[currentGun] = gun;
         }
 
         points -= gun.getCost();
 
-        Debug.Log(currentGun);
         gameManager.instance.displayScript.setCurrentGun(gun);
     }
 

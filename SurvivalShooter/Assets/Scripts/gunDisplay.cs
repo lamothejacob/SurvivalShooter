@@ -25,7 +25,6 @@ public class gunDisplay : MonoBehaviour
         foreach(KeyValuePair kvp in gunPairList)
         {
             gunObjectPairs.Add(kvp.key, kvp.val);
-            Debug.Log(gunObjectPairs[kvp.key]);
         }
     }
 
@@ -40,6 +39,7 @@ public class gunDisplay : MonoBehaviour
         if(currentActive != null)
         {
             currentActive.SetActive(false);
+            currentActive = null;
         }
 
         currentActive = gunObjectPairs[gun.get2DTexture()];
