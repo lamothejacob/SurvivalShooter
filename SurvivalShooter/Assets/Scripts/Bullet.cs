@@ -14,11 +14,19 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(gameObject, timer);
+        rb.velocity = transform.forward * speed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        IDamage damagable = other.GetComponent<IDamage>();
 
+        if (damagable != null)
+        {
+            damagable.TakeDamage(damage);
+        }
+
+        Destroy(gameObject);
     }
 }
