@@ -21,6 +21,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
+        HP = gameManager.instance.enemySpawnerScript.GetCurrentWave().getHealth();
         //temp line
         StartCoroutine(death());
     }
@@ -49,7 +50,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            Death();
         }
     }
 }
