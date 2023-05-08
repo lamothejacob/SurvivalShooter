@@ -36,6 +36,8 @@ public class enemyAI : MonoBehaviour, IDamage
         Destroy(gameObject);
     }
 
+
+
     public void TakeDamage(int damage)
     {
         color.material.color = Color.red;
@@ -45,6 +47,5 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             Death();
         }
-        color.material.color = Color.white;
     }
 }

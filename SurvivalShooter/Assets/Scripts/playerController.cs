@@ -154,13 +154,14 @@ public class playerController : MonoBehaviour,IDamage
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunInventory[currentGun].getFireRate()))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunInventory[currentGun].getShootDist()))
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
 
             if (damageable != null)
             {
                 damageable.TakeDamage(gunInventory[currentGun].getDamage());
+                Debug.Log("Hit");
                 points += 10;
             }
         }
