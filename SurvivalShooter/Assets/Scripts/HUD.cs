@@ -49,7 +49,7 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdateHUD();  
+        UpdateHUD();  
     }
 
     void DisplayAmmo()
@@ -284,7 +284,7 @@ public class HUD : MonoBehaviour
     {
         //DisplayAmmo(); 
         //DisplayAmmoIcons(); 
-        //DisplayKills();
+        DisplayKills();
         //UpdateHealthBar();
         //UpdateWave();
         //updatePoints(); 
