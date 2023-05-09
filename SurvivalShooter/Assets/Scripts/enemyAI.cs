@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
+    [SerializeField] float playerFaceSpeed;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)] [SerializeField] int shootDist;
