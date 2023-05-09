@@ -77,7 +77,7 @@ public class HUD : MonoBehaviour
 
     void UpdateWave()
     {
-       WaveEditorSO waveNumber = gameManager.instance.enemySpawnerScript.GetCurrentWave();
+       int waveNumber = gameManager.instance.enemySpawnerScript.GetWaveNumber();
        waveInfo.SetText("Wave " + waveNumber.ToString());
     }
 
@@ -286,7 +286,7 @@ public class HUD : MonoBehaviour
         //DisplayAmmoIcons(); 
         DisplayKills();
         //UpdateHealthBar();
-        //UpdateWave();
-        //updatePoints(); 
+        UpdateWave();
+        updatePoints(); 
     }
 }
