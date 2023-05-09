@@ -16,8 +16,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject mainMenu;
     public GameObject settingsMain;
-    public GameObject settingsPause; 
-    public GameObject statsMenu;
+    public GameObject settingsPause;  
     public GameObject loseMenu;
     public GameObject HUD; 
 
@@ -40,7 +39,7 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == HUD || activeMenu == pauseMenu)
+        if (Input.GetKeyDown(KeyCode.Escape) || activeMenu == pauseMenu)
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;

@@ -279,6 +279,11 @@ public class HUD : MonoBehaviour
 
     void UpdateHUD()
     {
-
+        DisplayAmmo(); 
+        DisplayAmmoIcons(); 
+        DisplayKills();
+        UpdateHealthBar();
+        UpdateWave();
+        updatePoints(); 
     }
 }
