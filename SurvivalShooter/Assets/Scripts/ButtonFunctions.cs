@@ -19,7 +19,7 @@ public class ButtonFunctions : MonoBehaviour
     {
         gameManager.instance.activeMenu = null;
         gameManager.instance.mainMenu.SetActive(false);
-        gameManager.instance.activeMenu = gameManager.instance.HUD;
+        gameManager.instance.activeMenu = null;
         gameManager.instance.HUD.SetActive(true);  
             
     }
@@ -56,7 +56,7 @@ public class ButtonFunctions : MonoBehaviour
         
         gameManager.instance.unPausedState();
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
-        gameManager.instance.activeMenu = gameManager.instance.HUD;
+        gameManager.instance.activeMenu = null;
 
     }
 
@@ -65,6 +65,13 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.settingsPause;
         gameManager.instance.activeMenu.SetActive(true);  
+    }
+
+    public void Restart()
+    {
+        gameManager.instance.unPausedState();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.pauseMenu.SetActive(false);
     }
 
     public void returnToMainMenu()

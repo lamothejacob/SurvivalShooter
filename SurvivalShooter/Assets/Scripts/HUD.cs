@@ -9,10 +9,10 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     [Header("------ HUD Components ------")]
-    [SerializeField] TextMeshPro ammoCount;
-    [SerializeField] TextMeshPro waveInfo;
-    [SerializeField] TextMeshPro enemies;
-    [SerializeField] TextMeshPro points;
+    [SerializeField] TextMeshProUGUI waveInfo;
+    [SerializeField] TextMeshProUGUI enemies;
+    [SerializeField] TextMeshProUGUI points;
+    [SerializeField] TextMeshProUGUI ammoCount;
     [SerializeField] Slider healthBar;   
     [SerializeField] Image gunType;
     [SerializeField] Image miniMap; 
@@ -49,13 +49,15 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //UpdateHUD();  
     }
 
     void DisplayAmmo()
     {
         Gun currentGun = gameManager.instance.playerScript.GetComponent<Gun>();
-        ammoCount.text = currentGun.getAmmoInClip().ToString(); 
+        //ammoCount.text = currentGun.getAmmoInClip().ToString(); 
+        ammoCount.SetText(currentGun.getAmmoInClip().ToString());
+        
     }
 
     void DisplayGunType()
@@ -70,18 +72,19 @@ public class HUD : MonoBehaviour
         // Update Health Bar
         int currentHP = gameManager.instance.playerScript.getHP();       
         healthBar.value = currentHP;
+        
     }
 
     void UpdateWave()
     {
        WaveEditorSO waveNumber = gameManager.instance.enemySpawnerScript.GetCurrentWave();
-       waveInfo.text = "Wave " + waveNumber.ToString();
+       waveInfo.SetText("Wave " + waveNumber.ToString());
     }
 
     void updatePoints()
     {
         // Add a get points method to the playerController
-        points.text = gameManager.instance.playerScript.getPoints().ToString();
+        points.SetText(gameManager.instance.playerScript.getPoints().ToString());
     }
 
     void DisplayAmmoIcons()
@@ -273,17 +276,17 @@ public class HUD : MonoBehaviour
     {
         // This will display how many enemies are left in the game.
         enemiesLeft = gameManager.instance.enemySpawnerScript.EnemiesLeft();
-        enemies.text = enemiesLeft.ToString();
+        enemies.SetText(enemiesLeft.ToString());
         
     }
 
-    void UpdateHUD()
+    public void UpdateHUD()
     {
-        DisplayAmmo(); 
-        DisplayAmmoIcons(); 
-        DisplayKills();
-        UpdateHealthBar();
-        UpdateWave();
-        updatePoints(); 
+        //DisplayAmmo(); 
+        //DisplayAmmoIcons(); 
+        //DisplayKills();
+        //UpdateHealthBar();
+        //UpdateWave();
+        //updatePoints(); 
     }
 }

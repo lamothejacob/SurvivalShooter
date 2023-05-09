@@ -33,13 +33,14 @@ public class gameManager : MonoBehaviour
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
         timeScaleOriginal = Time.timeScale;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Escape) || activeMenu == pauseMenu)
+        if (Input.GetKeyDown(KeyCode.Escape) || activeMenu == HUD)
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;
@@ -47,6 +48,8 @@ public class gameManager : MonoBehaviour
            
             pauseState();
         }
+
+        
     }
 
     public void pauseState()
