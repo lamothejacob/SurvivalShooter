@@ -19,18 +19,26 @@ public class ButtonFunctions : MonoBehaviour
     {
         gameManager.instance.activeMenu = null;
         gameManager.instance.mainMenu.SetActive(false);
-        //gameManager.instance.unPausedState();
-        gameManager.instance.activeMenu = gameManager.instance.HUD;
+        gameManager.instance.activeMenu = null;
         gameManager.instance.HUD.SetActive(true);  
-        //SceneManager.LoadScene(SceneManager.GetSceneByName()); 
-        
+            
     }
 
     public void settingsMain()
     {
-        gameManager.instance.mainMenu.SetActive(false);
-        gameManager.instance.activeMenu = gameManager.instance.settingsMain; 
+        gameManager.instance.activeMenu = gameManager.instance.settingsMain;
         gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.mainMenu.SetActive(false);
+          
+    }
+
+    public void backMain()
+    {
+        
+        gameManager.instance.settingsMain.SetActive(false);
+        gameManager.instance.mainMenu.SetActive(true);
+        gameManager.instance.activeMenu = gameManager.instance.mainMenu; 
+
     }
 
     public void quit()
@@ -48,7 +56,7 @@ public class ButtonFunctions : MonoBehaviour
         
         gameManager.instance.unPausedState();
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
-        gameManager.instance.activeMenu = gameManager.instance.HUD;
+        gameManager.instance.activeMenu = null;
 
     }
 
@@ -57,6 +65,13 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.settingsPause;
         gameManager.instance.activeMenu.SetActive(true);  
+    }
+
+    public void Restart()
+    {
+        gameManager.instance.unPausedState();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.pauseMenu.SetActive(false);
     }
 
     public void returnToMainMenu()

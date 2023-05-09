@@ -12,14 +12,23 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
 
+    [Header("----- Enemy Weapon -----")]
+    [Range(2, 300)] [SerializeField] int shootDist;
+    [Range(0.1f, 3)] [SerializeField] float shootRate;
+    [SerializeField] GameObject bullet;
+
     [Header("----- Nav Mesh Stats -----")]
     [SerializeField] float speed;
     [SerializeField] float speedVariance;
     [SerializeField] float avoidRadius;
     [SerializeField] float avoidRadiusVariance;
 
+    bool isShooting;
+    Color colorOrig;
+
     private void Start()
     {
+        colorOrig = color.material.color;
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
         HP = gameManager.instance.enemySpawnerScript.GetCurrentWave().getHealth();
@@ -28,6 +37,8 @@ public class enemyAI : MonoBehaviour, IDamage
     void Update()
     {
         agent.SetDestination(gameManager.instance.player.transform.position);
+        if (!isShooting)
+            StartCoroutine(shoot());
     }
 
     private void Death()
@@ -36,16 +47,30 @@ public class enemyAI : MonoBehaviour, IDamage
         Destroy(gameObject);
     }
 
+    IEnumerator shoot()
+    {
+        isShooting = true;
 
+        Instantiate(bullet, transform.position, transform.rotation);
+        yield return new WaitForSeconds(shootRate);
+
+        isShooting = false;
+    }
 
     public void TakeDamage(int damage)
     {
-        color.material.color = Color.red;
         HP -= damage;
+        StartCoroutine(flashColor());
 
         if (HP <= 0)
         {
             Death();
         }
+    }
+    IEnumerator flashColor()
+    {
+        color.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        color.material.color = colorOrig;
     }
 }
