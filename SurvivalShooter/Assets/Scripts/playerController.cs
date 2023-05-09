@@ -280,4 +280,9 @@ public class playerController : MonoBehaviour,IDamage
     {
         return points;
     }
+
+    public List<Gun> getGunList()
+    {
+        return gunInventory;
+    }
 }

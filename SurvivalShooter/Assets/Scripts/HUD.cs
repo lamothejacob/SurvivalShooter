@@ -54,9 +54,21 @@ public class HUD : MonoBehaviour
 
     void DisplayAmmo()
     {
-        Gun currentGun = gameManager.instance.playerScript.GetComponent<Gun>();
-        //ammoCount.text = currentGun.getAmmoInClip().ToString(); 
-        ammoCount.SetText(currentGun.getAmmoInClip().ToString());
+        if (gameManager.instance.playerScript.getGunList().Count == 0)
+        {
+            ammoCount.SetText("0");
+        }
+        else
+        {
+            if(gameManager.instance.playerScript.getCurrentGun() == 0)
+            {
+                ammoCount.SetText(gameManager.instance.playerScript.getGunList()[0].getAmmoInClip().ToString());
+            }else if(gameManager.instance.playerScript.getCurrentGun() == 1)
+            {
+                ammoCount.SetText(gameManager.instance.playerScript.getGunList()[1].getAmmoInClip().ToString());
+            }
+            
+        }
         
     }
 
@@ -282,7 +294,7 @@ public class HUD : MonoBehaviour
 
     public void UpdateHUD()
     {
-        //DisplayAmmo(); 
+        DisplayAmmo(); 
         //DisplayAmmoIcons(); 
         DisplayKills();
         //UpdateHealthBar();
