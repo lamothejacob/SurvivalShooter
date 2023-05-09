@@ -40,7 +40,7 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == null || activeMenu == pauseMenu)
+        if (Input.GetKeyDown(KeyCode.Escape) && activeMenu == HUD || activeMenu == pauseMenu)
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;
@@ -73,6 +73,8 @@ public class gameManager : MonoBehaviour
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
+
+    
 
 
 }
