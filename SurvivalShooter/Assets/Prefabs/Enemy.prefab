@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5606722010635054385}
   - component: {fileID: 5606722010635054390}
   - component: {fileID: 5606722010635054391}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -51,6 +51,9 @@ MonoBehaviour:
   color: {fileID: 5606722010635054390}
   agent: {fileID: 5606722010635054386}
   HP: 10
+  shootDist: 113
+  shootRate: 1
+  bullet: {fileID: 5537543527767281464, guid: 08db00689ae2e9341971779fd91d176b, type: 3}
   speed: 5
   speedVariance: 2
   avoidRadius: 0.75
