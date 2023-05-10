@@ -10,6 +10,7 @@ public class gameManager : MonoBehaviour
     public EnemySpawner enemySpawnerScript;
     public playerController playerScript;
     public gunDisplay displayScript;
+    public HUD hudScript;
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
@@ -32,8 +33,8 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
+        hudScript = HUD.GetComponent<HUD>();
         timeScaleOriginal = Time.timeScale;
-        
     }
 
     // Update is called once per frame
@@ -75,8 +76,4 @@ public class gameManager : MonoBehaviour
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
-
-    
-
-
 }

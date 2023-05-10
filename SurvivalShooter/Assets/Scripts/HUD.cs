@@ -13,23 +13,12 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemies;
     [SerializeField] TextMeshProUGUI points;
     [SerializeField] TextMeshProUGUI ammoCount;
-    [SerializeField] Slider healthBar;   
+    [SerializeField] Slider healthBar;
     [SerializeField] Image gunType;
-    [SerializeField] Image miniMap; 
+    [SerializeField] Image miniMap;
 
     [Header("------ Ammo Icons ------")]
-    [SerializeField] Image ammo100;
-    [SerializeField] Image ammo90;
-    [SerializeField] Image ammo80;
-    [SerializeField] Image ammo70;
-    [SerializeField] Image ammo60;
-    [SerializeField] Image ammo50;
-    [SerializeField] Image ammo40;
-    [SerializeField] Image ammo30;
-    [SerializeField] Image ammo20;
-    [SerializeField] Image ammo10;
-    [SerializeField] Image ammo0;
-
+    [SerializeField] Image[] ammoIcons = new Image[11];
 
     private bool bHUDVisible;
     private int ammoLeft;
@@ -42,6 +31,7 @@ public class HUD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gunType.preserveAspect = true;
         bHUDVisible = true;
     }
 
@@ -61,18 +51,20 @@ public class HUD : MonoBehaviour
         }
         else
         {
-            ammoCount.SetText(gameManager.instance.playerScript.getCurrentGun().getAmmoInClip().ToString());
-
+            ammoCount.SetText(gameManager.instance.playerScript.getCurrentGun().getReserveAmmo().ToString());
+            DisplayAmmoIcons();
         }
-        
     }
 
-    void DisplayGunType()
+    public void DisplayGunType()
     {
         // set the gunType equal to the current gun.
-        Gun currentGun = gameManager.instance.playerScript.getCurrentGun();
+        Texture2D currentGun = gameManager.instance.playerScript.getCurrentGun().get2DTexture();
 
-        gunType.material.mainTexture = currentGun.get2DTexture(); //Untested conversion, might not work properly
+        Rect rect = new Rect(0, 0, currentGun.width, currentGun.height);
+        gunType.sprite = Sprite.Create(currentGun, rect, new Vector2(0.5f, 0.5f));
+
+        DisplayAmmo();
     }
 
     void UpdateHealthBar()
@@ -103,24 +95,36 @@ public class HUD : MonoBehaviour
         ammoLeft = currentGun.getAmmoInClip();
         clipSize = currentGun.getClipSize();
 
-        float ammoLeftPercentage = ammoLeft / clipSize * 100; 
+        float ammoLeftPercentage = (float)ammoLeft / (float)clipSize * 100f;
 
-        if(clipSize > 10)
+        if (clipSize >= 10)
         {
-            ammo100.color.WithAlpha(ammoLeftPercentage == 100 ? 100 : 40);
-            ammo90.color.WithAlpha(ammoLeftPercentage >= 90 ? 100 : 40);
-            ammo80.color.WithAlpha(ammoLeftPercentage >= 80 ? 100 : 40);
-            ammo70.color.WithAlpha(ammoLeftPercentage >= 70 ? 100 : 40);
-            ammo60.color.WithAlpha(ammoLeftPercentage >= 60 ? 100 : 40);
-            ammo50.color.WithAlpha(ammoLeftPercentage >= 50 ? 100 : 40);
-            ammo40.color.WithAlpha(ammoLeftPercentage >= 40 ? 100 : 40);
-            ammo30.color.WithAlpha(ammoLeftPercentage >= 30 ? 100 : 40);
-            ammo20.color.WithAlpha(ammoLeftPercentage >= 20 ? 100 : 40);
-            ammo10.color.WithAlpha(ammoLeftPercentage >= 10 ? 100 : 40);
-            ammo0.color.WithAlpha(ammoLeftPercentage > 0 ? 100 : 40);
+            for(int i = 0;  i < ammoIcons.Length; i++)
+            {
+                if (i != 10)
+                {
+                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage >= (10 - i) * 10 ? 1f : .4f);
+                }
+                else
+                {
+                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage > (10 - i) * 10 ? 1f : .4f);
+                }
+            }
         }
-
-
+        else
+        {
+            for(int i = 10; i >= 0; i--){
+                if(i > clipSize - 1){
+                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(0);
+                }
+                else if(clipSize - i > ammoLeft){
+                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(.4f);
+                }
+                else{
+                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(1f);
+                }
+            }
+        }
     }
 
     void DisplayKills()
@@ -134,7 +138,6 @@ public class HUD : MonoBehaviour
     public void UpdateHUD()
     {
         DisplayAmmo(); 
-        //DisplayAmmoIcons(); 
         DisplayKills();
         UpdateHealthBar();
         UpdateWave();

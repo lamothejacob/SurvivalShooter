@@ -130,6 +130,7 @@ public class playerController : MonoBehaviour,IDamage
         {
             currentGun = currentGun == 0 ? 1 : 0;
             gameManager.instance.displayScript.setCurrentGun(gunInventory[currentGun]);
+            gameManager.instance.hudScript.DisplayGunType();
         }
     }
 
@@ -138,6 +139,7 @@ public class playerController : MonoBehaviour,IDamage
         if (Input.GetButtonDown("Reload") && !isShooting)
         {
             gunInventory[currentGun].reload();
+            gameManager.instance.hudScript.UpdateHUD();
         }
     }
 
@@ -246,6 +248,7 @@ public class playerController : MonoBehaviour,IDamage
         points -= gun.getCost();
 
         gameManager.instance.displayScript.setCurrentGun(gun);
+        gameManager.instance.hudScript.DisplayGunType();
     }
 
     public void addAmmo(Gun gun, int ammoAmount, int cost)
