@@ -266,9 +266,14 @@ public class playerController : MonoBehaviour,IDamage
         points -= cost;
     }
 
-    public int getCurrentGun()
+    public Gun getCurrentGun()
     {
-        return currentGun; 
+        if(gunInventory.Count == 0)
+        {
+            return null;
+        }
+
+        return gunInventory[currentGun]; 
     }
 
     public int getHP()
@@ -279,10 +284,5 @@ public class playerController : MonoBehaviour,IDamage
     public int getPoints()
     {
         return points;
-    }
-
-    public List<Gun> getGunList()
-    {
-        return gunInventory;
     }
 }

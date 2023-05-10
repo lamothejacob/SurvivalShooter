@@ -39,7 +39,6 @@ public class HUD : MonoBehaviour
     private float pointScored;
     private float waveNumber;
     
-    public 
     // Start is called before the first frame update
     void Start()
     {
@@ -54,20 +53,16 @@ public class HUD : MonoBehaviour
 
     void DisplayAmmo()
     {
-        if (gameManager.instance.playerScript.getGunList().Count == 0)
+        Gun tempGun = gameManager.instance.playerScript.getCurrentGun();
+
+        if (tempGun == null)
         {
             ammoCount.SetText("0");
         }
         else
         {
-            if(gameManager.instance.playerScript.getCurrentGun() == 0)
-            {
-                ammoCount.SetText(gameManager.instance.playerScript.getGunList()[0].getAmmoInClip().ToString());
-            }else if(gameManager.instance.playerScript.getCurrentGun() == 1)
-            {
-                ammoCount.SetText(gameManager.instance.playerScript.getGunList()[1].getAmmoInClip().ToString());
-            }
-            
+            ammoCount.SetText(gameManager.instance.playerScript.getCurrentGun().getAmmoInClip().ToString());
+
         }
         
     }
@@ -75,8 +70,9 @@ public class HUD : MonoBehaviour
     void DisplayGunType()
     {
         // set the gunType equal to the current gun.
-        Gun currentGun = gameManager.instance.playerScript.GetComponent<Gun>();
+        Gun currentGun = gameManager.instance.playerScript.getCurrentGun();
 
+        gunType.material.mainTexture = currentGun.get2DTexture(); //Untested conversion, might not work properly
     }
 
     void UpdateHealthBar()
@@ -103,7 +99,7 @@ public class HUD : MonoBehaviour
     {
         // Get the current guns clip size, divide it by the current ammo left. If the ammo is over 10, we will just use that
         // percentage to display the opacity of the bullets
-        Gun currentGun = gameManager.instance.playerScript.GetComponent<Gun>();
+        Gun currentGun = gameManager.instance.playerScript.getCurrentGun();
         ammoLeft = currentGun.getAmmoInClip();
         clipSize = currentGun.getClipSize();
 
@@ -111,174 +107,17 @@ public class HUD : MonoBehaviour
 
         if(clipSize > 10)
         {
-            if (ammoLeftPercentage == 100)
-            {
-                ammo100.color.WithAlpha(100);
-                ammo90.color.WithAlpha(100);
-                ammo80.color.WithAlpha(100);
-                ammo70.color.WithAlpha(100);
-                ammo60.color.WithAlpha(100);
-                ammo50.color.WithAlpha(100);
-                ammo40.color.WithAlpha(100);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if (ammoLeftPercentage < 100 || ammoLeftPercentage >= 90)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(100);
-                ammo80.color.WithAlpha(100);
-                ammo70.color.WithAlpha(100);
-                ammo60.color.WithAlpha(100);
-                ammo50.color.WithAlpha(100);
-                ammo40.color.WithAlpha(100);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if (ammoLeftPercentage < 90 || ammoLeftPercentage >= 80)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(100);
-                ammo70.color.WithAlpha(100);
-                ammo60.color.WithAlpha(100);
-                ammo50.color.WithAlpha(100);
-                ammo40.color.WithAlpha(100);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if (ammoLeftPercentage < 80 || ammoLeftPercentage >= 70)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);               
-                ammo70.color.WithAlpha(100);
-                ammo60.color.WithAlpha(100);
-                ammo50.color.WithAlpha(100);
-                ammo40.color.WithAlpha(100);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if (ammoLeftPercentage < 70 || ammoLeftPercentage >= 60)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(100);
-                ammo50.color.WithAlpha(100);
-                ammo40.color.WithAlpha(100);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if(ammoLeftPercentage < 60 || ammoLeftPercentage >= 50)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(40);
-                ammo50.color.WithAlpha(100);
-                ammo40.color.WithAlpha(100);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if(ammoLeftPercentage < 50 || ammoLeftPercentage >= 40)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(40);
-                ammo50.color.WithAlpha(40);
-                ammo40.color.WithAlpha(100);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if(ammoLeftPercentage < 40 ||  ammoLeftPercentage >= 30)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(40);
-                ammo50.color.WithAlpha(40);
-                ammo40.color.WithAlpha(40);
-                ammo30.color.WithAlpha(100);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if(ammoLeftPercentage < 30 || ammoLeftPercentage >= 20)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(40);
-                ammo50.color.WithAlpha(40);
-                ammo40.color.WithAlpha(40);
-                ammo30.color.WithAlpha(40);
-                ammo20.color.WithAlpha(100);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if(ammoLeftPercentage < 20 || ammoLeftPercentage >= 10)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(40);
-                ammo50.color.WithAlpha(40);
-                ammo40.color.WithAlpha(40);
-                ammo30.color.WithAlpha(40);
-                ammo20.color.WithAlpha(40);
-                ammo10.color.WithAlpha(100);
-                ammo0.color.WithAlpha(100);
-            }
-            else if(ammoLeftPercentage < 10 || ammoLeftPercentage >= 0)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(40);
-                ammo50.color.WithAlpha(40);
-                ammo40.color.WithAlpha(40);
-                ammo30.color.WithAlpha(40);
-                ammo20.color.WithAlpha(40);
-                ammo10.color.WithAlpha(40);
-                ammo0.color.WithAlpha(100);
-            }
-            else if(ammoLeftPercentage == 0)
-            {
-                ammo100.color.WithAlpha(40);
-                ammo90.color.WithAlpha(40);
-                ammo80.color.WithAlpha(40);
-                ammo70.color.WithAlpha(40);
-                ammo60.color.WithAlpha(40);
-                ammo50.color.WithAlpha(40);
-                ammo40.color.WithAlpha(40);
-                ammo30.color.WithAlpha(40);
-                ammo20.color.WithAlpha(40);
-                ammo10.color.WithAlpha(40);
-                ammo0.color.WithAlpha(40);
-            }
+            ammo100.color.WithAlpha(ammoLeftPercentage == 100 ? 100 : 40);
+            ammo90.color.WithAlpha(ammoLeftPercentage >= 90 ? 100 : 40);
+            ammo80.color.WithAlpha(ammoLeftPercentage >= 80 ? 100 : 40);
+            ammo70.color.WithAlpha(ammoLeftPercentage >= 70 ? 100 : 40);
+            ammo60.color.WithAlpha(ammoLeftPercentage >= 60 ? 100 : 40);
+            ammo50.color.WithAlpha(ammoLeftPercentage >= 50 ? 100 : 40);
+            ammo40.color.WithAlpha(ammoLeftPercentage >= 40 ? 100 : 40);
+            ammo30.color.WithAlpha(ammoLeftPercentage >= 30 ? 100 : 40);
+            ammo20.color.WithAlpha(ammoLeftPercentage >= 20 ? 100 : 40);
+            ammo10.color.WithAlpha(ammoLeftPercentage >= 10 ? 100 : 40);
+            ammo0.color.WithAlpha(ammoLeftPercentage > 0 ? 100 : 40);
         }
 
 
