@@ -196,6 +196,7 @@ MonoBehaviour:
   interactDistance: 1
   points: 0
   currentGun: 0
+  starterGun: {fileID: 0}
   gunInventory: []
 --- !u!143 &3674606059404510839
 CharacterController:

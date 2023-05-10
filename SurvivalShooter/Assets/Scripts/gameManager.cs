@@ -41,7 +41,7 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Escape) || activeMenu == HUD)
+        if (Input.GetKeyDown(KeyCode.Escape) || activeMenu == HUD && !isPaused)
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;
