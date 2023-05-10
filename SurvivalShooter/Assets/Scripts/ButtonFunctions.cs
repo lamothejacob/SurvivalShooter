@@ -17,11 +17,14 @@ public class ButtonFunctions : MonoBehaviour
     // ******************************
     public void playMain()
     {
+        gameManager.instance.unPausedState();
+
+        /**
         gameManager.instance.activeMenu = null;
         gameManager.instance.mainMenu.SetActive(false);
         gameManager.instance.activeMenu = null;
         gameManager.instance.HUD.SetActive(true);  
-            
+        **/
     }
 
     public void settingsMain()
