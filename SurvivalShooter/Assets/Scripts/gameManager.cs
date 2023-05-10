@@ -76,11 +76,4 @@ public class gameManager : MonoBehaviour
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
-
-    private void Start()
-    {
-        pauseState();
-        activeMenu = mainMenu;
-        activeMenu.SetActive(true);
-    }
 }

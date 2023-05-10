@@ -17,8 +17,7 @@ public class ButtonFunctions : MonoBehaviour
     // ******************************
     public void playMain()
     {
-        gameManager.instance.unPausedState();
-
+        Restart();
         /**
         gameManager.instance.activeMenu = null;
         gameManager.instance.mainMenu.SetActive(false);
