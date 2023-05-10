@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
+    [SerializeField] float playerFaceSpeed;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)] [SerializeField] int shootDist;
@@ -23,6 +24,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float avoidRadius;
     [SerializeField] float avoidRadiusVariance;
 
+    Vector3 playerDir;
     bool isShooting;
     Color colorOrig;
 
@@ -36,6 +38,13 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        playerDir = gameManager.instance.player.transform.position - transform.position;
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            facePLayer();
+        }
+
         agent.SetDestination(gameManager.instance.player.transform.position);
         if (!isShooting)
             StartCoroutine(shoot());
@@ -55,6 +64,12 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
+    }
+
+    void facePLayer()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
     public void TakeDamage(int damage)

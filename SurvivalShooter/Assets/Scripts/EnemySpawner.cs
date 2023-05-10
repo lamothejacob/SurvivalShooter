@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     private WaveEditorSO currentWave;
     private bool isLooping = true;
     private int enemyCounter = 0;
+    private int waveNumber = 1;
     #endregion
 
     private void Start()
@@ -19,6 +20,11 @@ public class EnemySpawner : MonoBehaviour
     public WaveEditorSO GetCurrentWave()
     {
         return currentWave;
+    }
+
+    public int GetWaveNumber()
+    {
+        return waveNumber;
     }
 
     private IEnumerator SpawnEnemyWaves()
@@ -38,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
                     yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
                 }
                 yield return new WaitUntil(() => EnemiesLeft() == 0);
+                waveNumber++;
                 yield return new WaitForSeconds(timeBetweenWaves);
             }
         } while (isLooping);

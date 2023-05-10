@@ -55,8 +55,6 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(false);
         
         gameManager.instance.unPausedState();
-        gameManager.instance.isPaused = !gameManager.instance.isPaused;
-        gameManager.instance.activeMenu = null;
 
     }
 
