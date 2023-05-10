@@ -33,7 +33,6 @@ public class gunDisplay : MonoBehaviour
         if (!gunObjectPairs.ContainsKey(gun.get2DTexture()))
         {
             throw new System.Exception("Attempted to display non-existent gun on player. gunDisplay.cs at line 14.");
-            return;
         }
 
         if(currentActive != null)
