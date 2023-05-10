@@ -51,7 +51,7 @@ public class HUD : MonoBehaviour
         }
         else
         {
-            ammoCount.SetText(gameManager.instance.playerScript.getCurrentGun().getReserveAmmo().ToString());
+            ammoCount.SetText(Mathf.Min(999, gameManager.instance.playerScript.getCurrentGun().getReserveAmmo()).ToString());
             DisplayAmmoIcons();
         }
     }

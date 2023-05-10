@@ -983,6 +983,7 @@ MonoBehaviour:
   enemySpawnerScript: {fileID: 0}
   playerScript: {fileID: 0}
   displayScript: {fileID: 0}
+  hudScript: {fileID: 0}
   activeMenu: {fileID: 0}
   pauseMenu: {fileID: 8551387257181962966}
   mainMenu: {fileID: 8551387257591229083}
@@ -2407,7 +2408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 847.3, y: -405}
+  m_AnchoredPosition: {x: 829, y: -404}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8551387256773164099
@@ -2438,9 +2439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '47
-
-'
+  m_text: 999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ff268aa4b9f7124f96ca8b40a198f93, type: 2}
   m_sharedMaterial: {fileID: 2244238393067785448, guid: 9ff268aa4b9f7124f96ca8b40a198f93, type: 2}
@@ -2474,7 +2473,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2503,7 +2502,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -33.061157, y: 0, z: 24.71521, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2973,7 +2972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400.5, y: -287.28}
+  m_AnchoredPosition: {x: 386, y: -287.28}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8551387256823163731
@@ -4358,7 +4357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 776.4, y: -417.4}
+  m_AnchoredPosition: {x: 739, y: -397.6}
   m_SizeDelta: {x: 300, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8551387257205074595
@@ -6812,17 +6811,18 @@ MonoBehaviour:
   healthBar: {fileID: 8551387256246035391}
   gunType: {fileID: 8551387257205074594}
   miniMap: {fileID: 8551387256747342144}
-  ammo100: {fileID: 8551387256466535660}
-  ammo90: {fileID: 8551387257331209851}
-  ammo80: {fileID: 8551387256317166208}
-  ammo70: {fileID: 8551387257210018936}
-  ammo60: {fileID: 8551387256812798247}
-  ammo50: {fileID: 8551387256696836095}
-  ammo40: {fileID: 8551387258033693695}
-  ammo30: {fileID: 8551387257107991100}
-  ammo20: {fileID: 8551387256806396186}
-  ammo10: {fileID: 8551387257388051019}
-  ammo0: {fileID: 8551387257985704583}
+  ammoIcons:
+  - {fileID: 8551387256466535660}
+  - {fileID: 8551387257331209851}
+  - {fileID: 8551387256317166208}
+  - {fileID: 8551387257210018936}
+  - {fileID: 8551387256812798247}
+  - {fileID: 8551387256696836095}
+  - {fileID: 8551387258033693695}
+  - {fileID: 8551387257107991100}
+  - {fileID: 8551387256806396186}
+  - {fileID: 8551387257388051019}
+  - {fileID: 8551387257985704583}
 --- !u!1 &8551387257727518941
 GameObject:
   m_ObjectHideFlags: 0
