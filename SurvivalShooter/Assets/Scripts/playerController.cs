@@ -31,6 +31,10 @@ public class playerController : MonoBehaviour,IDamage
     [Range (0, 1)]
     [SerializeField] int currentGun = 0;
 
+    [Header("----- Starting Gun -----")]
+    [SerializeField] Gun starterGun;
+
+
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -45,6 +49,11 @@ public class playerController : MonoBehaviour,IDamage
     {
         HPOrig = HP;
         scaleOrig = transform.localScale;
+
+        gunInventory.Add(starterGun);
+        currentGun = gunInventory.Count - 1;
+        gameManager.instance.displayScript.setCurrentGun(starterGun);
+        gameManager.instance.hudScript.DisplayGunType();
     }
 
     void Update()
