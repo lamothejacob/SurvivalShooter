@@ -196,7 +196,7 @@ MonoBehaviour:
   interactDistance: 1
   points: 0
   currentGun: 0
-  starterGun: {fileID: 0}
+  starterGun: {fileID: 445546663631040572, guid: 956a450a3ce79ff4d89413ee5ef1d0e4, type: 3}
   gunInventory: []
 --- !u!143 &3674606059404510839
 CharacterController:

@@ -10729,7 +10729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac766b0a1bea22f4997423b96a24a986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
+  gun: {fileID: 4015826196968035476, guid: 4269e9a7471049640bf4dd8023446ab5, type: 3}
   m_Renderer: {fileID: 6736641201771562203}
   scaleByHalf: 1
 --- !u!33 &6736641201771562200
@@ -10843,7 +10843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac766b0a1bea22f4997423b96a24a986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
+  gun: {fileID: 445546663631040572, guid: 956a450a3ce79ff4d89413ee5ef1d0e4, type: 3}
   m_Renderer: {fileID: 6736641201794773624}
   scaleByHalf: 1
 --- !u!33 &6736641201794773627
@@ -10957,7 +10957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac766b0a1bea22f4997423b96a24a986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
+  gun: {fileID: 2716686347403132482, guid: 0ef76c2777523e140ab1ad23376e8eac, type: 3}
   m_Renderer: {fileID: 6736641202621017194}
   scaleByHalf: 1
 --- !u!33 &6736641202621017193
@@ -11071,7 +11071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac766b0a1bea22f4997423b96a24a986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
+  gun: {fileID: 8276776194414083668, guid: a934483b22b9611449301436634064e2, type: 3}
   m_Renderer: {fileID: 6736641203207614799}
   scaleByHalf: 1
 --- !u!33 &6736641203207614796
