@@ -297,4 +297,9 @@ public class playerController : MonoBehaviour,IDamage
     {
         return points;
     }
+
+    public void addPoints(int amount)
+    {
+        points += amount;
+    }
 }

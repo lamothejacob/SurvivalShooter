@@ -7,6 +7,7 @@ public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] int cost;
 
+    [Header("----------")]
     [SerializeField] Renderer model;
     [SerializeField] Collider coll;
     [SerializeField] NavMeshObstacle obstacle;
@@ -15,6 +16,7 @@ public class Door : MonoBehaviour, IInteractable
     {
         if (gameManager.instance.playerScript.getPoints() >= cost)
         {
+            gameManager.instance.playerScript.addPoints(-cost);
             changeDoorState(false);
         }
     }
