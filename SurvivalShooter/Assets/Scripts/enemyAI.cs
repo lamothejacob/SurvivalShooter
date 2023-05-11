@@ -9,14 +9,18 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer color;
     [SerializeField] NavMeshAgent agent;
 
+    [SerializeField] Transform headPos;
+
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] float playerFaceSpeed;
+    [SerializeField] int ViewCone;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)] [SerializeField] int shootDist;
     [Range(0.1f, 3)] [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
+    [SerializeField] int shootAngle;
 
     [Header("----- Nav Mesh Stats -----")]
     [SerializeField] float speed;
@@ -27,6 +31,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     bool isShooting;
     Color colorOrig;
+    float angleToPlayer;
 
     private void Start()
     {
@@ -38,16 +43,42 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-        playerDir = gameManager.instance.player.transform.position - transform.position;
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            facePLayer();
-        }
 
         agent.SetDestination(gameManager.instance.player.transform.position);
-        if (!isShooting)
-            StartCoroutine(shoot());
+
+        if (canSeePlayer())
+        {
+
+        }
+    }
+
+    bool canSeePlayer()
+    {
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+        Debug.DrawRay(headPos.position, playerDir);
+        Debug.Log(angleToPlayer);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= ViewCone)
+            {
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    facePLayer();
+                }
+
+                if (!isShooting && angleToPlayer <= shootAngle)
+                    StartCoroutine(shoot());
+
+                return true;
+            }
+        }
+        return false;
     }
 
     private void Death()
