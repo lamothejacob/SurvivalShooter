@@ -49,5 +49,5 @@ MonoBehaviour:
   damage: 100
   shootDist: 100
   fireRate: 1
-  reserveAmmo: 100
+  reserveAmmoMax: 100
   clipSize: 5
