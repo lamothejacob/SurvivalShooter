@@ -115,7 +115,7 @@ public class HUD : MonoBehaviour
         {
             for(int i = 10; i >= 0; i--){
                 if(i > clipSize - 1){
-                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(0);
+                    ammoIcons[i].color.a = ammoIcons[i].color.WithAlpha(0);
                 }
                 else if(clipSize - i > ammoLeft){
                     ammoIcons[i].color = ammoIcons[i].color.WithAlpha(.4f);
