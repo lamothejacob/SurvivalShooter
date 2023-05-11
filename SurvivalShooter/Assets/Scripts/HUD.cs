@@ -111,6 +111,7 @@ public class HUD : MonoBehaviour
                 if (i != 10)
                 {
                     //ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage >= (10 - i) * 10 ? 1f : .4f);
+
                     if (ammoLeftPercentage >= (10 - i) * 10)
                     {
                         ammoIcons[i].color = ammoColor;
@@ -123,6 +124,7 @@ public class HUD : MonoBehaviour
                 else
                 {
                     //ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage > (10 - i) * 10 ? 1f : .4f);
+
                     if (ammoLeftPercentage > (10 - i) * 10)
                     {
                         ammoIcons[i].color = ammoColor;

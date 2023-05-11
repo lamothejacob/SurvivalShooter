@@ -50,6 +50,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 yield return new WaitUntil(() => EnemiesLeft() == 0);
                 waveNumber++;
+                gameManager.instance.updateGameGoal();
                 yield return new WaitForSeconds(timeBetweenWaves);
             }
         } while (isLooping);

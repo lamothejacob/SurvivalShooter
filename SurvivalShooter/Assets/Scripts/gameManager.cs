@@ -85,7 +85,7 @@ public class gameManager : MonoBehaviour
 
         if (currentWave > enemySpawnerScript.GetWaveAmount())
         {
-
+            StartCoroutine(NewWin());
         }
     }
 
