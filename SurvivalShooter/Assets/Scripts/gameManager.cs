@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class gameManager : MonoBehaviour
     public GameObject settingsMain;
     public GameObject settingsPause;  
     public GameObject loseMenu;
+    public GameObject winMenu;
     public GameObject HUD; 
 
     public bool isPaused;
@@ -75,5 +77,26 @@ public class gameManager : MonoBehaviour
         pauseState();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
+    }
+
+    public void updateGameGoal()
+    {
+        int currentWave = enemySpawnerScript.GetWaveNumber();
+
+        if (currentWave > enemySpawnerScript.GetWaveAmount())
+        {
+
+        }
+    }
+
+    IEnumerator NewWin()
+    {
+
+        yield return new WaitForSeconds(2);
+
+        activeMenu = winMenu;
+        activeMenu.SetActive(true);
+        pauseState();
+
     }
 }

@@ -27,6 +27,11 @@ public class EnemySpawner : MonoBehaviour
         return waveNumber;
     }
 
+    public int GetWaveAmount()
+    {
+        return waveConfigs.Count;
+    }
+
     private IEnumerator SpawnEnemyWaves()
     {
 
