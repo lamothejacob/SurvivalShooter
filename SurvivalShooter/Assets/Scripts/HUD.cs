@@ -27,12 +27,19 @@ public class HUD : MonoBehaviour
     private float enemiesLeft;
     private float pointScored;
     private float waveNumber;
+
+    private Color ammoColorTrans;
+    private Color ammoColor;
+    private Color ammoColorEmpty;
     
     // Start is called before the first frame update
     void Start()
     {
         gunType.preserveAspect = true;
         bHUDVisible = true;
+        ammoColorTrans = new Color(1f, 1f, 1f, .4f);
+        ammoColor = new Color(1f, 1f, 1f, 1f);
+        ammoColorEmpty = new Color(1f, 1f, 1f, 0f);
     }
 
     // Update is called once per frame
@@ -103,11 +110,27 @@ public class HUD : MonoBehaviour
             {
                 if (i != 10)
                 {
-                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage >= (10 - i) * 10 ? 1f : .4f);
+                    //ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage >= (10 - i) * 10 ? 1f : .4f);
+                    if (ammoLeftPercentage >= (10 - i) * 10)
+                    {
+                        ammoIcons[i].color = ammoColor;
+                    }
+                    else
+                    {
+                        ammoIcons[i].color = ammoColorTrans;
+                    }
                 }
                 else
                 {
-                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage > (10 - i) * 10 ? 1f : .4f);
+                    //ammoIcons[i].color = ammoIcons[i].color.WithAlpha(ammoLeftPercentage > (10 - i) * 10 ? 1f : .4f);
+                    if (ammoLeftPercentage > (10 - i) * 10)
+                    {
+                        ammoIcons[i].color = ammoColor;
+                    }
+                    else
+                    {
+                        ammoIcons[i].color = ammoColorTrans;
+                    }
                 }
             }
         }
@@ -115,13 +138,13 @@ public class HUD : MonoBehaviour
         {
             for(int i = 10; i >= 0; i--){
                 if(i > clipSize - 1){
-                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(0);
+                    ammoIcons[i].color = ammoColorEmpty;
                 }
                 else if(clipSize - i > ammoLeft){
-                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(.4f);
+                    ammoIcons[i].color = ammoColorTrans;
                 }
                 else{
-                    ammoIcons[i].color = ammoIcons[i].color.WithAlpha(1f);
+                    ammoIcons[i].color = ammoColor;
                 }
             }
         }
