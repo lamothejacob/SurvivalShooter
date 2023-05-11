@@ -9,16 +9,16 @@ public class Gun : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int shootDist;
     [SerializeField] float fireRate;
-    [SerializeField] int reserveAmmoMax;
+    [SerializeField] int reserveAmmo;
     [SerializeField] int clipSize;
 
     int ammoInClip;
-    int reserveAmmo;
+    //int reserveAmmo;
 
     private void Start()
     {
         ammoInClip = clipSize;
-        reserveAmmo = reserveAmmoMax;
+        //reserveAmmo = reserveAmmoMax;
     }
 
     public int getCost()
