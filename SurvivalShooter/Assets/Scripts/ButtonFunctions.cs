@@ -72,51 +72,21 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.unPausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.pauseMenu.SetActive(false);
+        //AudioManager.instance.Play("CombatMusic");  
     }
 
     public void returnToMainMenu()
     {
+        
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
         gameManager.instance.activeMenu.SetActive(true);
+        //AudioManager.instance.Play("MainTheme"); 
     }
 
     // ******************************
     // SETTINGS MENU BUTTONS
     // ******************************
-
-
-    public void adjustAudio()
-    {
-
-    }
-
-    public void adjustCameraSensitivity()
-    {
-
-    }
-
-    public void invertYButton()
-    {
-
-    }
-
-    public void HUDVisible()
-    {
-        if(bHUDVisible)
-        {
-            
-        }
-        else if(!bHUDVisible)
-        {
-            gameManager.instance.HUD.SetActive(false);
-        }
-    }
-    public void saveSettings()
-    {
-
-    }
-
     public void back()
     {
         gameManager.instance.activeMenu.SetActive(false);

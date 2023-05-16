@@ -50,9 +50,7 @@ public class gameManager : MonoBehaviour
             pauseMenu.SetActive(isPaused);
            
             pauseState();
-        }
-
-        
+        }  
     }
 
     public void pauseState()
