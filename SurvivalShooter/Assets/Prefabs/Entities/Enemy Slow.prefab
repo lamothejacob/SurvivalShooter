@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5606722010635054390}
   - component: {fileID: 5606722010635054391}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Enemy Slow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   shootRate: 1
   bullet: {fileID: 5537543527767281464, guid: 08db00689ae2e9341971779fd91d176b, type: 3}
   shootAngle: 5
-  speed: 5
+  speed: 2
   speedVariance: 2
   avoidRadius: 0.75
   avoidRadiusVariance: 0.25
