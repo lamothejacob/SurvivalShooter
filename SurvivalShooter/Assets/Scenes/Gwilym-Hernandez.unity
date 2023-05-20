@@ -543,6 +543,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1109589482, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109589482, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029764287, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 083a860d84045e042a810efa86f267eb, type: 2}
     - target: {fileID: 662619540623452665, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1228,6 +1240,10 @@ PrefabInstance:
     - target: {fileID: 6096138890942023151, guid: 620fac32ad799ae46a512379d5e0b3fd, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096138890942023151, guid: 620fac32ad799ae46a512379d5e0b3fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 620fac32ad799ae46a512379d5e0b3fd, type: 3}
