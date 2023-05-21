@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
@@ -21,7 +22,8 @@ public class gameManager : MonoBehaviour
     public GameObject settingsPause;  
     public GameObject loseMenu;
     public GameObject winMenu;
-    public GameObject HUD; 
+    public GameObject HUD;
+    public TextMeshProUGUI interactText;
 
     public bool isPaused;
     float timeScaleOriginal;

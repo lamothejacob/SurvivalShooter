@@ -15,6 +15,8 @@ public class Gun : MonoBehaviour
     int ammoInClip;
     int reserveAmmo;
 
+    public GameObject hitEffect;
+
     private void Start()
     {
         ammoInClip = clipSize;

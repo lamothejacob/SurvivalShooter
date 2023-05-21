@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5766681616656201544}
   - component: {fileID: 5766681616656201547}
   - component: {fileID: 5766681616656201546}
+  - component: {fileID: 1453471347}
   m_Layer: 0
   m_Name: WallBuy
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac766b0a1bea22f4997423b96a24a986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
+  gun: {fileID: 4015826196968035476, guid: 4269e9a7471049640bf4dd8023446ab5, type: 3}
   m_Renderer: {fileID: 5766681616656201547}
   scaleByHalf: 1
 --- !u!33 &5766681616656201544
@@ -114,3 +115,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1453471347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766681616656201557}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
