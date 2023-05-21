@@ -11,6 +11,9 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] Renderer model;
     [SerializeField] Collider coll;
     [SerializeField] NavMeshObstacle obstacle;
+    [SerializeField] Collider textTrigger;
+
+    string interactText;
 
     public void interact()
     {
@@ -18,6 +21,23 @@ public class Door : MonoBehaviour, IInteractable
         {
             gameManager.instance.playerScript.addPoints(-cost);
             changeDoorState(false);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interactText = "Press 'E' to open\n Cost: " + cost.ToString();
+            gameManager.instance.interactText.text = interactText;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.interactText.text = null;
         }
     }
 
