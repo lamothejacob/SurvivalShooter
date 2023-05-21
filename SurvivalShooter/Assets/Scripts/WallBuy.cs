@@ -10,6 +10,8 @@ public class WallBuy : MonoBehaviour, IInteractable
     float width, height;
     Texture gunTexture;
 
+    string interactText;
+
     void Start()
     {
         //Gets the 2D texture from the Gun class
@@ -50,6 +52,23 @@ public class WallBuy : MonoBehaviour, IInteractable
         {
             //Adds 5 clips of ammo if they do have the gun
             gameManager.instance.playerScript.addAmmo(gun, gun.getReserveAmmo(), gun.getCost() / 2);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interactText = "Press 'E' to Buy\n Cost: " + gun.getCost().ToString();
+            gameManager.instance.interactText.text = interactText;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.interactText.text = null;
         }
     }
 }
