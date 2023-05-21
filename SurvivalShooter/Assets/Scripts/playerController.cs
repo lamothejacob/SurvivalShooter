@@ -175,6 +175,8 @@ public class playerController : MonoBehaviour,IDamage
                 Debug.Log("Hit");
                 points += 10;
             }
+
+            Instantiate(gunInventory[currentGun].hitEffect, hit.point, gunInventory[currentGun].hitEffect.transform.rotation);
         }
 
         yield return new WaitForSeconds(gunInventory[currentGun].getFireRate());

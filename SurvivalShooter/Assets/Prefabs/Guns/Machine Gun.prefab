@@ -51,3 +51,4 @@ MonoBehaviour:
   fireRate: 0.2
   reserveAmmoMax: 100
   clipSize: 30
+  hitEffect: {fileID: 1250507045210962, guid: 3fe0df07025a3e747855b1bb671fc04e, type: 3}
