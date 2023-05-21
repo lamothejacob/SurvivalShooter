@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class healthPickup : MonoBehaviour
 {
-    [SerializeField] int addHealthAmount; 
+    [SerializeField] int addHealthAmount;
 
+
+    bool isInteracting;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,22 @@ public class healthPickup : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             gameManager.instance.playerScript.AddHealth(addHealthAmount);
-            Debug.Log("Health was added to the player."); 
-            Destroy(gameObject);
+            Debug.Log("Health was added to the player.");
+            if (!isInteracting)
+                StartCoroutine(interactText());
         }
+    }
+
+    IEnumerator interactText()
+    {
+        isInteracting = true;
+        gameManager.instance.interactText.text = '+' + addHealthAmount.ToString() + " Health";
+
+        yield return new WaitForSeconds(0.5f);
+
+        gameManager.instance.interactText.text = null;
+        isInteracting = false;
+
+        Destroy(gameObject);
     }
 }
