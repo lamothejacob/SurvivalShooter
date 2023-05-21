@@ -11,7 +11,7 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] Renderer model;
     [SerializeField] Collider coll;
     [SerializeField] NavMeshObstacle obstacle;
-    [SerializeField] Collider textTrigger;
+    [SerializeField] Collider interactTrigger;
 
     string interactText;
 
@@ -46,5 +46,6 @@ public class Door : MonoBehaviour, IInteractable
         model.enabled = state;
         coll.enabled = state;
         obstacle.enabled = state;
+        interactTrigger.enabled = state;
     }
 }
