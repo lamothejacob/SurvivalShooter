@@ -843,6 +843,8 @@ GameObject:
   - component: {fileID: 7037816211700263952}
   - component: {fileID: 7037816211700263959}
   - component: {fileID: 7037816211700263953}
+  - component: {fileID: 5007002147358275227}
+  - component: {fileID: 2969859814882827162}
   m_Layer: 0
   m_Name: AmmoPickup
   m_TagString: Untagged
@@ -952,6 +954,35 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000007450581, y: 0.09893429, z: 0}
+--- !u!65 &5007002147358275227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037816211700263963}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3190927, y: 0.20213139, z: 0.15242966}
+  m_Center: {x: 0.000000007450581, y: 0.09893429, z: 0}
+--- !u!54 &2969859814882827162
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037816211700263963}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7613716827653937890
 GameObject:
   m_ObjectHideFlags: 0
