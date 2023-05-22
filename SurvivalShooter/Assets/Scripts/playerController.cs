@@ -36,7 +36,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
-
+    public Vector3 gunLocation;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -54,6 +54,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         HPOrig = HP;
         scaleOrig = transform.localScale;
 
+        starterGun.Load();
         gunInventory.Add(starterGun);
         currentGun = gunInventory.Count - 1;
         gameManager.instance.displayScript.setCurrentGun(starterGun);
@@ -181,21 +182,21 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunInventory[currentGun].getShootDist()))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunInventory[currentGun].shootDist))
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
 
             if (damageable != null)
             {
-                damageable.TakeDamage(gunInventory[currentGun].getDamage());
+                damageable.TakeDamage(gunInventory[currentGun].damage);
                 Debug.Log("Hit");
                 points += 10;
             }
 
-            Instantiate(gunInventory[currentGun].hitEffect, hit.point, gunInventory[currentGun].hitEffect.transform.rotation);
+            Destroy(Instantiate(gunInventory[currentGun].hitEffect, hit.point, Quaternion.identity), 1);
         }
 
-        yield return new WaitForSeconds(gunInventory[currentGun].getFireRate());
+        yield return new WaitForSeconds(gunInventory[currentGun].fireRate);
 
         isShooting = false;
     }
@@ -244,7 +245,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         foreach (Gun g in gunInventory)
         {
-            if (g.get2DTexture() == gun.get2DTexture())
+            if (g.gunImage == gun.gunImage)
             {
                 return true;
             }
@@ -255,7 +256,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     public void addGun(Gun gun)
     {
-        if(points < gun.getCost())
+        if(points < gun.cost)
         {
             return;
         }
@@ -267,12 +268,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
         else
         {
-            Destroy(gunInventory[currentGun].gameObject);
+            Destroy(gunInventory[currentGun]);
             gunInventory[currentGun] = null;
             gunInventory[currentGun] = gun;
         }
 
-        points -= gun.getCost();
+        points -= gun.cost;
 
         gameManager.instance.displayScript.setCurrentGun(gun);
         gameManager.instance.hudScript.DisplayGunType();
@@ -287,7 +288,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         foreach (Gun g in gunInventory)
         {
-            if (g.get2DTexture() == gun.get2DTexture())
+            if (g.gunImage == gun.gunImage)
             {
                 g.addAmmo(ammoAmount);
             }

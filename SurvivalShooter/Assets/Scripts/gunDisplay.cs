@@ -1,47 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
-
-[Serializable]
-public class KeyValuePair
-{
-    public Texture2D key;
-    public GameObject val;
-}
 
 public class gunDisplay : MonoBehaviour
 {
-    [Header("----- Gun Objects -----")]
-    [SerializeField] List<KeyValuePair> gunPairList = new List<KeyValuePair>();
-
-    //Unity inspector doesn't display dictionaries
-    Dictionary<Texture2D, GameObject> gunObjectPairs = new Dictionary<Texture2D, GameObject>();
     GameObject currentActive;
-
-    private void Start()
-    {
-        //Initialize dictionary
-        foreach(KeyValuePair kvp in gunPairList)
-        {
-            gunObjectPairs.Add(kvp.key, kvp.val);
-        }
-    }
 
     public void setCurrentGun(Gun gun)
     {
-        if (!gunObjectPairs.ContainsKey(gun.get2DTexture()))
-        {
-            throw new System.Exception("Attempted to display non-existent gun on player. gunDisplay.cs at line 14.");
-        }
-
+        //Destroy current gun object
         if(currentActive != null)
         {
             currentActive.SetActive(false);
-            currentActive = null;
+            Destroy(currentActive);
         }
 
-        currentActive = gunObjectPairs[gun.get2DTexture()];
+        //Instantiate new gun
+        currentActive = Instantiate(gun.gunObject, Camera.main.transform.position, Camera.main.transform.rotation);
+
+        //Adjust scale to 10x
+        currentActive.transform.localScale = Vector3.one * 10f;
+
+        //Put gun and child meshes into gun layer
+        currentActive.layer = 6;
+
+        foreach (Transform child in currentActive.transform)
+        {
+            child.gameObject.layer = 6;
+        }
+
+        //Attach to the camera
+        currentActive.transform.parent = Camera.main.transform;
         currentActive.SetActive(true);
+
+        //Adjust position
+        currentActive.transform.localPosition = gameManager.instance.playerScript.gunLocation;
     }
 }

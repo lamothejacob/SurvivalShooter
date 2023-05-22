@@ -1,51 +1,28 @@
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+[CreateAssetMenu]
+public class Gun : ScriptableObject
 {
-    [SerializeField] Texture2D gunImage;
+    [Header("----- Weapon -----")]
+    public Texture2D gunImage;
+    public GameObject gunObject;
+    public GameObject hitEffect;
 
     [Header("----- Weapon Stats -----")]
-    [SerializeField] int cost;
-    [SerializeField] int damage;
-    [SerializeField] int shootDist;
-    [SerializeField] float fireRate;
-    [SerializeField] int reserveAmmoMax;
-    [SerializeField] int clipSize;
+    public int cost;
+    public int damage;
+    public int shootDist;
+    public float fireRate;
+    public int reserveAmmoMax;
+    public int clipSize;
 
     int ammoInClip;
     int reserveAmmo;
 
-    public GameObject hitEffect;
-
-    private void Start()
+    public void Load()
     {
         ammoInClip = clipSize;
         reserveAmmo = reserveAmmoMax;
-    }
-
-    public int getCost()
-    {
-        return cost;
-    }
-    public int getClipSize()
-    {
-        return clipSize;
-    }
-    public int getDamage()
-    {
-        return damage;
-    }
-    public int getShootDist()
-    {
-        return shootDist;
-    }
-    public float getFireRate()
-    {
-        return fireRate;
-    }
-    public Texture2D get2DTexture()
-    {
-        return gunImage;
     }
 
     public void addAmmo(int ammo)

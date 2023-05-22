@@ -15,7 +15,7 @@ public class WallBuy : MonoBehaviour, IInteractable
     void Start()
     {
         //Gets the 2D texture from the Gun class
-        gunPhoto = gun.get2DTexture();
+        gunPhoto = gun.gunImage;
 
         //Adjusts the width and height
         width = gunPhoto.width;
@@ -44,14 +44,14 @@ public class WallBuy : MonoBehaviour, IInteractable
     {
         if (!gameManager.instance.playerScript.hasGun(gun)) 
         {
-            Gun newGun = Instantiate(gun);
             //Adds the gun to the players inventory if they do not have the gun
-            gameManager.instance.playerScript.addGun(newGun);
+            gun.Load();
+            gameManager.instance.playerScript.addGun(gun);
         }
         else
         {
             //Adds 5 clips of ammo if they do have the gun
-            gameManager.instance.playerScript.addAmmo(gun, gun.getReserveAmmo(), gun.getCost() / 2);
+            gameManager.instance.playerScript.addAmmo(gun, gun.reserveAmmoMax, gun.cost / 2);
         }
     }
 
@@ -59,7 +59,14 @@ public class WallBuy : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            interactText = "Press 'E' to Buy\n Cost: " + gun.getCost().ToString();
+            if (gameManager.instance.playerScript.hasGun(gun))
+            {
+                interactText = "Press 'E' for Ammo\n Cost: " + (gun.cost / 2).ToString();
+            }
+            else
+            {
+                interactText = "Press 'E' to Buy\n Cost: " + gun.cost.ToString();
+            }
             gameManager.instance.interactText.text = interactText;
         }
     }

@@ -66,7 +66,7 @@ public class HUD : MonoBehaviour
     public void DisplayGunType()
     {
         // set the gunType equal to the current gun.
-        Texture2D currentGun = gameManager.instance.playerScript.getCurrentGun().get2DTexture();
+        Texture2D currentGun = gameManager.instance.playerScript.getCurrentGun().gunImage;
 
         Rect rect = new Rect(0, 0, currentGun.width, currentGun.height);
         gunType.sprite = Sprite.Create(currentGun, rect, new Vector2(0.5f, 0.5f));
@@ -100,7 +100,7 @@ public class HUD : MonoBehaviour
         // percentage to display the opacity of the bullets
         Gun currentGun = gameManager.instance.playerScript.getCurrentGun();
         ammoLeft = currentGun.getAmmoInClip();
-        clipSize = currentGun.getClipSize();
+        clipSize = currentGun.clipSize;
 
         float ammoLeftPercentage = (float)ammoLeft / (float)clipSize * 100f;
 
