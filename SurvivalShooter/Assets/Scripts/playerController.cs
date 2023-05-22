@@ -25,7 +25,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int maxJumps = 1;
     [Range(1f, 10f)]
     [SerializeField] float interactDistance = 1.0f;
-    [SerializeField] Vector3 pushBack;
+    [SerializeField] int pushBackResolve;
 
     [Header("----- Mechanics -----")]
     [SerializeField] int points = 0;
@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private bool isInteracting = false;
     private int HPOrig;
     private Vector3 scaleOrig;
-    private int pushBackResolve;
+    private Vector3 pushBack;
     [SerializeField] List<Gun> gunInventory;
 
     private void Start()

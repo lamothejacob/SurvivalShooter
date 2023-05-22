@@ -13,7 +13,7 @@ public class Grenade : MonoBehaviour
 
         yield return new WaitForSeconds(timer);
 
-        Instantiate(explosion);
+        Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
 
     }
