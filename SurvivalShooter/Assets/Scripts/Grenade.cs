@@ -13,7 +13,7 @@ public class Grenade : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        rb.velocity = transform.forward * speed;
+        rb.velocity = Camera.main.transform.forward * speed;
 
         yield return new WaitForSeconds(timer);
 
