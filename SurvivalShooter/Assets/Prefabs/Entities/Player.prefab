@@ -378,8 +378,11 @@ MonoBehaviour:
   gravityValue: -9.81
   maxJumps: 1
   interactDistance: 1
-  points: 10
+  pushBackResolve: 3
+  points: 100
   currentGun: 0
+  grenadeAmount: 2
+  grenade: {fileID: 3833154100948993197, guid: 32b3b34af57b89a4fb96b191a6045781, type: 3}
   starterGun: {fileID: 0}
   gunInventory: []
 --- !u!143 &3674606059404510839

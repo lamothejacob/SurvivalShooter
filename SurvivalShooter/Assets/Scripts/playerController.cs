@@ -31,6 +31,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int points = 0;
     [Range (0, 1)]
     [SerializeField] int currentGun = 0;
+    [SerializeField] int grenadeAmount;
+    [SerializeField] GameObject grenade;
 
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
@@ -72,6 +74,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             if (Input.GetButton("Interact") && !isInteracting)
             {
                 StartCoroutine(interact());
+            }
+
+            if (Input.GetButtonDown("Grenade") && grenadeAmount > 0)
+            {
+                throwGrenade();
             }
 
             SwitchWeapon();
@@ -296,6 +303,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
 
         return gunInventory[currentGun]; 
+    }
+
+    void throwGrenade()
+    {
+        Instantiate(grenade, transform.position, transform.rotation);
+        grenadeAmount--;
     }
 
     public int getHP()

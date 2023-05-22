@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    [SerializeField] int timer;
     [SerializeField] GameObject explosion;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] int timer;
+    [SerializeField] int speed;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        rb.velocity = transform.forward * speed;
 
         yield return new WaitForSeconds(timer);
 
