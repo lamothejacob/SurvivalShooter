@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 662619540623452667}
   - component: {fileID: 662619540623452666}
   - component: {fileID: 1933287690}
+  - component: {fileID: 1933287695}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -332,12 +333,12 @@ MonoBehaviour:
   maxJumps: 1
   interactDistance: 1
   pushBackResolve: 3
-  points: 100
+  points: 0
   currentGun: 0
   grenadeAmount: 2
   grenade: {fileID: 3833154100948993197, guid: 32b3b34af57b89a4fb96b191a6045781, type: 3}
-  starterGun: {fileID: 0}
-  gunLocation: {x: 0, y: 0, z: 0}
+  starterGun: {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
+  gunLocation: {x: 0.5, y: -0.5, z: 1}
   gunInventory: []
 --- !u!143 &3674606059404510839
 CharacterController:
@@ -517,6 +518,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1933287695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662619540623452665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086cb356343dd0f4b9d6b8a4f7786549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &662619541693809444
 GameObject:
   m_ObjectHideFlags: 0
