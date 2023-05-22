@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class playerController : MonoBehaviour,IDamage
+public class playerController : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour,IDamage
     [SerializeField] int maxJumps = 1;
     [Range(1f, 10f)]
     [SerializeField] float interactDistance = 1.0f;
+    [SerializeField] Vector3 pushBack;
 
     [Header("----- Mechanics -----")]
     [SerializeField] int points = 0;
@@ -43,6 +44,7 @@ public class playerController : MonoBehaviour,IDamage
     private bool isInteracting = false;
     private int HPOrig;
     private Vector3 scaleOrig;
+    private int pushBackResolve;
     [SerializeField] List<Gun> gunInventory;
 
     private void Start()
@@ -104,7 +106,13 @@ public class playerController : MonoBehaviour,IDamage
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, pushBackResolve * Time.deltaTime);
+    }
+
+    public void takePushBack(Vector3 direc)
+    {
+        pushBack = direc;
     }
 
     void Sprint()
