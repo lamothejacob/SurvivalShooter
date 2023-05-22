@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 3880940643182147616, guid: 0768b10d4f483bc4aa543b61f516ee22, type: 3}
   rb: {fileID: -2634170660355199789}
-  timer: 2
+  timer: 5
   speed: 40
 --- !u!33 &3833154100948993198
 MeshFilter:
