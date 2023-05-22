@@ -67,7 +67,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         {
             Movement();
 
-            if (Input.GetButton("Shoot") && !isShooting)
+            if (((Input.GetButton("Shoot") && gunInventory[currentGun].automatic) || (Input.GetButtonDown("Shoot") && !gunInventory[currentGun].automatic)) && !isShooting)
             {
                 StartCoroutine(Shoot());
             }

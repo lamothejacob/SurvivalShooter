@@ -16,6 +16,8 @@ public class Gun : ScriptableObject
     public int reserveAmmoMax;
     public int clipSize;
 
+    public bool automatic = true;
+
     int ammoInClip;
     int reserveAmmo;
 
