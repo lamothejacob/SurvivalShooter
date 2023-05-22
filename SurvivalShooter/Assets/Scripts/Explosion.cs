@@ -20,7 +20,7 @@ public class Explosion : MonoBehaviour
         if (phys != null)
         {
             Vector3 direc = other.transform.position - transform.position;
-            phys.takePushBack(pushBack * direc);
+            phys.takePushBack(pushBack * direc, damage);
         }
     }
 }

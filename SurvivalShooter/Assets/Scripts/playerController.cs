@@ -117,9 +117,10 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, pushBackResolve * Time.deltaTime);
     }
 
-    public void takePushBack(Vector3 direc)
+    public void takePushBack(Vector3 direc, int damage)
     {
         pushBack = direc;
+        TakeDamage(damage);
     }
 
     void Sprint()

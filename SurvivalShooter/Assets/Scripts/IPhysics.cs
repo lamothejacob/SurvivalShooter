@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPhysics
 {
-    public void takePushBack(Vector3 direc);
+    public void takePushBack(Vector3 direc, int damage);
 }
