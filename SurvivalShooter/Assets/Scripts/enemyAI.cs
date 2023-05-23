@@ -8,7 +8,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] Renderer color;
     [SerializeField] NavMeshAgent agent;
-
+    [SerializeField] Animator anim;
+    [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
 
     [Header("----- Enemy Stats -----")]
@@ -43,6 +44,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        float speed = agent.velocity.normalized.magnitude;
+        anim.SetFloat("Speed", speed);
 
         agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -91,7 +94,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        Instantiate(bullet, transform.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
