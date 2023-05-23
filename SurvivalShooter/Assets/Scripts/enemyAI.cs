@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] Renderer color;
@@ -118,5 +118,11 @@ public class enemyAI : MonoBehaviour, IDamage
         color.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         color.material.color = colorOrig;
+    }
+
+    public void takePushBack(Vector3 direc, int damage)
+    {
+        agent.velocity += direc;
+        TakeDamage(damage);
     }
 }
