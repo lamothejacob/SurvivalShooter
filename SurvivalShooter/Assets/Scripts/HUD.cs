@@ -13,6 +13,7 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemies;
     [SerializeField] TextMeshProUGUI points;
     [SerializeField] TextMeshProUGUI ammoCount;
+    [SerializeField] TextMeshProUGUI grenadeAmount;
     [SerializeField] Slider healthBar;
     [SerializeField] Image gunType;
     [SerializeField] Image miniMap;
@@ -160,12 +161,18 @@ public class HUD : MonoBehaviour
         
     }
 
+    void DisplayGrenadeAmount()
+    {
+        grenadeAmount.text = gameManager.instance.playerScript.getGrenadeAmount().ToString();
+    }
+
     public void UpdateHUD()
     {
         DisplayAmmo(); 
         DisplayKills();
         UpdateHealthBar();
         UpdateWave();
-        updatePoints(); 
+        updatePoints();
+        DisplayGrenadeAmount();
     }
 }

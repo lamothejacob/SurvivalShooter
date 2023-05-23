@@ -339,6 +339,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         return points;
     }
 
+    public int getGrenadeAmount()
+    {
+        return grenadeAmount;
+    }
+
     public void addGrenade(int amount)
     {
         grenadeAmount += amount;
