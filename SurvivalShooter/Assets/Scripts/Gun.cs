@@ -8,15 +8,18 @@ public class Gun : ScriptableObject
     public GameObject gunObject;
     public GameObject hitEffect;
 
-    [Header("----- Weapon Stats -----")]
+    [Header("----- Immutable Stats -----")]
     public int cost;
-    public int damage;
+    public int baseDamage;
     public int shootDist;
     public float fireRate;
     public int reserveAmmoMax;
     public int clipSize;
-
     public bool automatic = true;
+
+    [Header("----- Mutable Stats -----")]
+    public int damage;
+    public int level = 0;
 
     int ammoInClip;
     int reserveAmmo;
@@ -25,6 +28,8 @@ public class Gun : ScriptableObject
     {
         ammoInClip = clipSize;
         reserveAmmo = reserveAmmoMax;
+        damage = baseDamage;
+        level = 0;
     }
 
     public void addAmmo(int ammo)

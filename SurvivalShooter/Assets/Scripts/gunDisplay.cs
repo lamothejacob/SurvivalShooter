@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class gunDisplay : MonoBehaviour
 {
-    GameObject currentActive;
+    public GameObject currentActive;
 
     public void setCurrentGun(Gun gun)
     {

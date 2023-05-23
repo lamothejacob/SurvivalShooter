@@ -210,6 +210,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, interactDistance))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            Debug.Log(interactable);
 
             if (interactable != null)
             {
@@ -297,6 +298,15 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         points -= cost;
     }
 
+    public void upgradeCurrentGun(float mult)
+    {
+        Gun gun = getCurrentGun();
+
+        gun.level++;
+
+        gun.damage = (int)(gun.damage * mult);
+    }
+
     public Gun getCurrentGun()
     {
         if(gunInventory.Count == 0)
@@ -326,5 +336,10 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public void addPoints(int amount)
     {
         points += amount;
+    }
+
+    public void toggleShooting(bool change)
+    {
+        isShooting = change;
     }
 }

@@ -16,9 +16,11 @@ MonoBehaviour:
   gunObject: {fileID: 919132149155446097, guid: 3e0c271583faf1d449d9642af7ec7363, type: 3}
   hitEffect: {fileID: 919132149155446097, guid: c248faafe99080c4696c6e98908adcf1, type: 3}
   cost: 500
-  damage: 100
+  baseDamage: 100
   shootDist: 200
   fireRate: 1
   reserveAmmoMax: 45
   clipSize: 5
   automatic: 0
+  damage: 100
+  level: 0
