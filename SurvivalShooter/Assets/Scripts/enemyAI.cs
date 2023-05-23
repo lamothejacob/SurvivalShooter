@@ -16,6 +16,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int HP;
     [SerializeField] float playerFaceSpeed;
     [SerializeField] int ViewCone;
+    [SerializeField] float animTransSpeed;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)] [SerializeField] int shootDist;
@@ -33,6 +34,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     bool isShooting;
     Color colorOrig;
     float angleToPlayer;
+    float speedanim;
 
     private void Start()
     {
@@ -44,8 +46,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
-        float speed = agent.velocity.normalized.magnitude;
-        anim.SetFloat("Speed", speed);
+        speedanim = Mathf.Lerp (speedanim, agent.velocity.normalized.magnitude,Time.deltaTime * animTransSpeed);
+        anim.SetFloat("Speed", speedanim);
 
         agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -93,6 +95,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     IEnumerator shoot()
     {
         isShooting = true;
+        anim.SetTrigger("Shoot");
 
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
