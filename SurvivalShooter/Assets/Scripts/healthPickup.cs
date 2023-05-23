@@ -31,7 +31,7 @@ public class healthPickup : MonoBehaviour
         isInteracting = true;
         gameManager.instance.interactText.text = '+' + addHealthAmount.ToString() + " Health";
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         gameManager.instance.interactText.text = null;
         isInteracting = false;

@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] Renderer color;
     [SerializeField] NavMeshAgent agent;
-
+    [SerializeField] Animator anim;
+    [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] float playerFaceSpeed;
     [SerializeField] int ViewCone;
+    [SerializeField] float animTransSpeed;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)] [SerializeField] int shootDist;
@@ -32,6 +34,7 @@ public class enemyAI : MonoBehaviour, IDamage
     bool isShooting;
     Color colorOrig;
     float angleToPlayer;
+    float speedanim;
 
     private void Start()
     {
@@ -43,6 +46,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        speedanim = Mathf.Lerp (speedanim, agent.velocity.normalized.magnitude,Time.deltaTime * animTransSpeed);
+        anim.SetFloat("Speed", speedanim);
 
         agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -90,8 +95,9 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+        anim.SetTrigger("Shoot");
 
-        Instantiate(bullet, transform.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -118,5 +124,11 @@ public class enemyAI : MonoBehaviour, IDamage
         color.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         color.material.color = colorOrig;
+    }
+
+    public void takePushBack(Vector3 direc, int damage)
+    {
+        agent.velocity += direc;
+        TakeDamage(damage);
     }
 }
