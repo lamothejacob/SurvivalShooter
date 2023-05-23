@@ -8,6 +8,8 @@ public class ammoBoxPickup : MonoBehaviour
 
     Gun currentGun;
 
+    bool isInteracting;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +18,25 @@ public class ammoBoxPickup : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {    
-            if(other.CompareTag("Player"))
-            {
-                if(gameManager.instance.playerScript.hasGun(currentGun))
-                {
-                    currentGun.addAmmo(addAmmoAmount);
-                    Debug.Log("Ammo was added to the current gun");
-                    Destroy(gameObject);
-                }
-                 
-            }
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.playerScript.getCurrentGun().addAmmo(addAmmoAmount);
+            if (!isInteracting)
+                StartCoroutine(interactText());
+        }
     }
 
+    IEnumerator interactText()
+    {
+        isInteracting = true;
+        gameManager.instance.interactText.text = '+' + addAmmoAmount.ToString() + " Ammo";
 
+        yield return new WaitForSeconds(1f);
+
+        gameManager.instance.interactText.text = null;
+        isInteracting = false;
+
+        Destroy(gameObject);
+    }
 }

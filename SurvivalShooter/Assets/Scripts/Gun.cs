@@ -35,6 +35,8 @@ public class Gun : ScriptableObject
     public void addAmmo(int ammo)
     {
         reserveAmmo += ammo;
+        if (reserveAmmo > reserveAmmoMax)
+            reserveAmmo = reserveAmmoMax;
     }
 
     public void removeAmmo(int ammo)
