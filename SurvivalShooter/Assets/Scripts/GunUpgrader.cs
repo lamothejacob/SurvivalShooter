@@ -7,9 +7,13 @@ public class GunUpgrader : MonoBehaviour, IInteractable
 {
     [SerializeField] AnimationCurve UpgradeCurve;
     [SerializeField] int costToUpgrade;
+    [SerializeField] AudioClip upgradeSound;
+    [SerializeField] AudioSource audioPlayer;
+
+    bool isUpgrading;
     public void interact()
     {
-        if (gameManager.instance.playerScript.getPoints() >= costToUpgrade)
+        if (gameManager.instance.playerScript.getPoints() >= costToUpgrade && !isUpgrading)
         {
             float mult = UpgradeCurve.Evaluate(gameManager.instance.playerScript.getCurrentGun().level + 1);
 
@@ -23,11 +27,21 @@ public class GunUpgrader : MonoBehaviour, IInteractable
 
     IEnumerator Upgrade()
     {
+        isUpgrading = true;
+
+        audioPlayer.PlayOneShot(upgradeSound);
         gameManager.instance.playerScript.toggleShooting(true);
 
         GameObject g = gameManager.instance.displayScript.currentActive;
         g.transform.parent = transform;
-        
+
+        g.layer = 1;
+
+        foreach (Transform child in g.transform)
+        {
+            child.gameObject.layer = 1;
+        }
+
         float elapsedTime = 0f;
         while (elapsedTime < 1f)
         {
@@ -39,7 +53,7 @@ public class GunUpgrader : MonoBehaviour, IInteractable
         }
 
 
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.9f);
 
         g.transform.parent = Camera.main.transform;
 
@@ -53,6 +67,14 @@ public class GunUpgrader : MonoBehaviour, IInteractable
             yield return null;
         }
 
+        g.layer = 6;
+
+        foreach (Transform child in g.transform)
+        {
+            child.gameObject.layer = 6;
+        }
+
         gameManager.instance.playerScript.toggleShooting(false);
+        isUpgrading = false;
     }
 }

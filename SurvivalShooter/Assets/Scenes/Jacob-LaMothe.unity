@@ -144,10 +144,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
-      propertyPath: points
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 662619540623452671, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1095,10 +1091,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 443106111272012521, guid: 6eaa3c9f993305045a96b7c3d0e2e752, type: 3}
-      propertyPath: costToUpgrade
-      value: 5000
-      objectReference: {fileID: 0}
     - target: {fileID: 3569631829061485901, guid: 6eaa3c9f993305045a96b7c3d0e2e752, type: 3}
       propertyPath: m_RootOrder
       value: 1
