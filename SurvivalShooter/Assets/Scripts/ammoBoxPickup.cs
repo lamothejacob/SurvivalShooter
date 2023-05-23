@@ -5,6 +5,7 @@ using UnityEngine;
 public class ammoBoxPickup : MonoBehaviour
 {
     [SerializeField] int addAmmoAmount;
+    [SerializeField] int addGrenade;
 
     Gun currentGun;
 
@@ -22,6 +23,7 @@ public class ammoBoxPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameManager.instance.playerScript.getCurrentGun().addAmmo(addAmmoAmount);
+            gameManager.instance.playerScript.addGrenade(addGrenade);
             if (!isInteracting)
                 StartCoroutine(interactText());
         }

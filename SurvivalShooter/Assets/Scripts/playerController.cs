@@ -31,6 +31,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int points = 0;
     [Range (0, 1)]
     [SerializeField] int currentGun = 0;
+    [Range (0, 5)]
     [SerializeField] int grenadeAmount;
     [SerializeField] GameObject grenade;
 
@@ -336,6 +337,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public int getPoints()
     {
         return points;
+    }
+
+    public void addGrenade(int amount)
+    {
+        grenadeAmount += amount;
     }
 
     public void addPoints(int amount)

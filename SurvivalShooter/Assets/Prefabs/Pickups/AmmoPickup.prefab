@@ -990,6 +990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addAmmoAmount: 10
+  addGrenade: 1
 --- !u!33 &7037816211700263952
 MeshFilter:
   m_ObjectHideFlags: 0
