@@ -51,7 +51,7 @@ public class WallBuy : MonoBehaviour, IInteractable
         else
         {
             //Adds 5 clips of ammo if they do have the gun
-            gameManager.instance.playerScript.addAmmo(gun, gun.reserveAmmoMax, gun.cost / 2);
+            gun.addAmmo(gun.reserveAmmoMax - gun.getReserveAmmo());
         }
     }
 
@@ -61,7 +61,7 @@ public class WallBuy : MonoBehaviour, IInteractable
         {
             if (gameManager.instance.playerScript.hasGun(gun))
             {
-                interactText = "Press 'E' for Ammo\n Cost: " + (gun.cost / 2).ToString();
+                interactText = "Press 'E' to refill Ammo\n Cost: " + (gun.cost / 2).ToString();
             }
             else
             {

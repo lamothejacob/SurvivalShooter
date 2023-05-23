@@ -140,13 +140,19 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         if (Input.GetButtonDown("Crouch"))
         {
+            Transform gts = gameManager.instance.displayScript.currentActive.transform;
+
             transform.localScale = new Vector3(scaleOrig.x, scaleOrig.y/2, scaleOrig.z);
+            gts.localScale = new Vector3(gts.localScale.x, gts.localScale.y * 2, gts.localScale.z);
             playerSpeed /= crouchMod;
         }
         else if (Input.GetButtonUp("Crouch"))
         {
+            Transform gts = gameManager.instance.displayScript.currentActive.transform;
+
             transform.localScale = scaleOrig;
             playerSpeed *= crouchMod;
+            gts.localScale = new Vector3(gts.localScale.x, gts.localScale.y / 2, gts.localScale.z);
         }
     }
 
@@ -210,7 +216,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, interactDistance))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-            Debug.Log(interactable);
 
             if (interactable != null)
             {

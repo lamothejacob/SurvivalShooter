@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GunUpgrader : MonoBehaviour, IInteractable
 {
@@ -52,7 +54,7 @@ public class GunUpgrader : MonoBehaviour, IInteractable
             yield return null;
         }
 
-
+        StartCoroutine(randomizeColor(g));
         yield return new WaitForSeconds(.9f);
 
         g.transform.parent = Camera.main.transform;
@@ -76,5 +78,26 @@ public class GunUpgrader : MonoBehaviour, IInteractable
 
         gameManager.instance.playerScript.toggleShooting(false);
         isUpgrading = false;
+    }
+
+    IEnumerator randomizeColor(GameObject gun)
+    {
+        List<Material> materials = new List<Material>();
+
+        foreach (Renderer r in gun.GetComponentsInChildren<Renderer>())
+        {
+            materials.AddRange(r.materials);
+        }
+        
+        Color colorOriginal = materials[0].color;
+        //50 offset from full black and full white, random color that isn't too dark or too light
+        Color colorNext = new Color(Random.Range(50f, 205f)/255f, Random.Range(50f, 205f)/255f, Random.Range(50f, 205f) / 255f);
+
+        foreach (Material m in materials)
+        {
+            m.SetColor("_Color", new Color(m.color.r - colorOriginal.r + colorNext.r, m.color.g - colorOriginal.g + colorNext.g, m.color.b - colorOriginal.b + colorNext.b));
+        }
+
+        yield return null;
     }
 }
