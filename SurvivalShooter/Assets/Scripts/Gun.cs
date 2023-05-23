@@ -16,10 +16,12 @@ public class Gun : ScriptableObject
     public int reserveAmmoMax;
     public int clipSize;
     public bool automatic = true;
+    public Color baseColor;
 
     [Header("----- Mutable Stats -----")]
     public int damage;
     public int level = 0;
+    public Color color;
 
     int ammoInClip;
     int reserveAmmo;
@@ -30,6 +32,7 @@ public class Gun : ScriptableObject
         reserveAmmo = reserveAmmoMax;
         damage = baseDamage;
         level = 0;
+        color = baseColor;
     }
 
     public void addAmmo(int ammo)
