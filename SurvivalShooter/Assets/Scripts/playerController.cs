@@ -395,9 +395,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         aud.PlayOneShot(stepsAudio[Random.Range(0, stepsAudio.Length)], stepsAudioVol);
 
         if (!isSprinting)
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
         else
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
 
         stepsIsPlaying = false;         
     }

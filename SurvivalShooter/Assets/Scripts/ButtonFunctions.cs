@@ -11,13 +11,19 @@ public class ButtonFunctions : MonoBehaviour
     private bool bHUDVisible;
 
     private bool audioLevel;
-    private bool cameraSensitivity; 
+    private bool cameraSensitivity;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip buttonClicked; 
+ 
     // ******************************
     // MAIN MENU BUTTONS
     // ******************************
     public void playMain()
     {
+        
         Restart();
+        AudioManager.instance.Play("ButtonClicked");
         /**
         gameManager.instance.activeMenu = null;
         gameManager.instance.mainMenu.SetActive(false);
@@ -28,10 +34,12 @@ public class ButtonFunctions : MonoBehaviour
 
     public void settingsMain()
     {
+        
         gameManager.instance.activeMenu = gameManager.instance.settingsMain;
         gameManager.instance.activeMenu.SetActive(true);
         gameManager.instance.mainMenu.SetActive(false);
-          
+        
+
     }
 
     public void backMain()
@@ -39,8 +47,8 @@ public class ButtonFunctions : MonoBehaviour
         
         gameManager.instance.settingsMain.SetActive(false);
         gameManager.instance.mainMenu.SetActive(true);
-        gameManager.instance.activeMenu = gameManager.instance.mainMenu; 
-
+        gameManager.instance.activeMenu = gameManager.instance.mainMenu;
+        AudioManager.instance.Play("ButtonClicked");
     }
 
     public void quit()
@@ -55,8 +63,8 @@ public class ButtonFunctions : MonoBehaviour
     public void resume()
     {
         gameManager.instance.pauseMenu.SetActive(false);
-        
         gameManager.instance.unPausedState();
+        AudioManager.instance.Play("ButtonClicked");
 
     }
 
@@ -64,7 +72,8 @@ public class ButtonFunctions : MonoBehaviour
     {
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.settingsPause;
-        gameManager.instance.activeMenu.SetActive(true);  
+        gameManager.instance.activeMenu.SetActive(true);
+        AudioManager.instance.Play("ButtonClicked");
     }
 
     public void Restart()
@@ -72,16 +81,17 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.unPausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.pauseMenu.SetActive(false);
-        //AudioManager.instance.Play("CombatMusic");  
+        //AudioManager.instance.Play("CombatMusic");
+        audioSource.PlayOneShot(buttonClicked, 1); 
     }
 
     public void returnToMainMenu()
     {
-        
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
         gameManager.instance.activeMenu.SetActive(true);
         //AudioManager.instance.Play("MainTheme"); 
+        AudioManager.instance.Play("ButtonClicked");
     }
 
     // ******************************
@@ -92,6 +102,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
         gameManager.instance.activeMenu.SetActive(true);
+        AudioManager.instance.Play("ButtonClicked");
     }
 
     // ******************************
@@ -100,7 +111,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void tryAgain()
     {
-        
+        AudioManager.instance.Play("ButtonClicked");
         gameManager.instance.unPausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.loseMenu.SetActive(false);
@@ -109,6 +120,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void youLoseQuit()
     {
+        AudioManager.instance.Play("ButtonClicked");
         gameManager.instance.loseMenu.SetActive(false);
         gameManager.instance.mainMenu.SetActive(true);
         gameManager.instance.activeMenu = gameManager.instance.mainMenu; 
