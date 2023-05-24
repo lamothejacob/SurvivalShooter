@@ -327,7 +327,7 @@ MonoBehaviour:
   pushBackResolve: 3
   points: 0
   currentGun: 0
-  grenadeAmount: 2
+  grenadeAmount: 5
   grenade: {fileID: 3833154100948993197, guid: 32b3b34af57b89a4fb96b191a6045781, type: 3}
   starterGun: {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
   gunLocation: {x: 0.5, y: -0.5, z: 1}
@@ -606,7 +606,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2487
+    m_Bits: 6583
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
