@@ -237,12 +237,20 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        StartCoroutine(damageFlash());
 
         if (HP <= 0)
         {
             HP = HPOrig;
             gameManager.instance.loseState();
         }
+    }
+
+    IEnumerator damageFlash()
+    {
+        gameManager.instance.playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
     public bool hasGun(Gun gun)
