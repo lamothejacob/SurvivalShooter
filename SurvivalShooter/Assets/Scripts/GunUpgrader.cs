@@ -6,7 +6,6 @@ public class GunUpgrader : MonoBehaviour, IInteractable
 {
     [SerializeField] AnimationCurve UpgradeCurve;
     [SerializeField] int costToUpgrade;
-    [SerializeField] AudioClip upgradeSound;
     [SerializeField] AudioSource audioPlayer;
 
     bool isUpgrading;
@@ -18,7 +17,7 @@ public class GunUpgrader : MonoBehaviour, IInteractable
     {
         if(audioPlayer == null)
         {
-            audioPlayer = gameManager.instance.player.GetComponent<AudioSource>();
+            audioPlayer = GetComponent<AudioSource>();
         }
     }
 
@@ -54,7 +53,7 @@ public class GunUpgrader : MonoBehaviour, IInteractable
     {
         isUpgrading = true;
 
-        audioPlayer.PlayOneShot(upgradeSound);
+        audioPlayer.Play();
 
         //Prevent the player from shooting/switching weapons/reloading while animation is playing
         gameManager.instance.playerScript.toggleShooting(true);

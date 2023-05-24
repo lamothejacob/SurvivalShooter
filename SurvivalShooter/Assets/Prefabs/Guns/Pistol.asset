@@ -22,14 +22,7 @@ MonoBehaviour:
   reserveAmmoMax: 80
   clipSize: 8
   automatic: 0
-<<<<<<< Updated upstream
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 10
-  level: 0
-  color: {r: 0, g: 0, b: 0, a: 1}
-=======
   baseColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
   damage: 28
   level: 3
   color: {r: 0.7523852, g: 0.19666311, b: 0.23490256, a: 1}
->>>>>>> Stashed changes
