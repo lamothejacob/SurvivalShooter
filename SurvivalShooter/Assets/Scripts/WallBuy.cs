@@ -11,6 +11,7 @@ public class WallBuy : MonoBehaviour, IInteractable
     Texture gunTexture;
 
     string interactText;
+    int ammoCost;
 
     void Start()
     {
@@ -48,14 +49,19 @@ public class WallBuy : MonoBehaviour, IInteractable
             gun.Load();
             gameManager.instance.playerScript.addGun(gun);
         }
-        else
+        else if (gun.reserveAmmoMax - gun.getReserveAmmo() > 0)
         {
+<<<<<<< Updated upstream
             //Adds 5 clips of ammo if they do have the gun
             if (gameManager.instance.playerScript.getPoints() >= (gun.cost / 2))
             {
                 gameManager.instance.playerScript.addPoints((-gun.cost / 2));
                 gun.addAmmo(gun.reserveAmmoMax - gun.getReserveAmmo());
             }
+=======
+            //Refill Ammo, cost scales with gun upgrades
+            gameManager.instance.playerScript.addAmmo(gun, gun.reserveAmmoMax - gun.getReserveAmmo(), (gun.level + 1) * gun.cost / 2);
+>>>>>>> Stashed changes
         }
     }
 
@@ -63,9 +69,11 @@ public class WallBuy : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
+            ammoCost = (gun.level + 1) * gun.cost / 2;
+
             if (gameManager.instance.playerScript.hasGun(gun))
             {
-                interactText = "Press 'E' to refill Ammo\n Cost: " + (gun.cost / 2).ToString();
+                interactText = "Press 'E' to refill Ammo\n Cost: " + ammoCost.ToString();
             }
             else
             {
