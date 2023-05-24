@@ -364,4 +364,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         isShooting = change;
     }
+
+    public bool getShootingState()
+    {
+        return isShooting;
+    }
 }

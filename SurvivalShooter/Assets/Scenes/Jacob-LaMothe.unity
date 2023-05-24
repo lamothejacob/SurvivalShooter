@@ -149,6 +149,10 @@ PrefabInstance:
       value: 52000
       objectReference: {fileID: 0}
     - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+      propertyPath: jumpHeight
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: interactDistance
       value: 2
       objectReference: {fileID: 0}
@@ -718,7 +722,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ae81a1f09831e504892c71c11c82e138, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
@@ -817,6 +821,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   open: {fileID: 6787033100892987077}
   closed: {fileID: 5436416059376301698}
+  audioPlayer: {fileID: 1943840931}
+  guns:
+  - {fileID: 11400000, guid: 7a3641d02adfa18468644249de7246a6, type: 2}
+  - {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
+  - {fileID: 11400000, guid: d698e332bafde874488f14c774205281, type: 2}
+  - {fileID: 11400000, guid: c62b2fe3f49b678439e3d5bf13e85b82, type: 2}
+  - {fileID: 11400000, guid: 65488e5d8cd87e348b3fe2ea47156e48, type: 2}
 --- !u!4 &1943840933
 Transform:
   m_ObjectHideFlags: 0
