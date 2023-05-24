@@ -19,6 +19,7 @@ public class Door : MonoBehaviour, IInteractable
     {
         if (gameManager.instance.playerScript.getPoints() >= cost)
         {
+            gameManager.instance.interactText.text = null;
             gameManager.instance.playerScript.addPoints(-cost);
             changeDoorState(false);
         }
