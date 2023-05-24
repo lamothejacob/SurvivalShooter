@@ -389,6 +389,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         isShooting = change;
     }
 
+    public bool getShootingState()
+    {
+        return isShooting;
+    }
+
     IEnumerator playSteps()
     {
         stepsIsPlaying = true;
@@ -401,6 +406,4 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         stepsIsPlaying = false;         
     }
-
-   
 }
