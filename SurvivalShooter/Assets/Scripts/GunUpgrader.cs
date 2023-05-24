@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -124,5 +125,18 @@ public class GunUpgrader : MonoBehaviour, IInteractable
     {
         //Use the display script to change the guns color to the random color
         gameManager.instance.displayScript.SetGunColor(gun, new Color(Random.Range(50f, 205f) / 255f, Random.Range(50f, 205f) / 255f, Random.Range(50f, 205f) / 255f));
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        gameManager.instance.interactText.text = "Press 'E' to Upgrade " + gameManager.instance.playerScript.getCurrentGun().name + "\nCost: " + costToUpgrade.ToString();
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.interactText.text = null;
+        }
     }
 }
