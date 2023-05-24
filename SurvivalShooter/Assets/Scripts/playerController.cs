@@ -283,8 +283,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
         else
         {
-            Destroy(gunInventory[currentGun]);
-            gunInventory[currentGun] = null;
             gunInventory[currentGun] = gun;
         }
 

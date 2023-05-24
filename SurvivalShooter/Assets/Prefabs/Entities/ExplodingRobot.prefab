@@ -2613,7 +2613,7 @@ GameObject:
   - component: {fileID: -2992356593079082164}
   m_Layer: 7
   m_Name: ExplodingRobot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2651,7 +2651,7 @@ MonoBehaviour:
   anim: {fileID: 95320324289322388}
   shootPos: {fileID: 0}
   headPos: {fileID: 4090946953295154}
-  HP: 20
+  HPMod: 0.5
   playerFaceSpeed: 1.5
   ViewCone: 90
   animTransSpeed: 3
