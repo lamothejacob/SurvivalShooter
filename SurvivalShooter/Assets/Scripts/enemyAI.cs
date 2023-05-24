@@ -23,6 +23,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [Range(0.1f, 3)] [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] int shootAngle;
+    [SerializeField] GameObject explosion;
 
     [Header("----- Nav Mesh Stats -----")]
     [SerializeField] float speed;
@@ -77,9 +78,16 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
                     facePLayer();
                 }
 
-                if (!isShooting && angleToPlayer <= shootAngle)
-                    StartCoroutine(shoot());
-
+                if (shootPos != null && bullet != null)
+                {
+                    if (!isShooting && angleToPlayer <= shootAngle)
+                        StartCoroutine(shoot());
+                }
+                else if (agent.remainingDistance <= 3)
+                {
+                    Explode();
+                    Death();
+                }
                 return true;
             }
         }
@@ -130,5 +138,10 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     {
         agent.velocity += direc;
         TakeDamage(damage);
+    }
+
+    void Explode()
+    {
+        Instantiate(explosion, transform.position, transform.rotation);
     }
 }
