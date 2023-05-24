@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] AudioSource aud; 
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)]
@@ -49,6 +51,17 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private Vector3 scaleOrig;
     private Vector3 pushBack;
     [SerializeField] List<Gun> gunInventory;
+    bool stepsIsPlaying;
+    bool isSprinting; 
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] jumpAudio;
+    [Range(0f, 1f)][SerializeField] float jumpAudioVol;
+    [SerializeField] AudioClip[] damageAudio;
+    [Range(0f, 1f)][SerializeField] float damageAudioVol;
+    [SerializeField] AudioClip[] stepsAudio;
+    [Range(0f, 1f)][SerializeField] float stepsAudioVol;
+
 
     private void Start()
     {
@@ -60,6 +73,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         currentGun = gunInventory.Count - 1;
         gameManager.instance.displayScript.setCurrentGun(starterGun);
         gameManager.instance.hudScript.DisplayGunType();
+
     }
 
     void Update()
@@ -97,10 +111,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         groundedPlayer = controller.isGrounded;
 
-        if (groundedPlayer && playerVelocity.y < 0)
+        if(groundedPlayer)
         {
-            playerVelocity.y = 0f;
-            jumpedTimes = 0;
+            if(!stepsIsPlaying && move.normalized.magnitude > 0.5f)
+                StartCoroutine(playSteps());
+
+            if(playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+                jumpedTimes = 0;
+            }
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) +
@@ -110,6 +130,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps)
         {
+            aud.PlayOneShot(jumpAudio[Random.Range(0, jumpAudio.Length)], jumpAudioVol);
             playerVelocity.y += jumpHeight;
             jumpedTimes++;
         }
@@ -129,10 +150,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         if (Input.GetButtonDown("Sprint"))
         {
+            isSprinting = true;
             playerSpeed *= sprintMod;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
+            isSprinting = false;
             playerSpeed /= sprintMod;
         }
     }
@@ -237,6 +260,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
         StartCoroutine(damageFlash());
 
         if (HP <= 0)
@@ -368,5 +392,18 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public bool getShootingState()
     {
         return isShooting;
+    }
+
+    IEnumerator playSteps()
+    {
+        stepsIsPlaying = true;
+        aud.PlayOneShot(stepsAudio[Random.Range(0, stepsAudio.Length)], stepsAudioVol);
+
+        if (!isSprinting)
+            yield return new WaitForSeconds(0.5f);
+        else
+            yield return new WaitForSeconds(0.3f);
+
+        stepsIsPlaying = false;         
     }
 }
