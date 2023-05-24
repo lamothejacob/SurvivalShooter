@@ -130,6 +130,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps)
         {
+            aud.PlayOneShot(jumpAudio[Random.Range(0, jumpAudio.Length)], jumpAudioVol);
             playerVelocity.y += jumpHeight;
             jumpedTimes++;
         }
@@ -259,6 +260,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
         StartCoroutine(damageFlash());
 
         if (HP <= 0)
@@ -399,4 +401,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         stepsIsPlaying = false;         
     }
+
+   
 }
