@@ -15,12 +15,14 @@ MonoBehaviour:
   gunImage: {fileID: 2800000, guid: d5a4624ff595b5b45b2e2cda4782d43a, type: 3}
   gunObject: {fileID: 919132149155446097, guid: 3e0c271583faf1d449d9642af7ec7363, type: 3}
   hitEffect: {fileID: 919132149155446097, guid: c248faafe99080c4696c6e98908adcf1, type: 3}
-  cost: 500
+  cost: 1500
   baseDamage: 100
   shootDist: 200
   fireRate: 1
   reserveAmmoMax: 45
   clipSize: 5
   automatic: 0
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
   damage: 100
   level: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
