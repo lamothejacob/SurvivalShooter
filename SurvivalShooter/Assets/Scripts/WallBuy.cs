@@ -51,7 +51,11 @@ public class WallBuy : MonoBehaviour, IInteractable
         else
         {
             //Adds 5 clips of ammo if they do have the gun
-            gun.addAmmo(gun.reserveAmmoMax - gun.getReserveAmmo());
+            if (gameManager.instance.playerScript.getPoints() >= (gun.cost / 2))
+            {
+                gameManager.instance.playerScript.addPoints((-gun.cost / 2));
+                gun.addAmmo(gun.reserveAmmoMax - gun.getReserveAmmo());
+            }
         }
     }
 
