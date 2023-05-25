@@ -20,7 +20,6 @@ public class healthPickup : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             gameManager.instance.playerScript.AddHealth(addHealthAmount);
-            Debug.Log("Health was added to the player.");
             if (!isInteracting)
                 StartCoroutine(interactText());
         }
