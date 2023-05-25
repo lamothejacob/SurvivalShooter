@@ -104,6 +104,13 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     {
         isDead = true;
         gameManager.instance.enemySpawnerScript.EnemyDecrement();
+
+        if (shootPos == null && bullet == null)
+        {
+            Explode();
+            Destroy(gameObject);
+        }
+
         Destroy(gameObject, 3);
     }
 
