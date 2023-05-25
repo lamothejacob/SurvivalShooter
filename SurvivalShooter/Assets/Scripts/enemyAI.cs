@@ -18,7 +18,6 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float playerFaceSpeed;
     [SerializeField] int ViewCone;
     [SerializeField] float animTransSpeed;
-    [SerializeField] float rotationOffset;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)][SerializeField] int shootDist;
@@ -127,7 +126,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     void facePLayer()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z + rotationOffset));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
