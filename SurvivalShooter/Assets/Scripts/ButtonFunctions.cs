@@ -88,7 +88,8 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
         gameManager.instance.activeMenu.SetActive(true);
-        //AudioManager.instance.Play("MainTheme"); 
+        gameManager.instance.audioScript.Play("MainTheme");
+        gameManager.instance.audioScript.Stop("CombatMusic");
         gameManager.instance.audioScript.Play("ButtonClicked");
     }
 
