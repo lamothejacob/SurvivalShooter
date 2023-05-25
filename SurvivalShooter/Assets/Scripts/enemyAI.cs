@@ -49,14 +49,17 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
-        speedanim = Mathf.Lerp (speedanim, agent.velocity.normalized.magnitude,Time.deltaTime * animTransSpeed);
-        anim.SetFloat("Speed", speedanim);
-
-        agent.SetDestination(gameManager.instance.player.transform.position);
-
-        if (canSeePlayer())
+        if (agent.isActiveAndEnabled)
         {
+            speedanim = Mathf.Lerp(speedanim, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+            anim.SetFloat("Speed", speedanim);
 
+            agent.SetDestination(gameManager.instance.player.transform.position);
+
+            if (canSeePlayer())
+            {
+
+            }
         }
     }
 
