@@ -48,7 +48,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.settingsMain.SetActive(false);
         gameManager.instance.mainMenu.SetActive(true);
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
-        AudioManager.instance.Play("ButtonClicked");
+        
     }
 
     public void quit()
@@ -65,7 +65,6 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.unPausedState();
         AudioManager.instance.Play("ButtonClicked");
-
     }
 
     public void pauseSettings()
@@ -73,16 +72,15 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.settingsPause;
         gameManager.instance.activeMenu.SetActive(true);
-        AudioManager.instance.Play("ButtonClicked");
+        
     }
 
     public void Restart()
     {
+        audioSource.PlayOneShot(buttonClicked, 1);
         gameManager.instance.unPausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameManager.instance.pauseMenu.SetActive(false);
-        //AudioManager.instance.Play("CombatMusic");
-        audioSource.PlayOneShot(buttonClicked, 1); 
+        gameManager.instance.pauseMenu.SetActive(false);  
     }
 
     public void returnToMainMenu()
