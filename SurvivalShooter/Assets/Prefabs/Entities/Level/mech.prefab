@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 50
-  explosion: {fileID: 3880940643182147616, guid: 299bdba5cf2d6a4418b9ba0116582e3c, type: 3}
+  explosion: {fileID: 3880940643182147616, guid: 4c193f66bcc9fe24fbba4ae6df8cdee2, type: 3}
 --- !u!1 &134139082123670510
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 50
-  explosion: {fileID: 3880940643182147616, guid: 299bdba5cf2d6a4418b9ba0116582e3c, type: 3}
+  explosion: {fileID: 3880940643182147616, guid: 4c193f66bcc9fe24fbba4ae6df8cdee2, type: 3}
 --- !u!1 &2765312656772692008
 GameObject:
   m_ObjectHideFlags: 0
