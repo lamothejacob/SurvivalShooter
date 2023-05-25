@@ -65,8 +65,10 @@ public class Gun : ScriptableObject
         }
 
         int amount = clipSize - ammoInClip;
+        gameManager.instance.audioScript.Play("Reload");
 
-        if(reserveAmmo >= amount)
+
+        if (reserveAmmo >= amount)
         {
             reserveAmmo -= amount;
             ammoInClip += amount;

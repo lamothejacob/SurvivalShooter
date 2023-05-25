@@ -209,6 +209,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         isShooting = true;
 
         gunInventory[currentGun].removeAmmo(1);
+        gameManager.instance.audioScript.Play("Shoot");
 
         RaycastHit hit;
 

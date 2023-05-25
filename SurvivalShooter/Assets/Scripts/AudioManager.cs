@@ -18,7 +18,8 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.volume = s.volume; 
+            s.source.volume = s.volume;
+            s.source.loop = s.loop;
         }
 
     }
@@ -27,35 +28,16 @@ public class AudioManager : MonoBehaviour
     {
         if(gameManager.instance.activeMenu == gameManager.instance.mainMenu)
         {
-            //Play("MainTheme"); 
+            Stop("CombatMusic");
+            Play("MainTheme"); 
         }
         else if(gameManager.instance.activeMenu == null || gameManager.instance.activeMenu == gameManager.instance.HUD)
         {
-            //Play("CombatMusic"); 
+            Stop("MainTheme");
+            Play("CombatMusic");
         }
 
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButton("Shoot") && !gameManager.instance.isPaused)
-        {
-            if(gameManager.instance.playerScript.getCurrentGun().getAmmoInClip() > 0)
-            {
-                Play("Shoot");
-            }
-              
-        }
-        else if(Input.GetButtonDown("Reload") && !gameManager.instance.isPaused)
-        {
-            if(gameManager.instance.playerScript.getCurrentGun().getReserveAmmo() > 0)
-            {
-                Play("Reload");
-            }
-             
-        }
     }
 
     public void Play(string name)
@@ -66,7 +48,25 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return; 
         }
-        s.source.Play();    
+        if (!s.loop)
+        {
+            s.source.PlayOneShot(s.clip);
+        }
+        else
+        {
+            s.source.Play();
+        }
+    }
+
+    public void Stop(string name)
+    {
+        Sounds s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        s.source.Stop();
     }
 
     public void SetMasterVolume(float newVolume)

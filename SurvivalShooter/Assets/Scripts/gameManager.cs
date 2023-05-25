@@ -13,6 +13,7 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
     public gunDisplay displayScript;
     public HUD hudScript;
+    public AudioManager audioScript;
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
@@ -37,15 +38,15 @@ public class gameManager : MonoBehaviour
         displayScript = player.GetComponentInChildren<gunDisplay>();
         playerScript = player.GetComponent<playerController>();
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
-        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
         hudScript = HUD.GetComponent<HUD>();
+        audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
         timeScaleOriginal = Time.timeScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if ((Input.GetKeyDown(KeyCode.Escape) && (activeMenu == HUD || activeMenu == null)) && !isPaused)
         {
             isPaused = !isPaused;
