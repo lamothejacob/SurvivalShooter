@@ -21,8 +21,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float rotationOffset;
 
     [Header("----- Enemy Weapon -----")]
-    [Range(2, 300)] [SerializeField] int shootDist;
-    [Range(0.1f, 3)] [SerializeField] float shootRate;
+    [Range(2, 300)][SerializeField] int shootDist;
+    [Range(0.1f, 3)][SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] int shootAngle;
     [SerializeField] GameObject explosion;
@@ -35,6 +35,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     Vector3 playerDir;
     bool isShooting;
+    bool isDead;
     Color colorOrig;
     float angleToPlayer;
     float speedanim;
@@ -49,7 +50,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
-        if (agent.isActiveAndEnabled)
+        if (!isDead)
         {
             speedanim = Mathf.Lerp(speedanim, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speedanim);
@@ -101,8 +102,9 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     private void Death()
     {
+        isDead = true;
         gameManager.instance.enemySpawnerScript.EnemyDecrement();
-        StartCoroutine(DestroyOnDeath());
+        Destroy(gameObject, 3);
     }
 
     IEnumerator shoot()
@@ -124,19 +126,20 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         HP -= damage;
 
         if (HP <= 0)
         {
             StopAllCoroutines();
-            agent.enabled = false;
             anim.SetBool("Dead", true);
+            agent.enabled = false;
+            GetComponent<Collider>().enabled = false;
             Death();
-            GetComponent<CapsuleCollider>().enabled = false;
         }
         else
         {
-            anim.SetTrigger("Damage");
             StartCoroutine(flashColor());
         }
     }
@@ -156,12 +159,5 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     void Explode()
     {
         Instantiate(explosion, transform.position, transform.rotation);
-    }
-
-    IEnumerator DestroyOnDeath()
-    {
-
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
     }
 }
