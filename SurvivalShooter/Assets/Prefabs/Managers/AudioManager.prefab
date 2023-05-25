@@ -47,31 +47,37 @@ MonoBehaviour:
   sounds:
   - name: MainTheme
     clip: {fileID: 8300000, guid: 0390a889ac0d88a4582c62f7e2608d6f, type: 3}
-    volume: 100
+    volume: 0.5
     pitch: 0
     loop: 1
     source: {fileID: 0}
   - name: CombatMusic
     clip: {fileID: 8300000, guid: 662e7e7d0690e6e48afe7539e1925506, type: 3}
-    volume: 100
+    volume: 0.25
     pitch: 0
     loop: 1
     source: {fileID: 0}
   - name: NewWave
     clip: {fileID: 8300000, guid: f8139d0e763a07a42bd5daf1227c3765, type: 3}
-    volume: 100
+    volume: 1
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Shoot
     clip: {fileID: 8300000, guid: dc2fdf244019c1a4ab77563808a1a3dd, type: 3}
-    volume: 100
+    volume: 0.3
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Reload
     clip: {fileID: 8300000, guid: 0420c1b326a1d2d4a93b1dc8db550a81, type: 3}
-    volume: 100
+    volume: 0.2
     pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: ButtonClicked
+    clip: {fileID: 8300000, guid: 0420c1b326a1d2d4a93b1dc8db550a81, type: 3}
+    volume: 0.1
+    pitch: 0.1
     loop: 0
     source: {fileID: 0}

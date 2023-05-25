@@ -23,7 +23,7 @@ public class ButtonFunctions : MonoBehaviour
     {
         
         Restart();
-        AudioManager.instance.Play("ButtonClicked");
+        gameManager.instance.audioScript.Play("ButtonClicked");
         /**
         gameManager.instance.activeMenu = null;
         gameManager.instance.mainMenu.SetActive(false);
@@ -64,7 +64,7 @@ public class ButtonFunctions : MonoBehaviour
     {
         gameManager.instance.pauseMenu.SetActive(false);
         gameManager.instance.unPausedState();
-        AudioManager.instance.Play("ButtonClicked");
+        gameManager.instance.audioScript.Play("ButtonClicked");
     }
 
     public void pauseSettings()
@@ -77,7 +77,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Restart()
     {
-        audioSource.PlayOneShot(buttonClicked, 1);
+        gameManager.instance.audioScript.Play("ButtonClicked");
         gameManager.instance.unPausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.pauseMenu.SetActive(false);  
@@ -89,7 +89,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
         gameManager.instance.activeMenu.SetActive(true);
         //AudioManager.instance.Play("MainTheme"); 
-        AudioManager.instance.Play("ButtonClicked");
+        gameManager.instance.audioScript.Play("ButtonClicked");
     }
 
     // ******************************
@@ -100,7 +100,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
         gameManager.instance.activeMenu.SetActive(true);
-        AudioManager.instance.Play("ButtonClicked");
+        gameManager.instance.audioScript.Play("ButtonClicked");
     }
 
     // ******************************
@@ -109,7 +109,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void tryAgain()
     {
-        AudioManager.instance.Play("ButtonClicked");
+        gameManager.instance.audioScript.Play("ButtonClicked");
         gameManager.instance.unPausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.loseMenu.SetActive(false);
@@ -118,7 +118,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void youLoseQuit()
     {
-        AudioManager.instance.Play("ButtonClicked");
+        gameManager.instance.audioScript.Play("ButtonClicked");
         gameManager.instance.loseMenu.SetActive(false);
         gameManager.instance.mainMenu.SetActive(true);
         gameManager.instance.activeMenu = gameManager.instance.mainMenu; 
