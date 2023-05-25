@@ -87,6 +87,6 @@ public class SettingsMenu : MonoBehaviour
     {
         SetCameraSensitivity(cameraSensitivitySlider);
         SetAudioLevel(audioSlider); 
-        AudioManager.instance.SetMasterVolume(GetAudioLevel()); 
+        gameManager.instance.audioScript.SetMasterVolume(GetAudioLevel()); 
     }
 }

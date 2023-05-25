@@ -5,8 +5,6 @@ using UnityEditor;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance; 
-
     public Sounds[] sounds;
     private float masterVolume; 
 
