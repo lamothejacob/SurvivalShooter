@@ -85,7 +85,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void returnToMainMenu()
     {
-        gameManager.instance.pauseMenu.SetActive(false);
+        gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
         gameManager.instance.activeMenu.SetActive(true);
         gameManager.instance.audioScript.Play("MainTheme");
