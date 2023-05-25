@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
     public gunDisplay displayScript;
     public HUD hudScript;
     public AudioManager audioScript;
+    public ButtonFunctions buttonsScript;
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
@@ -41,7 +42,15 @@ public class gameManager : MonoBehaviour
         hudScript = HUD.GetComponent<HUD>();
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
+        buttonsScript = gameObject.GetComponent<ButtonFunctions>();
         timeScaleOriginal = Time.timeScale;
+    }
+
+    private void Start()
+    {
+        HUD.SetActive(false);
+        pauseState();
+        buttonsScript.returnToMainMenu();
     }
 
     // Update is called once per frame
@@ -70,7 +79,10 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPaused = false;
-        activeMenu.SetActive(false);
+        if (activeMenu != null)
+        {
+            activeMenu.SetActive(false);
+        }
         activeMenu = null;
     }
 

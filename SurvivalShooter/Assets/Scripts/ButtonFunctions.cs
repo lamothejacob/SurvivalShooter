@@ -21,15 +21,14 @@ public class ButtonFunctions : MonoBehaviour
     // ******************************
     public void playMain()
     {
-        
-        Restart();
         gameManager.instance.audioScript.Play("ButtonClicked");
-        /**
+        
         gameManager.instance.activeMenu = null;
         gameManager.instance.mainMenu.SetActive(false);
-        gameManager.instance.activeMenu = null;
-        gameManager.instance.HUD.SetActive(true);  
-        **/
+        gameManager.instance.HUD.SetActive(true);
+        gameManager.instance.audioScript.Stop("MainTheme");
+        gameManager.instance.audioScript.Play("CombatMusic");
+        gameManager.instance.unPausedState();
     }
 
     public void settingsMain()
@@ -85,7 +84,11 @@ public class ButtonFunctions : MonoBehaviour
 
     public void returnToMainMenu()
     {
-        gameManager.instance.activeMenu.SetActive(false);
+        if (gameManager.instance.activeMenu != null)
+        {
+            gameManager.instance.activeMenu.SetActive(false);
+        }
+
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
         gameManager.instance.activeMenu.SetActive(true);
         gameManager.instance.audioScript.Play("MainTheme");
