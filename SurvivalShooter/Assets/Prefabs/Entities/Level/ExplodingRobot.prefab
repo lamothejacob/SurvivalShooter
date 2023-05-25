@@ -2653,11 +2653,11 @@ MonoBehaviour:
   anim: {fileID: 95320324289322388}
   shootPos: {fileID: 0}
   headPos: {fileID: 4090946953295154}
+  audioPlayer: {fileID: 0}
   HPMod: 0.5
   playerFaceSpeed: 1.5
   ViewCone: 90
   animTransSpeed: 3
-  rotationOffset: 0
   shootDist: 100
   shootRate: 1
   bullet: {fileID: 0}
@@ -2667,6 +2667,10 @@ MonoBehaviour:
   speedVariance: 0.55
   avoidRadius: 0.75
   avoidRadiusVariance: 0.25
+  footsteps:
+  - {fileID: 8300000, guid: 677c375969b339142afa26a8c2ca3e47, type: 3}
+  gunshots:
+  - {fileID: 8300000, guid: 8d2ffe810fa89ef4fad702cafd3838a7, type: 3}
 --- !u!95 &95320324289322388
 Animator:
   serializedVersion: 4
@@ -2734,16 +2738,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dadfb89f2aa467f409030231534869ee, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.154
-  m_Pitch: -0.44
+  m_Volume: 1
+  m_Pitch: 3
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 215
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

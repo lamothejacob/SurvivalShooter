@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
@@ -11,6 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Animator anim;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] AudioSource audioPlayer;
 
     [Header("----- Enemy Stats -----")]
     int HP;
@@ -32,9 +35,14 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float avoidRadius;
     [SerializeField] float avoidRadiusVariance;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] footsteps;
+    [SerializeField] AudioClip[] gunshots;
+
     Vector3 playerDir;
     bool isShooting;
     bool isDead;
+    bool stepping;
     Color colorOrig;
     float angleToPlayer;
     float speedanim;
@@ -45,6 +53,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
         HP = (int)(gameManager.instance.enemySpawnerScript.GetCurrentWave().getHealth() * HPMod);
+
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -56,11 +66,21 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
             agent.SetDestination(gameManager.instance.player.transform.position);
 
-            if (canSeePlayer())
-            {
-
+            if (canSeePlayer()) { 
+            
             }
         }
+    }
+
+    IEnumerator PlaySteps()
+    {
+        stepping = true;
+
+        audioPlayer.PlayOneShot(footsteps[Random.Range(0, footsteps.Length)]);
+
+        yield return new WaitForSeconds(speed/15f);
+
+        stepping = false;
     }
 
     bool canSeePlayer()
@@ -81,6 +101,9 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     facePLayer();
+                }else if (!stepping)
+                {
+                    StartCoroutine(PlaySteps());
                 }
 
                 if (shootPos != null && bullet != null)
@@ -118,7 +141,10 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         isShooting = true;
         anim.SetTrigger("Shoot");
 
-        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(gameManager.instance.player.transform.position - shootPos.transform.position));
+        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0,.25f,0) - shootPos.transform.position));
+
+        audioPlayer.PlayOneShot(gunshots[Random.Range(0, gunshots.Length)]);
+
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
