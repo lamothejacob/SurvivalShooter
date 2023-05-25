@@ -99,7 +99,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     private void Death()
     {
         gameManager.instance.enemySpawnerScript.EnemyDecrement();
-        //Destroy(gameObject);
+        StartCoroutine(DestroyOnDeath());
     }
 
     IEnumerator shoot()
@@ -126,9 +126,9 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             StopAllCoroutines();
+            agent.enabled = false;
             anim.SetBool("Dead", true);
             Death();
-            agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
         }
         else
@@ -152,5 +152,12 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     void Explode()
     {
         Instantiate(explosion, transform.position, transform.rotation);
+    }
+
+    IEnumerator DestroyOnDeath()
+    {
+
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 }
