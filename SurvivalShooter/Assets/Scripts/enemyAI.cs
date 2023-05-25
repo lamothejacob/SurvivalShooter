@@ -136,6 +136,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         }
         else
         {
+            anim.SetTrigger("Damage");
             StartCoroutine(flashColor());
         }
     }

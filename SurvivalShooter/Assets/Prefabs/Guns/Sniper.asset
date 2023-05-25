@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunImage: {fileID: 2800000, guid: d5a4624ff595b5b45b2e2cda4782d43a, type: 3}
   gunObject: {fileID: 919132149155446097, guid: 3e0c271583faf1d449d9642af7ec7363, type: 3}
-  hitEffect: {fileID: 919132149155446097, guid: c248faafe99080c4696c6e98908adcf1, type: 3}
+  hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   cost: 1500
   baseDamage: 100
   shootDist: 200

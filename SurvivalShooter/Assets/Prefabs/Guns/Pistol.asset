@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunImage: {fileID: 2800000, guid: 5a5a93d81f05f1a4989c7285ff971ab1, type: 3}
   gunObject: {fileID: 919132149155446097, guid: 66f0431e415c6d748b53f110fb297002, type: 3}
-  hitEffect: {fileID: 919132149155446097, guid: c248faafe99080c4696c6e98908adcf1, type: 3}
+  hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   cost: 100
   baseDamage: 10
   shootDist: 100
@@ -23,6 +23,6 @@ MonoBehaviour:
   clipSize: 8
   automatic: 0
   baseColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
-  damage: 28
-  level: 3
-  color: {r: 0.7523852, g: 0.19666311, b: 0.23490256, a: 1}
+  damage: 10
+  level: 0
+  color: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
