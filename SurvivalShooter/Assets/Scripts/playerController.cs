@@ -220,7 +220,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             {
                 damageable.TakeDamage(gunInventory[currentGun].damage);
                 Debug.Log("Hit");
-                points += 10;
+                points += 50;
             }
 
             Destroy(Instantiate(gunInventory[currentGun].hitEffect, hit.point, Quaternion.identity), 1);
