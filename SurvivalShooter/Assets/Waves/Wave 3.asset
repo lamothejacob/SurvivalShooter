@@ -34,7 +34,7 @@ MonoBehaviour:
   - {fileID: 8381153408887168520, guid: 45f90f6cd3ebfd242807681624bb5312, type: 3}
   - {fileID: 8381153408887168520, guid: 45f90f6cd3ebfd242807681624bb5312, type: 3}
   - {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
-  health: 107
+  health: 200
   timeBetweenEnemySpawns: 1
   spawnTimeVariance: 0.5
   minimumSpawnTime: 0.1
