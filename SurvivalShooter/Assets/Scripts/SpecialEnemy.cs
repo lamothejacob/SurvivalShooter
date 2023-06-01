@@ -12,8 +12,8 @@ public class SpecialEnemy : MonoBehaviour
     GameObject fire = null;
 
     bool isThrowing;
-    // Update is called once per frame
 
+    // Update is called once per frame
     private void Start()
     {
         //endPos = gameManager.instance.player.transform;
@@ -38,8 +38,7 @@ public class SpecialEnemy : MonoBehaviour
     {
         isThrowing = true;
         yield return new WaitForSeconds(throwRate);
-        Transform temp = gameManager.instance.player.transform;
-        endPos = temp;
+        endPos = gameManager.instance.player.transform;
         fire = Instantiate(impactGren, transform.position, transform.rotation);
         isThrowing = false;
     }
