@@ -308,6 +308,7 @@ MonoBehaviour:
   shootPos: {fileID: 8381153408886866554}
   headPos: {fileID: 8381153408886866514}
   audioPlayer: {fileID: 0}
+  HP: 25
   HPMod: 1
   playerFaceSpeed: 1.5
   ViewCone: 90

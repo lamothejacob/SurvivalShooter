@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -7,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     #region Instance Variables
     [SerializeField] List<WaveEditorSO> waveConfigs;
     [SerializeField] float timeBetweenWaves = 1f;
+    [SerializeField] int HpMod;
     private WaveEditorSO currentWave;
     private bool isLooping = true;
     private int enemyCounter = 0;
@@ -43,13 +45,15 @@ public class EnemySpawner : MonoBehaviour
                 for (int i = 0; i < currentWave.GetEnemyCount(); i++)
                 {
                     int spawnPos = Random.Range(0, currentWave.GetSpawnPointsCount());
-                    Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetSpawnPosition(spawnPos).position, Quaternion.identity, transform);
+                    GameObject newEnemy = Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetSpawnPosition(spawnPos).position, Quaternion.identity, transform);
+                    newEnemy.GetComponent<enemyAI>().HP += HpMod;
                     EnemyIncrement();
 
                     yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
                 }
                 yield return new WaitUntil(() => EnemiesLeft() == 0);
                 waveNumber++;
+                HpMod += HpMod;
                 gameManager.instance.updateGameGoal();
                 yield return new WaitForSeconds(timeBetweenWaves);
             }

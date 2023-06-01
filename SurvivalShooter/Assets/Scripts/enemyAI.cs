@@ -16,7 +16,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] AudioSource audioPlayer;
 
     [Header("----- Enemy Stats -----")]
-    int HP;
+    public int HP;
     [SerializeField] float HPMod;
     [SerializeField] float playerFaceSpeed;
     [SerializeField] int ViewCone;
@@ -52,7 +52,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         colorOrig = color.material.color;
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
-        HP = (int)(gameManager.instance.enemySpawnerScript.GetCurrentWave().getHealth() * HPMod);
+        //HP = (int)(gameManager.instance.enemySpawnerScript.GetCurrentWave().getHealth() * HPMod);
 
         audioPlayer = GetComponent<AudioSource>();
     }
