@@ -6,11 +6,13 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] int pushBack;
+    [SerializeField] GameObject sound;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, GetComponent<AudioSource>().clip.length);
+        Instantiate(sound, transform.position, transform.rotation);
+        Destroy(gameObject, 0.1f);
     }
 
     public void OnTriggerEnter(Collider other)
