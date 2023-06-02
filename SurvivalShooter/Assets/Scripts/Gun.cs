@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -17,6 +18,12 @@ public class Gun : ScriptableObject
     public int clipSize;
     public bool automatic = true;
     public Color baseColor;
+
+    [Header("----- Shooting Stats -----")]
+    [SerializeField][Range(1, 25)] int projectileAmount = 1;
+    [Range(0, 45f)] public float verticalRecoil;
+    [SerializeField][Range(0, 0.5f)] float verticalSpread;
+    [SerializeField][Range(0, 0.5f)] float horizontalSpread;
 
     [Header("----- Mutable Stats -----")]
     public int damage;
@@ -78,5 +85,23 @@ public class Gun : ScriptableObject
             ammoInClip += reserveAmmo;
             reserveAmmo = 0;
         }
+    }
+
+    public List<RaycastHit> GetRayList()
+    {
+        List<RaycastHit> raycastHits = new List<RaycastHit>();
+
+        while (raycastHits.Count < projectileAmount)
+        {
+            Vector2 spread = Random.insideUnitCircle;
+            RaycastHit hit;
+
+            if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(spread.x * horizontalSpread + 0.5f, spread.y * verticalSpread + 0.5f)), out hit, shootDist))
+            {
+                raycastHits.Add(hit);
+            }
+        }
+
+        return raycastHits;
     }
 }

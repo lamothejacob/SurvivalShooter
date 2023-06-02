@@ -211,25 +211,35 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         gunInventory[currentGun].removeAmmo(1);
         gameManager.instance.audioScript.Play("Shoot");
 
-        RaycastHit hit;
-
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunInventory[currentGun].shootDist))
+        foreach (RaycastHit hit in gunInventory[currentGun].GetRayList())
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
 
             if (damageable != null)
             {
                 damageable.TakeDamage(gunInventory[currentGun].damage);
-                Debug.Log("Hit");
                 points += 50;
             }
 
             Destroy(Instantiate(gunInventory[currentGun].hitEffect, hit.point, Quaternion.identity), 1);
         }
 
+        StartCoroutine(Recoil());
+
         yield return new WaitForSeconds(gunInventory[currentGun].fireRate);
 
         isShooting = false;
+    }
+
+    IEnumerator Recoil()
+    {
+        float timeElapsed = 0f;
+        while(timeElapsed < gunInventory[currentGun].fireRate)
+        {
+            gameManager.instance.cameraScript.AddRecoil(Mathf.Lerp(0, gunInventory[currentGun].verticalRecoil, timeElapsed / gunInventory[currentGun].fireRate));
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     IEnumerator interact()

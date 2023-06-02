@@ -10,6 +10,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public GameObject enemySpawner;
     public EnemySpawner enemySpawnerScript;
+    public cameraController cameraScript;
     public playerController playerScript;
     public gunDisplay displayScript;
     public HUD hudScript;
@@ -38,6 +39,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         displayScript = player.GetComponentInChildren<gunDisplay>();
         playerScript = player.GetComponent<playerController>();
+        cameraScript = player.GetComponentInChildren<cameraController>();
         enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
         hudScript = HUD.GetComponent<HUD>();
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();

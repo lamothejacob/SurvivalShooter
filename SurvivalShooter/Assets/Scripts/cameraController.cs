@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class cameraController : MonoBehaviour
@@ -39,5 +40,11 @@ public class cameraController : MonoBehaviour
 
         //Rotate the player horizontally
         transform.parent.Rotate(Vector3.up * mouseX);
+    }
+
+    public void AddRecoil(float recoilAmount)
+    {
+        xRotation -= recoilAmount;
+        xRotation = Mathf.Clamp(xRotation, lockVerMin, lockVerMax);
     }
 }

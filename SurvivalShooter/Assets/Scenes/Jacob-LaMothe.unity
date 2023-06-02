@@ -633,6 +633,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4977334349559543550, guid: 70a67db9df370aa479abf4b6b9ebfd17, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977334349559543550, guid: 70a67db9df370aa479abf4b6b9ebfd17, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4977334349559543551, guid: 70a67db9df370aa479abf4b6b9ebfd17, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -675,6 +683,7 @@ MonoBehaviour:
   displayScript: {fileID: 0}
   hudScript: {fileID: 754281429}
   audioScript: {fileID: 0}
+  buttonsScript: {fileID: 0}
   activeMenu: {fileID: 0}
   pauseMenu: {fileID: 1841677585}
   mainMenu: {fileID: 1036026375}
