@@ -23,6 +23,10 @@ MonoBehaviour:
   clipSize: 8
   automatic: 0
   baseColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
+  projectileAmount: 1
+  verticalRecoil: 0.1
+  verticalSpread: 0.01
+  horizontalSpread: 0.01
   damage: 10
   level: 0
   color: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}

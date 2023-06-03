@@ -18,11 +18,15 @@ MonoBehaviour:
   cost: 500
   baseDamage: 50
   shootDist: 45
-  fireRate: 1
+  fireRate: 0.25
   reserveAmmoMax: 64
   clipSize: 8
   automatic: 0
   baseColor: {r: 0.6509804, g: 0.6117647, b: 0.5803922, a: 1}
-  damage: 75
-  level: 1
-  color: {r: 0.42870134, g: 0.78253186, b: 0.67201, a: 1}
+  projectileAmount: 25
+  verticalRecoil: 0.75
+  verticalSpread: 0.125
+  horizontalSpread: 0.125
+  damage: 50
+  level: 0
+  color: {r: 0.6509804, g: 0.6117647, b: 0.5803922, a: 1}
