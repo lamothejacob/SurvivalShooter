@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed5d2e37fa128c4b97d7d93a6040fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 30
   weakPoint:
   - {fileID: 934079913}
   - {fileID: 1279116440}

@@ -102,14 +102,19 @@ public class gameManager : MonoBehaviour
 
         if (currentWave > enemySpawnerScript.GetWaveAmount())
         {
-            StartCoroutine(NewWin());
+            StartCoroutine(NewWin(2));
         }
     }
 
-    IEnumerator NewWin()
+    public void WinState(int timeUntilMenu)
+    {
+        StartCoroutine(NewWin(timeUntilMenu));
+    }
+
+    IEnumerator NewWin(int time)
     {
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(time);
 
         activeMenu = winMenu;
         activeMenu.SetActive(true);
