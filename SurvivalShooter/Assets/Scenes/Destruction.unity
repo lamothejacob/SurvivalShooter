@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: eb0a56853e86b76409bcde853cf5c2a6, type: 2}
 --- !u!1001 &83628354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -476,11 +476,11 @@ GameObject:
   - component: {fileID: 912116732}
   - component: {fileID: 912116731}
   m_Layer: 0
-  m_Name: Destroy
+  m_Name: Protect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!136 &912116731
 CapsuleCollider:

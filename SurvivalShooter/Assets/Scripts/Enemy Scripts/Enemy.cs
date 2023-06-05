@@ -14,6 +14,10 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     [Header("Enemy Stats")]
     [SerializeField] protected int HPMax;
 
+    [Header("Drops")]
+    [SerializeField] GameObject[] drops;
+    [SerializeField] int dropRate;
+
     protected Color colorOrig;
     protected int HP;
     protected bool isDead;
@@ -49,6 +53,10 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     {
         isDead = true;
         gameManager.instance.enemySpawnerScript.EnemyDecrement();
+        int spawn = Random.Range(0, dropRate);
+        if (spawn < 1)
+            Instantiate(drops[Random.Range(0, drops.Length)], transform.position, transform.rotation);
+
 
         Destroy(gameObject, 3);
     }
