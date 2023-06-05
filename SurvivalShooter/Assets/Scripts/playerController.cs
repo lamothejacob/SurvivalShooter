@@ -41,6 +41,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Gun starterGun;
     public Vector3 gunLocation;
 
+    [Header("----- Abilities -----")]
+    [SerializeField] int shieldHP;
+
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -52,7 +55,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private Vector3 pushBack;
     [SerializeField] List<Gun> gunInventory;
     bool stepsIsPlaying;
-    bool isSprinting; 
+    bool isSprinting;
+    bool shieldActive;
+    int shieldHPOrig;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] jumpAudio;
@@ -66,6 +71,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private void Start()
     {
         HPOrig = HP;
+        shieldHPOrig = shieldHP;
         scaleOrig = transform.localScale;
 
         starterGun.Load();
@@ -96,6 +102,14 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             {
                 throwGrenade();
             }
+
+            if (Input.GetButtonDown("Shield") && shieldHP > 0)
+            {
+                shieldActive = !shieldActive;
+                gameManager.instance.shieldActiveImage.SetActive(shieldActive);
+            }
+            else if (shieldHP <= 0)
+                gameManager.instance.shieldActiveImage.SetActive(false);
 
             SwitchWeapon();
 
@@ -270,14 +284,27 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     public void TakeDamage(int damage)
     {
-        HP -= damage;
-        aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
-        StartCoroutine(damageFlash());
-
-        if (HP <= 0)
+        if (shieldActive == false || shieldHP <= 0)
         {
-            HP = HPOrig;
-            gameManager.instance.loseState();
+            HP -= damage;
+            aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
+            StartCoroutine(damageFlash());
+
+            if (HP <= 0)
+            {
+                HP = HPOrig;
+                gameManager.instance.loseState();
+            }
+        }
+        else
+        {
+            shieldHP -= damage;
+            if (HP + damage > HPOrig)
+            {
+                HP = HPOrig;
+            }
+            else
+                HP += damage;
         }
     }
 
@@ -403,6 +430,19 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public bool getShootingState()
     {
         return isShooting;
+    }
+
+    public int getShieldHP()
+    {
+        return shieldHP;
+    }
+
+    public void addShield(int amount)
+    {
+        if (shieldHP + amount > shieldHPOrig)
+            shieldHP = shieldHPOrig;
+        else
+            shieldHP += amount;
     }
 
     IEnumerator playSteps()

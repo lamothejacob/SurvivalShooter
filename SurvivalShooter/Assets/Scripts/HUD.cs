@@ -15,6 +15,7 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoCount;
     [SerializeField] TextMeshProUGUI grenadeAmount;
     [SerializeField] Slider healthBar;
+    [SerializeField] Slider shieldBar;
     [SerializeField] Image gunType;
     [SerializeField] Image miniMap;
 
@@ -81,6 +82,12 @@ public class HUD : MonoBehaviour
         int currentHP = gameManager.instance.playerScript.getHP();       
         healthBar.value = currentHP;
         
+    }
+
+    void UpdateShieldBar()
+    {
+        int currentShieldHP = gameManager.instance.playerScript.getShieldHP();
+        shieldBar.value = currentShieldHP;
     }
 
     void UpdateWave()
@@ -171,6 +178,7 @@ public class HUD : MonoBehaviour
         DisplayAmmo(); 
         DisplayKills();
         UpdateHealthBar();
+        UpdateShieldBar();
         UpdateWave();
         updatePoints();
         DisplayGrenadeAmount();

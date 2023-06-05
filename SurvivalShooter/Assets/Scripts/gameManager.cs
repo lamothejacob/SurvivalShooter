@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject HUD;
     public GameObject playerDamageFlash;
+    public GameObject shieldActiveImage;
     public TextMeshProUGUI interactText;
 
     public bool isPaused;
