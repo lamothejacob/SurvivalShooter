@@ -6,23 +6,23 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour, IDamage, IPhysics
 {
     [Header("Components")]
-    [SerializeField] Renderer color;
+    [SerializeField] protected Renderer color;
     [SerializeField] protected Transform headPos;
     [SerializeField] protected Animator anim;
     [SerializeField] protected NavMeshAgent agent;
 
     [Header("Enemy Stats")]
-    [SerializeField] int HPMax;
+    [SerializeField] protected int HPMax;
 
-    Color colorOrig;
+    protected Color colorOrig;
     protected int HP;
     protected bool isDead;
 
     // Start is called before the first frame update
     void Start()
     {
-        colorOrig = color.material.color;
-        HP = HPMax;
+        //colorOrig = color.material.color;
+        //HP = HPMax;
     }
 
     public void TakeDamage(int damage)

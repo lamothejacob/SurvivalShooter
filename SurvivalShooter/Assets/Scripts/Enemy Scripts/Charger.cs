@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Charger : Enemy
@@ -31,6 +32,8 @@ public class Charger : Enemy
 
     private void Start()
     {
+        HP = HPMax;
+        colorOrig = color.material.color;
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
 
