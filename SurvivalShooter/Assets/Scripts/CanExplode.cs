@@ -17,4 +17,9 @@ public class CanExplode : MonoBehaviour, IDamage
             Destroy(gameObject);
         }
     }
+
+    public int getHP()
+    {
+        return HP;
+    }
 }
