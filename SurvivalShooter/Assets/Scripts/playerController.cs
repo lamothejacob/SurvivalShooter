@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class playerController : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] AudioSource aud; 
+    [SerializeField] AudioSource aud;
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)]
@@ -42,7 +43,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public Vector3 gunLocation;
 
     [Header("----- Abilities -----")]
-    [SerializeField] int shieldHP;
+        [Header("Shield")]
+        [SerializeField] int shieldHP;
+
+        [Header("Dash")]
+        [SerializeField] int dashNumMax;
+        [SerializeField] float dashCoolDown;
+        [SerializeField] float dashLength;
+        [SerializeField] float dashSpeed;
+        [SerializeField] int dashDamage;
+        [SerializeField] int dashPushBack;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -56,8 +66,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] List<Gun> gunInventory;
     bool stepsIsPlaying;
     bool isSprinting;
+
+    //Shield Variables
     bool shieldActive;
     int shieldHPMax;
+    float playerSpeedOrig;
+
+    //Dash Variables
+    bool dashActive;
+    int dashNum;
+    bool dashRecharging;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] jumpAudio;
@@ -72,6 +90,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         HPOrig = HP;
         shieldHPMax = shieldHP;
+        dashNum = dashNumMax;
+        playerSpeedOrig = playerSpeed;
         scaleOrig = transform.localScale;
 
         starterGun.Load();
@@ -110,6 +130,15 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             }
             else if (shieldHP <= 0)
                 gameManager.instance.shieldActiveImage.SetActive(false);
+
+            if (Input.GetButtonDown("Dash") && dashNum > 0)
+            {
+                dashNum--;
+                StartCoroutine(Dash());
+            }
+
+            if (dashNum < dashNumMax && !dashRecharging)
+                StartCoroutine(DashRecharge());
 
             SwitchWeapon();
 
@@ -397,6 +426,27 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         grenadeAmount--;
     }
 
+    IEnumerator Dash()
+    {
+        dashActive = true;
+        playerSpeed = dashSpeed;
+
+        yield return new WaitForSeconds(dashLength);
+
+        playerSpeed = playerSpeedOrig;
+        dashActive = false;
+    }
+
+    IEnumerator DashRecharge()
+    {
+        dashRecharging = true;
+
+        yield return new WaitForSeconds(dashCoolDown);
+
+        dashNum++;
+        dashRecharging = false;
+    }
+
     public int getHP()
     {
         return HP; 
@@ -440,6 +490,26 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public int getShieldHPMax()
     {
         return shieldHPMax;
+    }
+
+    public bool getDashState()
+    {
+        return dashActive;
+    }
+
+    public int getDashPushBack()
+    {
+        return dashPushBack;
+    }
+
+    public int getDashDamage()
+    {
+        return dashDamage;
+    }
+
+    public int getDashNumCurrent()
+    {
+        return dashNum;
     }
 
     public void addShield(int amount)

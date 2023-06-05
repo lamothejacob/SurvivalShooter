@@ -18,6 +18,7 @@ public class HUD : MonoBehaviour
     [SerializeField] Slider shieldBar;
     [SerializeField] Image gunType;
     [SerializeField] Image miniMap;
+    [SerializeField] Image dashIcon;
 
     [Header("------ Ammo Icons ------")]
     [SerializeField] Image[] ammoIcons = new Image[11];
@@ -33,7 +34,7 @@ public class HUD : MonoBehaviour
     private Color ammoColorTrans;
     private Color ammoColor;
     private Color ammoColorEmpty;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,7 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateHUD();  
+        UpdateHUD();
     }
 
     void DisplayAmmo()
@@ -174,6 +175,18 @@ public class HUD : MonoBehaviour
         grenadeAmount.text = gameManager.instance.playerScript.getGrenadeAmount().ToString();
     }
 
+    void DisplayDash()
+    {
+        int dashNumCurrent = gameManager.instance.playerScript.getDashNumCurrent();
+
+        if (dashNumCurrent <= 0)
+        {
+            dashIcon.color = ammoColorTrans;
+        }
+        else
+            dashIcon.color = ammoColor;
+    }
+
     public void UpdateHUD()
     {
         DisplayAmmo(); 
@@ -183,5 +196,6 @@ public class HUD : MonoBehaviour
         UpdateWave();
         updatePoints();
         DisplayGrenadeAmount();
+        DisplayDash();
     }
 }
