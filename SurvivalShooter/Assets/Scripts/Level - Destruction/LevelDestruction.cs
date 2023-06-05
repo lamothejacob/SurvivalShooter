@@ -13,7 +13,7 @@ public class LevelDestruction : MonoBehaviour
     {
         for (int i = 0; i < weakPoint.Length; i++)
         {
-            totalHealth += weakPoint[i].GetComponent<CanExplode>().getHP();
+            totalHealth += weakPoint[i].GetComponent<WeakPoint>().getHP();
         }
     }
 
@@ -21,5 +21,10 @@ public class LevelDestruction : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void updateHealth(int amount)
+    {
+        totalHealth += amount;
     }
 }
