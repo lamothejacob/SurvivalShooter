@@ -20,7 +20,10 @@ public class LevelDestruction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (totalHealth <= 0)
+        {
+            //Win Condition
+        }
     }
 
     public void updateHealth(int amount)
