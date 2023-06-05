@@ -453,7 +453,7 @@ MonoBehaviour:
   jumpHeight: 5
   gravityValue: -9.81
   maxJumps: 1
-  interactDistance: 1
+  interactDistance: 2
   pushBackResolve: 3
   points: 0
   currentGun: 0
@@ -461,7 +461,10 @@ MonoBehaviour:
   grenade: {fileID: 3833154100948993197, guid: 32b3b34af57b89a4fb96b191a6045781, type: 3}
   starterGun: {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
   gunLocation: {x: 0.5, y: -0.5, z: 1}
+  adsLocation: {x: 0, y: -0.3, z: 1}
   shieldHP: 100
+  dashNumMax: 0
+  dashCoolDown: 0
   dashLength: 0.1
   dashSpeed: 150
   dashDamage: 10

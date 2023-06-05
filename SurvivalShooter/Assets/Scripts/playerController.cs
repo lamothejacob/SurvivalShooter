@@ -41,6 +41,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
     public Vector3 gunLocation;
+    public Vector3 adsLocation;
 
     [Header("----- Abilities -----")]
         [Header("Shield")]
@@ -66,6 +67,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] List<Gun> gunInventory;
     bool stepsIsPlaying;
     bool isSprinting;
+    bool isAiming;
+    float originalFOV;
 
     //Shield Variables
     bool shieldActive;
@@ -93,13 +96,13 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         dashNum = dashNumMax;
         playerSpeedOrig = playerSpeed;
         scaleOrig = transform.localScale;
+        originalFOV = Camera.main.fieldOfView;
 
         starterGun.Load();
         gunInventory.Add(starterGun);
         currentGun = gunInventory.Count - 1;
         gameManager.instance.displayScript.setCurrentGun(starterGun);
         gameManager.instance.hudScript.DisplayGunType();
-
     }
 
     void Update()
@@ -148,6 +151,26 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         Sprint();
 
         Crouch();
+
+        AimDownSights();
+    }
+
+    void AimDownSights()
+    {
+        if (Input.GetButtonDown("Aim"))
+        {
+            GameObject gun = gameManager.instance.displayScript.currentActive;
+            gun.transform.localPosition = adsLocation;
+            Camera.main.fieldOfView /= 1.75f;
+            isAiming = true;
+        }
+        else if (Input.GetButtonUp("Aim"))
+        {
+            GameObject gun = gameManager.instance.displayScript.currentActive;
+            gun.transform.localPosition = gunLocation;
+            Camera.main.fieldOfView = originalFOV;
+            isAiming = false;
+        }
     }
 
     void Movement()
@@ -253,8 +276,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         gunInventory[currentGun].removeAmmo(1);
         gameManager.instance.audioScript.Play("Shoot");
+        List<RaycastHit> raycastHits = gunInventory[currentGun].GetRayList();
 
-        foreach (RaycastHit hit in gunInventory[currentGun].GetRayList())
+        foreach (RaycastHit hit in raycastHits)
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
 
@@ -267,6 +291,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             Destroy(Instantiate(gunInventory[currentGun].hitEffect, hit.point, Quaternion.identity), 1);
         }
 
+        StopCoroutine(Recoil());
         StartCoroutine(Recoil());
 
         yield return new WaitForSeconds(gunInventory[currentGun].fireRate);
@@ -276,10 +301,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Recoil()
     {
+        float recoil = gunInventory[currentGun].verticalRecoil;
+
+        if (isAiming) {
+            recoil /= 2;
+        }
+
         float timeElapsed = 0f;
         while(timeElapsed < gunInventory[currentGun].fireRate)
         {
-            gameManager.instance.cameraScript.AddRecoil(Mathf.Lerp(0, gunInventory[currentGun].verticalRecoil, timeElapsed / gunInventory[currentGun].fireRate));
+            gameManager.instance.cameraScript.AddRecoil(Mathf.Lerp(0, recoil, timeElapsed / gunInventory[currentGun].fireRate));
             timeElapsed += Time.deltaTime;
             yield return null;
         }

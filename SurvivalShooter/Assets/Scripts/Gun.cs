@@ -91,7 +91,7 @@ public class Gun : ScriptableObject
     {
         List<RaycastHit> raycastHits = new List<RaycastHit>();
 
-        while (raycastHits.Count < projectileAmount)
+        for (int i = 0; i < projectileAmount; i++)
         {
             Vector2 spread = Random.insideUnitCircle;
             RaycastHit hit;
