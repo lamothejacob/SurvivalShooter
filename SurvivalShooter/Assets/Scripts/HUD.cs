@@ -42,6 +42,7 @@ public class HUD : MonoBehaviour
         ammoColorTrans = new Color(1f, 1f, 1f, .4f);
         ammoColor = new Color(1f, 1f, 1f, 1f);
         ammoColorEmpty = new Color(1f, 1f, 1f, 0f);
+        shieldBar.maxValue = gameManager.instance.playerScript.getShieldHPMax();
     }
 
     // Update is called once per frame

@@ -57,7 +57,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     bool stepsIsPlaying;
     bool isSprinting;
     bool shieldActive;
-    int shieldHPOrig;
+    int shieldHPMax;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] jumpAudio;
@@ -71,7 +71,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private void Start()
     {
         HPOrig = HP;
-        shieldHPOrig = shieldHP;
+        shieldHPMax = shieldHP;
         scaleOrig = transform.localScale;
 
         starterGun.Load();
@@ -437,10 +437,15 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         return shieldHP;
     }
 
+    public int getShieldHPMax()
+    {
+        return shieldHPMax;
+    }
+
     public void addShield(int amount)
     {
-        if (shieldHP + amount > shieldHPOrig)
-            shieldHP = shieldHPOrig;
+        if (shieldHP + amount > shieldHPMax)
+            shieldHP = shieldHPMax;
         else
             shieldHP += amount;
     }
