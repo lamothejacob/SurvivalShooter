@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -39,6 +40,8 @@ public class Seeker : Enemy
 
     private void Start()
     {
+        HP = HPMax;
+        colorOrig = color.material.color;
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
         audioPlayer = GetComponent<AudioSource>();
