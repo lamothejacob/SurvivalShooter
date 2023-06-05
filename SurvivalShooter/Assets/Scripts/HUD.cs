@@ -19,6 +19,7 @@ public class HUD : MonoBehaviour
     [SerializeField] Image gunType;
     [SerializeField] Image miniMap;
     [SerializeField] Image dashIcon;
+    [SerializeField] TextMeshProUGUI dashText;
 
     [Header("------ Ammo Icons ------")]
     [SerializeField] Image[] ammoIcons = new Image[11];
@@ -182,9 +183,15 @@ public class HUD : MonoBehaviour
         if (dashNumCurrent <= 0)
         {
             dashIcon.color = ammoColorTrans;
+            dashText.color = ammoColorTrans;
         }
         else
+        {
             dashIcon.color = ammoColor;
+            dashText.color = ammoColor;
+        }
+
+        dashText.text = dashNumCurrent.ToString();
     }
 
     public void UpdateHUD()
