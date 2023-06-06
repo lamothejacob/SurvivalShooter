@@ -40,6 +40,9 @@ public class gunDisplay : MonoBehaviour
         //Adjust position
         currentActive.transform.localPosition = gameManager.instance.playerScript.gunLocation;
 
+        //Sets the projectile prop for the display gun
+        //AKA what to hide when the projectile is fired
+        //And what to unhide when the gun reloads
         if (gun.projectileBased)
         {
             foreach(Transform child in currentActive.transform)
