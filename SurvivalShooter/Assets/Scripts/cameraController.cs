@@ -45,6 +45,5 @@ public class cameraController : MonoBehaviour
     public void AddRecoil(float recoilAmount)
     {
         xRotation -= recoilAmount;
-        xRotation = Mathf.Clamp(xRotation, lockVerMin, lockVerMax);
     }
 }

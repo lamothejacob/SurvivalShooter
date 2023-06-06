@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3d979a7da1b7c48ab47636a2b3545d, type: 3}
+  m_Name: Rocket Launcher
+  m_EditorClassIdentifier: 
+  gunImage: {fileID: 2800000, guid: afbfd00b50cabe24e8abe0b8042e0b1e, type: 3}
+  gunObject: {fileID: 919132149155446097, guid: ef4278f049111df408cfb5e818905044, type: 3}
+  hitEffect: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976, type: 3}
+  muzzleEffect: {fileID: 1642322455942316, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
+  muzzleOffset: {x: 0, y: 0, z: 0}
+  clipEmptyAudio: {fileID: 0}
+  fireAudio: {fileID: 0}
+  reloadAudio: {fileID: 0}
+  cost: 2000
+  baseDamage: 100
+  shootDist: 150
+  fireRate: 0.5
+  reserveAmmoMax: 8
+  clipSize: 1
+  automatic: 0
+  projectileBased: 1
+  baseColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
+  projectileAmount: 1
+  verticalRecoil: 0.5
+  verticalSpread: 0
+  horizontalSpread: 0
+  damage: 100
+  level: 0
+  color: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
+  projectile: {fileID: 7357789609558134580, guid: 71ae9bc2326a2e142bb9df3611748e17, type: 3}
+  projReference: {fileID: 1664092502463595309, guid: ef4278f049111df408cfb5e818905044, type: 3}

@@ -15,8 +15,11 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoCount;
     [SerializeField] TextMeshProUGUI grenadeAmount;
     [SerializeField] Slider healthBar;
+    [SerializeField] Slider shieldBar;
     [SerializeField] Image gunType;
     [SerializeField] Image miniMap;
+    [SerializeField] Image dashIcon;
+    [SerializeField] TextMeshProUGUI dashText;
 
     [Header("------ Ammo Icons ------")]
     [SerializeField] Image[] ammoIcons = new Image[11];
@@ -32,7 +35,7 @@ public class HUD : MonoBehaviour
     private Color ammoColorTrans;
     private Color ammoColor;
     private Color ammoColorEmpty;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,12 +44,13 @@ public class HUD : MonoBehaviour
         ammoColorTrans = new Color(1f, 1f, 1f, .4f);
         ammoColor = new Color(1f, 1f, 1f, 1f);
         ammoColorEmpty = new Color(1f, 1f, 1f, 0f);
+        shieldBar.maxValue = gameManager.instance.playerScript.getShieldHPMax();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateHUD();  
+        UpdateHUD();
     }
 
     void DisplayAmmo()
@@ -81,6 +85,12 @@ public class HUD : MonoBehaviour
         int currentHP = gameManager.instance.playerScript.getHP();       
         healthBar.value = currentHP;
         
+    }
+
+    void UpdateShieldBar()
+    {
+        int currentShieldHP = gameManager.instance.playerScript.getShieldHP();
+        shieldBar.value = currentShieldHP;
     }
 
     void UpdateWave()
@@ -166,13 +176,33 @@ public class HUD : MonoBehaviour
         grenadeAmount.text = gameManager.instance.playerScript.getGrenadeAmount().ToString();
     }
 
+    void DisplayDash()
+    {
+        int dashNumCurrent = gameManager.instance.playerScript.getDashNumCurrent();
+
+        if (dashNumCurrent <= 0)
+        {
+            dashIcon.color = ammoColorTrans;
+            dashText.color = ammoColorTrans;
+        }
+        else
+        {
+            dashIcon.color = ammoColor;
+            dashText.color = ammoColor;
+        }
+
+        dashText.text = dashNumCurrent.ToString();
+    }
+
     public void UpdateHUD()
     {
         DisplayAmmo(); 
         DisplayKills();
         UpdateHealthBar();
+        UpdateShieldBar();
         UpdateWave();
         updatePoints();
         DisplayGrenadeAmount();
+        DisplayDash();
     }
 }

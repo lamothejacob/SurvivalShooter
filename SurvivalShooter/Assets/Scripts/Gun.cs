@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu]
 public class Gun : ScriptableObject
@@ -8,6 +11,13 @@ public class Gun : ScriptableObject
     public Texture2D gunImage;
     public GameObject gunObject;
     public GameObject hitEffect;
+    public GameObject muzzleEffect;
+    public Vector3 muzzleOffset;
+
+    [Header("----- Audio -----")]
+    public AudioClip clipEmptyAudio;
+    public AudioClip fireAudio;
+    public AudioClip reloadAudio;
 
     [Header("----- Immutable Stats -----")]
     public int cost;
@@ -17,6 +27,7 @@ public class Gun : ScriptableObject
     public int reserveAmmoMax;
     public int clipSize;
     public bool automatic = true;
+    public bool projectileBased = false;
     public Color baseColor;
 
     [Header("----- Shooting Stats -----")]
@@ -29,6 +40,11 @@ public class Gun : ScriptableObject
     public int damage;
     public int level = 0;
     public Color color;
+
+    [Header("----- Projectile -----")]
+    [SerializeField] GameObject projectile;
+    public GameObject projReference;
+    GameObject projCopy;
 
     int ammoInClip;
     int reserveAmmo;
@@ -74,7 +90,6 @@ public class Gun : ScriptableObject
         int amount = clipSize - ammoInClip;
         gameManager.instance.audioScript.Play("Reload");
 
-
         if (reserveAmmo >= amount)
         {
             reserveAmmo -= amount;
@@ -85,13 +100,18 @@ public class Gun : ScriptableObject
             ammoInClip += reserveAmmo;
             reserveAmmo = 0;
         }
+
+        if (projectileBased)
+        {
+            projCopy.SetActive(true);
+        }
     }
 
     public List<RaycastHit> GetRayList()
     {
         List<RaycastHit> raycastHits = new List<RaycastHit>();
 
-        while (raycastHits.Count < projectileAmount)
+        for (int i = 0; i < projectileAmount; i++)
         {
             Vector2 spread = Random.insideUnitCircle;
             RaycastHit hit;
@@ -103,5 +123,17 @@ public class Gun : ScriptableObject
         }
 
         return raycastHits;
+    }
+
+    public GameObject GetProjectile()
+    {
+        projCopy.SetActive(false);
+
+        return projectile;
+    }
+
+    public void SetProjectile(GameObject proj)
+    {
+        projCopy = proj;
     }
 }

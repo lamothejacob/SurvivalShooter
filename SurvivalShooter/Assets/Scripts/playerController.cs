@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class playerController : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] AudioSource aud; 
+    [SerializeField] AudioSource aud;
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)]
@@ -40,6 +41,19 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
     public Vector3 gunLocation;
+    public Vector3 adsLocation;
+
+    [Header("----- Abilities -----")]
+        [Header("Shield")]
+        [SerializeField] int shieldHP;
+
+        [Header("Dash")]
+        [SerializeField] int dashNumMax;
+        [SerializeField] float dashCoolDown;
+        [SerializeField] float dashLength;
+        [SerializeField] float dashSpeed;
+        [SerializeField] int dashDamage;
+        [SerializeField] int dashPushBack;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -52,7 +66,23 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private Vector3 pushBack;
     [SerializeField] List<Gun> gunInventory;
     bool stepsIsPlaying;
-    bool isSprinting; 
+    bool isSprinting;
+    bool isAiming;
+    float originalFOV;
+    bool hasItem;
+
+    //Shield Variables
+    bool shieldActive;
+    int shieldHPMax;
+    float playerSpeedOrig;
+
+    //Dash Variables
+    bool dashActive;
+    int dashNum;
+    bool dashRecharging;
+
+    //Goal Item Variables
+    bool hasGoalItem;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] jumpAudio;
@@ -66,14 +96,17 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     private void Start()
     {
         HPOrig = HP;
+        shieldHPMax = shieldHP;
+        dashNum = dashNumMax;
+        playerSpeedOrig = playerSpeed;
         scaleOrig = transform.localScale;
+        originalFOV = Camera.main.fieldOfView;
 
         starterGun.Load();
         gunInventory.Add(starterGun);
         currentGun = gunInventory.Count - 1;
         gameManager.instance.displayScript.setCurrentGun(starterGun);
         gameManager.instance.hudScript.DisplayGunType();
-
     }
 
     void Update()
@@ -97,6 +130,23 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
                 throwGrenade();
             }
 
+            if (Input.GetButtonDown("Shield") && shieldHP > 0)
+            {
+                shieldActive = !shieldActive;
+                gameManager.instance.shieldActiveImage.SetActive(shieldActive);
+            }
+            else if (shieldHP <= 0)
+                gameManager.instance.shieldActiveImage.SetActive(false);
+
+            if (Input.GetButtonDown("Dash") && dashNum > 0)
+            {
+                dashNum--;
+                StartCoroutine(Dash());
+            }
+
+            if (dashNum < dashNumMax && !dashRecharging)
+                StartCoroutine(DashRecharge());
+
             SwitchWeapon();
 
             Reload();
@@ -105,6 +155,26 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         Sprint();
 
         Crouch();
+
+        AimDownSights();
+    }
+
+    void AimDownSights()
+    {
+        if (Input.GetButtonDown("Aim"))
+        {
+            GameObject gun = gameManager.instance.displayScript.currentActive;
+            gun.transform.localPosition = adsLocation;
+            Camera.main.fieldOfView /= 1.75f;
+            isAiming = true;
+        }
+        else if (Input.GetButtonUp("Aim"))
+        {
+            GameObject gun = gameManager.instance.displayScript.currentActive;
+            gun.transform.localPosition = gunLocation;
+            Camera.main.fieldOfView = originalFOV;
+            isAiming = false;
+        }
     }
 
     void Movement()
@@ -208,35 +278,55 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         isShooting = true;
 
-        gunInventory[currentGun].removeAmmo(1);
+        Gun gun = gunInventory[currentGun];
+
+        gun.removeAmmo(1);
         gameManager.instance.audioScript.Play("Shoot");
 
-        foreach (RaycastHit hit in gunInventory[currentGun].GetRayList())
+        if (!gun.projectileBased)
         {
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
+            List<RaycastHit> raycastHits = gun.GetRayList();
 
-            if (damageable != null)
+            foreach (RaycastHit hit in raycastHits)
             {
-                damageable.TakeDamage(gunInventory[currentGun].damage);
-                points += 50;
-            }
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-            Destroy(Instantiate(gunInventory[currentGun].hitEffect, hit.point, Quaternion.identity), 1);
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(gun.damage);
+                    points += 50;
+                }
+
+                Destroy(Instantiate(gun.hitEffect, hit.point, Quaternion.identity), 1);
+            }
+        }
+        else
+        {
+            Instantiate(gun.GetProjectile(), Camera.main.transform.position, Camera.main.transform.rotation);
         }
 
+        gameManager.instance.displayScript.MuzzleFlash();
+
+        StopCoroutine(Recoil());
         StartCoroutine(Recoil());
 
-        yield return new WaitForSeconds(gunInventory[currentGun].fireRate);
+        yield return new WaitForSeconds(gun.fireRate);
 
         isShooting = false;
     }
 
     IEnumerator Recoil()
     {
+        float recoil = gunInventory[currentGun].verticalRecoil;
+
+        if (isAiming) {
+            recoil /= 2;
+        }
+
         float timeElapsed = 0f;
         while(timeElapsed < gunInventory[currentGun].fireRate)
         {
-            gameManager.instance.cameraScript.AddRecoil(Mathf.Lerp(0, gunInventory[currentGun].verticalRecoil, timeElapsed / gunInventory[currentGun].fireRate));
+            gameManager.instance.cameraScript.AddRecoil(Mathf.Lerp(0, recoil, timeElapsed / gunInventory[currentGun].fireRate));
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -270,14 +360,27 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     public void TakeDamage(int damage)
     {
-        HP -= damage;
-        aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
-        StartCoroutine(damageFlash());
-
-        if (HP <= 0)
+        if (shieldActive == false || shieldHP <= 0)
         {
-            HP = HPOrig;
-            gameManager.instance.loseState();
+            HP -= damage;
+            aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
+            StartCoroutine(damageFlash());
+
+            if (HP <= 0)
+            {
+                HP = HPOrig;
+                gameManager.instance.loseState();
+            }
+        }
+        else
+        {
+            shieldHP -= damage;
+            if (HP + damage > HPOrig)
+            {
+                HP = HPOrig;
+            }
+            else
+                HP += damage;
         }
     }
 
@@ -370,6 +473,36 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         grenadeAmount--;
     }
 
+    IEnumerator Dash()
+    {
+        dashActive = true;
+        playerSpeed = dashSpeed;
+
+        yield return new WaitForSeconds(dashLength);
+
+        playerSpeed = playerSpeedOrig;
+        dashActive = false;
+    }
+
+    IEnumerator DashRecharge()
+    {
+        dashRecharging = true;
+
+        yield return new WaitForSeconds(dashCoolDown);
+
+        dashNum++;
+        dashRecharging = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Goal Item"))
+        {
+            Destroy(other.gameObject);
+            hasGoalItem = true;
+        }
+    }
+
     public int getHP()
     {
         return HP; 
@@ -403,6 +536,44 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public bool getShootingState()
     {
         return isShooting;
+    }
+
+    public int getShieldHP()
+    {
+        return shieldHP;
+    }
+
+    public int getShieldHPMax()
+    {
+        return shieldHPMax;
+    }
+
+    public bool getDashState()
+    {
+        return dashActive;
+    }
+
+    public int getDashPushBack()
+    {
+        return dashPushBack;
+    }
+
+    public int getDashDamage()
+    {
+        return dashDamage;
+    }
+
+    public int getDashNumCurrent()
+    {
+        return dashNum;
+    }
+
+    public void addShield(int amount)
+    {
+        if (shieldHP + amount > shieldHPMax)
+            shieldHP = shieldHPMax;
+        else
+            shieldHP += amount;
     }
 
     IEnumerator playSteps()
