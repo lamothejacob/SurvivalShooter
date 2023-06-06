@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
 
     [Header("Drops")]
     [SerializeField] GameObject[] drops;
-    [SerializeField] int dropRate;
 
     protected Color colorOrig;
     protected int HP;
@@ -55,8 +54,8 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
         gameManager.instance.enemySpawnerScript.EnemyDecrement();
         if (drops.Length > 0)
         {
-            int spawn = Random.Range(0, dropRate);
-            if (spawn < 1)
+            int spawn = Random.Range(0, 1000);
+            if (spawn % 2 == 0)
                 Instantiate(drops[Random.Range(0, drops.Length)], transform.position, transform.rotation);
         }
 

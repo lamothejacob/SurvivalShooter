@@ -923,17 +923,17 @@ MonoBehaviour:
   agent: {fileID: 5318782163708965479}
   HPMax: 25
   drops: []
-  dropRate: 0
   audioPlayer: {fileID: 0}
   shootPos: {fileID: 5318782163708669464}
   playerFaceSpeed: 1.5
   ViewCone: 90
   animTransSpeed: 3
+  distanceFromPlayer: 10
   shootDist: 100
   shootRate: 1
   bullet: {fileID: 5537543527767281464, guid: 08db00689ae2e9341971779fd91d176b, type: 3}
   shootAngle: 5
-  speed: 5
+  speed: 10
   speedVariance: 0.55
   avoidRadius: 0.75
   avoidRadiusVariance: 0.25
