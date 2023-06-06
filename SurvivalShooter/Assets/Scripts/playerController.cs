@@ -69,6 +69,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     bool isSprinting;
     bool isAiming;
     float originalFOV;
+    bool hasItem;
 
     //Shield Variables
     bool shieldActive;
@@ -79,6 +80,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     bool dashActive;
     int dashNum;
     bool dashRecharging;
+
+    //Goal Item Variables
+    bool hasGoalItem;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] jumpAudio;
@@ -476,6 +480,15 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         dashNum++;
         dashRecharging = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Goal Item"))
+        {
+            Destroy(other.gameObject);
+            hasGoalItem = true;
+        }
     }
 
     public int getHP()

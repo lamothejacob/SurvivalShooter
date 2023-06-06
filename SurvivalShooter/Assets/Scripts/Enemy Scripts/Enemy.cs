@@ -53,9 +53,12 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     {
         isDead = true;
         gameManager.instance.enemySpawnerScript.EnemyDecrement();
-        int spawn = Random.Range(0, dropRate);
-        if (spawn < 1)
-            Instantiate(drops[Random.Range(0, drops.Length)], transform.position, transform.rotation);
+        if (drops.Length > 0)
+        {
+            int spawn = Random.Range(0, dropRate);
+            if (spawn < 1)
+                Instantiate(drops[Random.Range(0, drops.Length)], transform.position, transform.rotation);
+        }
 
 
         Destroy(gameObject, 3);
