@@ -39,6 +39,18 @@ public class gunDisplay : MonoBehaviour
 
         //Adjust position
         currentActive.transform.localPosition = gameManager.instance.playerScript.gunLocation;
+
+        if (gun.projectileBased)
+        {
+            foreach(Transform child in currentActive.transform)
+            {
+                if(child.name == gun.projReference.name)
+                {
+                    gun.SetProjectile(child.gameObject);
+                    break;
+                }
+            }
+        }
     }
 
     /// <summary>
