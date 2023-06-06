@@ -305,6 +305,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
             Instantiate(gun.GetProjectile(), Camera.main.transform.position, Camera.main.transform.rotation);
         }
 
+        gameManager.instance.displayScript.MuzzleFlash();
+
         StopCoroutine(Recoil());
         StartCoroutine(Recoil());
 

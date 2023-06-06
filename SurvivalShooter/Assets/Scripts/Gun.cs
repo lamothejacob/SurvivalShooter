@@ -11,6 +11,13 @@ public class Gun : ScriptableObject
     public Texture2D gunImage;
     public GameObject gunObject;
     public GameObject hitEffect;
+    public GameObject muzzleEffect;
+    public Vector3 muzzleOffset;
+
+    [Header("----- Audio -----")]
+    public AudioClip clipEmptyAudio;
+    public AudioClip fireAudio;
+    public AudioClip reloadAudio;
 
     [Header("----- Immutable Stats -----")]
     public int cost;

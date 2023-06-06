@@ -1,9 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class gunDisplay : MonoBehaviour
 {
     public GameObject currentActive; //The Current Gun Object the player is using
+    GameObject muzzleEffect;
+    bool isFlashing;
 
     /// <summary>
     /// Creates the gun object and attaches it to the main camera
@@ -39,6 +43,14 @@ public class gunDisplay : MonoBehaviour
 
         //Adjust position
         currentActive.transform.localPosition = gameManager.instance.playerScript.gunLocation;
+
+        //
+        muzzleEffect = Instantiate(gun.muzzleEffect, Camera.main.transform.position, Camera.main.transform.rotation);
+        muzzleEffect.layer = 6;
+        muzzleEffect.transform.parent = currentActive.transform;
+        muzzleEffect.SetActive(false);
+        muzzleEffect.transform.localPosition = gun.muzzleOffset;
+        //muzzleEffect.transform.localEulerAngles = Vector3.right * 90;
 
         //Sets the projectile prop for the display gun
         //AKA what to hide when the projectile is fired
@@ -78,5 +90,39 @@ public class gunDisplay : MonoBehaviour
         }
 
         gameManager.instance.playerScript.getCurrentGun().color = materials[0].color;
+    }
+
+    public void MuzzleFlash()
+    {
+        if (!isFlashing)
+        {
+            StartCoroutine(MakeMuzzleEffect());
+        }
+    }
+
+    IEnumerator MakeMuzzleEffect()
+    {
+        isFlashing = true;
+        muzzleEffect.SetActive(true);
+
+        if (muzzleEffect.GetComponentInChildren<ParticleSystem>() == null)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        else
+        {
+            foreach (ParticleSystem p in muzzleEffect.GetComponentsInChildren<ParticleSystem>())
+            {
+                p.time = 0;
+                p.Play();
+
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(muzzleEffect.GetComponentInChildren<ParticleSystem>().main.duration);
+        }
+
+        isFlashing = false;
+        muzzleEffect.SetActive(false);
     }
 }

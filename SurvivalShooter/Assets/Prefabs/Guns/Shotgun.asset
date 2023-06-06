@@ -15,13 +15,19 @@ MonoBehaviour:
   gunImage: {fileID: 2800000, guid: 565d6f9508533de4d9a5480eef54268f, type: 3}
   gunObject: {fileID: 919132149155446097, guid: 008411cce0c6ac343a205c61c458806d, type: 3}
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+  muzzleEffect: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
+  muzzleOffset: {x: 0, y: 0, z: 0}
+  clipEmptyAudio: {fileID: 0}
+  fireAudio: {fileID: 0}
+  reloadAudio: {fileID: 0}
   cost: 500
   baseDamage: 50
-  shootDist: 45
+  shootDist: 25
   fireRate: 0.25
   reserveAmmoMax: 64
   clipSize: 8
   automatic: 0
+  projectileBased: 0
   baseColor: {r: 0.6509804, g: 0.6117647, b: 0.5803922, a: 1}
   projectileAmount: 25
   verticalRecoil: 0.75
@@ -30,3 +36,5 @@ MonoBehaviour:
   damage: 50
   level: 0
   color: {r: 0.6509804, g: 0.6117647, b: 0.5803922, a: 1}
+  projectile: {fileID: 0}
+  projReference: {fileID: 0}
