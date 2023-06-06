@@ -54,12 +54,12 @@ public class Seeker : Enemy
             speedanim = Mathf.Lerp(speedanim, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speedanim);
 
-            agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.SetDestination(gameManager.instance.player.transform.position);
 
-            if (canSeePlayer())
-            {
+                if (canSeePlayer())
+                {
 
-            }
+                }
         }
     }
 

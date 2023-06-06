@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LevelDestruction : MonoBehaviour
 {
-    [SerializeField] float timer;
     [SerializeField] GameObject[] weakPoint;
 
     public int totalHealth;
@@ -21,15 +20,10 @@ public class LevelDestruction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
 
         if (totalHealth <= 0)
         {
             Destroy(gameObject);
-            gameManager.instance.loseState();
-        }
-        else if (timer <= 0)
-        {
             gameManager.instance.WinState(0);
         }
     }
