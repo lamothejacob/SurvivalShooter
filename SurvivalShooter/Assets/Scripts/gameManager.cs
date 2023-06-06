@@ -51,9 +51,9 @@ public class gameManager : MonoBehaviour
 
     private void Start()
     {
-        HUD.SetActive(false);
-        pauseState();
-        buttonsScript.returnToMainMenu();
+        HUD.SetActive(true);
+        //pauseState();
+        //buttonsScript.returnToMainMenu();
     }
 
     // Update is called once per frame
