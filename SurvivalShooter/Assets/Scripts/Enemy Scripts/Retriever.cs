@@ -13,6 +13,7 @@ public class Retriever : Enemy
     [SerializeField] float playerFaceSpeed;
     [SerializeField] int ViewCone;
     [SerializeField] float animTransSpeed;
+    [SerializeField] int distanceFromPlayer;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)][SerializeField] int shootDist;
@@ -65,19 +66,31 @@ public class Retriever : Enemy
             }
             else
             {
-                agent.stoppingDistance = stopDistOrig;
-                agent.SetDestination(gameManager.instance.player.transform.position);
-
-                if (canSeePlayer())
-                {
-
-                }
+                agent.stoppingDistance = 1;
+                AvoidPlayer();
             }
         }
         else if (hasGoalItem)
         {
             Instantiate(goalItem, transform.position, transform.rotation);
             hasGoalItem = false;
+        }
+    }
+
+    void AvoidPlayer()
+    {
+        if (Vector3.Distance(gameManager.instance.player.transform.position, headPos.position) < distanceFromPlayer)
+        {
+            agent.SetDestination((gameManager.instance.player.transform.position - headPos.position).normalized * -distanceFromPlayer);
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+
+            }
+            else if (!stepping)
+            {
+                StartCoroutine(PlaySteps());
+            }
         }
     }
 
@@ -90,60 +103,6 @@ public class Retriever : Enemy
         yield return new WaitForSeconds(speed / 15f);
 
         stepping = false;
-    }
-
-    bool canSeePlayer()
-    {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
-
-        Debug.DrawRay(headPos.position, playerDir);
-
-        RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
-        {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= ViewCone)
-            {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    facePLayer();
-                }
-                else if (!stepping)
-                {
-                    StartCoroutine(PlaySteps());
-                }
-
-                if (!isShooting && angleToPlayer <= shootAngle)
-                    StartCoroutine(shoot());
-
-                return true;
-            }
-
-
-        }
-        return false;
-    }
-
-    IEnumerator shoot()
-    {
-        isShooting = true;
-        anim.SetTrigger("Shoot");
-
-        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0, .25f, 0) - shootPos.transform.position));
-
-        audioPlayer.PlayOneShot(gunshots[Random.Range(0, gunshots.Length)]);
-
-        yield return new WaitForSeconds(shootRate);
-
-        isShooting = false;
-    }
-
-    void facePLayer()
-    {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
