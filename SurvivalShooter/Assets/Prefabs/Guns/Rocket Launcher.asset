@@ -19,7 +19,7 @@ MonoBehaviour:
   muzzleOffset: {x: 0, y: 0.0107, z: 0.0511}
   clipEmptyAudio: {fileID: 8300000, guid: 2c669ff329ea8524893f00ac20d54647, type: 3}
   fireAudio: {fileID: 8300000, guid: c52fcc4cf428bdb42a517c44b92c3238, type: 3}
-  reloadAudio: {fileID: 8300000, guid: 3e1e289c11ebbb34f936c3979004707b, type: 3}
+  reloadAudio: {fileID: 8300000, guid: 715857099178fc34287f6d01f29c1a4f, type: 3}
   cost: 2000
   baseDamage: 100
   shootDist: 150
