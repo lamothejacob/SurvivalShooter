@@ -27,7 +27,8 @@ public class FinishLine : MonoBehaviour
             Debug.Log("Player has passed the level. ");
             mFinished = true;
 
-            GoToNextLevel.gameObject.SetActive(true);
+            //GoToNextLevel.gameObject.SetActive(true);
+            gameManager.instance.WinState(0);
             gameManager.instance.pauseState();     
         }
     }
