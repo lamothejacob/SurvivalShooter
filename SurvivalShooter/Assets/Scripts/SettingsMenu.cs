@@ -2,30 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
+using System;
 
 public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] Slider audioSlider;
     [SerializeField] TMPro.TextMeshProUGUI audioLevel;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] TMPro.TextMeshProUGUI musicLevel;
+    [SerializeField] Slider sfxSlider;
+    [SerializeField] TMPro.TextMeshProUGUI sfxLevel;
     [SerializeField] Slider cameraSensitivitySlider; 
     [SerializeField] TMPro.TextMeshProUGUI cameraSensitivity;
     [SerializeField] Toggle invertY;
     [SerializeField] Toggle displayHUD;
 
     public static bool bDisplayHUD;
-    private bool bInvertY; 
+    private bool bInvertY;
+    private int audioLevelNum;
+    private int musicLevelNum;
+    private int sfxLevelNum;
+
+
     // Start is called before the first frame update
     void Start()
     {
         bDisplayHUD = true;
         bInvertY = false;
-        audioLevel.SetText(audioSlider.value.ToString());
+        audioLevelNum = (int)(audioSlider.value * 100);
+        audioLevel.SetText(audioLevelNum.ToString());
+        musicLevelNum = (int)(musicSlider.value * 100);
+        musicLevel.SetText(musicLevelNum.ToString());
+        sfxLevel.SetText(sfxSlider.value.ToString());
         cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
+
     }
 
     void Update()
     {
-        audioLevel.SetText(audioSlider.value.ToString());
+        audioLevelNum = (int)(audioSlider.value * 100);
+        audioLevel.SetText(audioLevelNum.ToString());
+        musicLevelNum = (int)(musicSlider.value * 100);
+        musicLevel.SetText(musicLevelNum.ToString());
+        sfxLevelNum = (int)(sfxSlider.value * 100);
+        sfxLevel.SetText(sfxLevelNum.ToString());
         cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
     }        
 
@@ -38,13 +59,52 @@ public class SettingsMenu : MonoBehaviour
     {
         audioSlider.onValueChanged.AddListener((v) =>
         {
-            audioLevel.SetText(v.ToString());
+            audioLevelNum = (int)(audioSlider.value * 100);
+            audioLevel.SetText(audioLevelNum.ToString());
             audioSlider.value = v;
         });
+        
 
         return audio.value; 
     }
 
+    public float GetMusicLevel()
+    {
+        return musicSlider.value;
+    }
+
+    public float SetMusicLevel(Slider audio)
+    {
+        musicSlider.onValueChanged.AddListener((v) =>
+        {
+
+            musicLevelNum = (int)(musicSlider.value * 100);
+            musicLevel.SetText(musicLevelNum.ToString());
+            musicSlider.value = v;
+        });
+
+
+        return audio.value;
+    }
+
+    public float GetSFXLevel()
+    {
+        return sfxSlider.value;
+    }
+
+    public float SetsfxLevel(Slider audio)
+    {
+        musicSlider.onValueChanged.AddListener((v) =>
+        {
+
+            sfxLevelNum = (int)(sfxSlider.value * 100);
+            sfxLevel.SetText(sfxLevelNum.ToString());
+            sfxSlider.value = v;
+        });
+
+
+        return audio.value;
+    }
     public float GetCameraSliderValue()
     {
         return cameraSensitivitySlider.value; 
