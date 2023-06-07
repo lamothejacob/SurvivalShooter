@@ -56,6 +56,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void Play(AudioClip clip)
+    {
+        gameManager.instance.player.GetComponent<AudioSource>().PlayOneShot(clip);
+    }
+
+    public void PlayInterupt(AudioClip clip)
+    {
+        gameManager.instance.player.GetComponent<AudioSource>().clip = clip;
+        gameManager.instance.player.GetComponent<AudioSource>().Play();
+    }
+
     public void Stop(string name)
     {
         Sounds s = Array.Find(sounds, sound => sound.name == name);

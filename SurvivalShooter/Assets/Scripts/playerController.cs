@@ -271,8 +271,17 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Shoot()
     {
-        if(gunInventory.Count == 0 || gunInventory[currentGun].getAmmoInClip() == 0)
+        if (gunInventory.Count == 0)
         {
+            yield break;
+        }
+
+        if(gunInventory[currentGun].getAmmoInClip() == 0)
+        {
+            isShooting = true;
+            gameManager.instance.audioScript.Play(getCurrentGun().clipEmptyAudio);
+            yield return new WaitForSeconds(getCurrentGun().clipEmptyAudio.length * .75f);
+            isShooting = false;
             yield break;
         }
 
@@ -281,7 +290,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         Gun gun = gunInventory[currentGun];
 
         gun.removeAmmo(1);
-        gameManager.instance.audioScript.Play("Shoot");
+        gameManager.instance.audioScript.Play(getCurrentGun().fireAudio);
 
         if (!gun.projectileBased)
         {
