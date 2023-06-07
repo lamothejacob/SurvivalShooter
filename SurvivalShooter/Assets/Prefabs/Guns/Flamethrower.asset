@@ -17,13 +17,13 @@ MonoBehaviour:
   hitEffect: {fileID: 6162491079622838693, guid: 6a0b6756d6c185d44a5c9a923bf82587, type: 3}
   muzzleEffect: {fileID: 7732609621674026359, guid: 03c1dea72b10ad14fa915bcdd7602e49, type: 3}
   muzzleOffset: {x: 0, y: 0.01, z: 0.04}
-  clipEmptyAudio: {fileID: 0}
-  fireAudio: {fileID: 0}
-  reloadAudio: {fileID: 0}
+  clipEmptyAudio: {fileID: 8300000, guid: 39ce0e3ef8c38db40836672e7ba655ce, type: 3}
+  fireAudio: {fileID: 8300000, guid: 6b4f637b5c561004b8e39a10e057d3c7, type: 3}
+  reloadAudio: {fileID: 8300000, guid: 4dc7dfe7acd0abf4ea7ed385bdd7950e, type: 3}
   cost: 1250
   baseDamage: 0
   shootDist: 10
-  fireRate: 0.05
+  fireRate: 0.1
   reserveAmmoMax: 300
   clipSize: 100
   automatic: 1

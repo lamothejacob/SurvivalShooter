@@ -264,9 +264,46 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         if (Input.GetButtonDown("Reload") && !isShooting)
         {
-            gunInventory[currentGun].reload();
-            gameManager.instance.hudScript.UpdateHUD();
+            Gun gun = getCurrentGun();
+            if (gun.getAmmoInClip() < gun.clipSize && gun.getReserveAmmo() > 0)
+            {
+                StartCoroutine(Reloading());
+            }
         }
+    }
+
+    IEnumerator Reloading()
+    {
+        isShooting = true;
+        GameObject gun = gameManager.instance.displayScript.currentActive;
+        Vector3 startPosition = gun.transform.localPosition, endPosition = startPosition - Vector3.up * 2;
+
+        float elapsedTime = 0f, totalTime = .1f;
+        while(elapsedTime < totalTime)
+        {
+            gun.transform.localPosition = Vector3.Lerp(startPosition, endPosition, elapsedTime / totalTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        gun.transform.localPosition = endPosition;
+
+        getCurrentGun().reload();
+        yield return new WaitForSeconds(getCurrentGun().reloadAudio.length - 0.1f);
+
+        elapsedTime = 0f;
+        totalTime = .1f;
+        while (elapsedTime < totalTime)
+        {
+            gun.transform.localPosition = Vector3.Lerp(endPosition, gunLocation, elapsedTime / totalTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        gun.transform.localPosition = gunLocation;
+
+        isShooting = false;
+        gameManager.instance.hudScript.UpdateHUD();
     }
 
     IEnumerator Shoot()
