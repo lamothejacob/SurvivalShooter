@@ -42,7 +42,7 @@ public class MysteryBox : MonoBehaviour, IInteractable
             gameManager.instance.playerScript.addPoints(-cost);
             ToggleState();
             StartCoroutine(CreateGun());
-        }else if (!isCycling && !gameManager.instance.playerScript.getShootingState())
+        }else if (!isCycling && !gameManager.instance.playerScript.getShootingState() && open.activeSelf)
         {
             StopAllCoroutines();
 
