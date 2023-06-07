@@ -122,4 +122,9 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.loseMenu.SetActive(false); 
         SceneManager.LoadScene(0); 
     }
+
+    public void goToNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+    }
 }
