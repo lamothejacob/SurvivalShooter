@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour
 {
-    [SerializeField] int sensitivityHor = 3000;
-    [SerializeField] int sensitivityVer = 3000;
+    [Range(100, 1000)] [SerializeField] int sensitivityHor = 300;
+    [Range(100, 1000)] [SerializeField] int sensitivityVer = 300;
 
     [Range(-90, 0)]
     [SerializeField] int lockVerMin = -70;
@@ -45,5 +45,27 @@ public class cameraController : MonoBehaviour
     public void AddRecoil(float recoilAmount)
     {
         xRotation -= recoilAmount;
+    }
+
+    public int GetSensitivityHor()
+    {
+        return sensitivityHor;
+    }
+
+    public int SetSensitivityHor(int amt)
+    {
+        sensitivityHor = amt;
+        return sensitivityHor;
+    }
+
+    public int GetSensitivityVer()
+    {
+        return sensitivityVer;
+    }
+
+    public int SetSensitivityVer(int amt)
+    {
+        sensitivityVer = amt;
+        return sensitivityVer;
     }
 }

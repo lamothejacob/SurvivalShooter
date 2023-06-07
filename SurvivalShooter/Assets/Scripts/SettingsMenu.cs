@@ -23,7 +23,7 @@ public class SettingsMenu : MonoBehaviour
     private int audioLevelNum;
     private int musicLevelNum;
     private int sfxLevelNum;
-
+    private int cameraSensNum;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,8 @@ public class SettingsMenu : MonoBehaviour
         musicLevelNum = (int)(musicSlider.value * 100);
         musicLevel.SetText(musicLevelNum.ToString());
         sfxLevel.SetText(sfxSlider.value.ToString());
-        cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
+        cameraSensNum = (int)(cameraSensitivitySlider.value / 10);
+        cameraSensitivity.SetText(cameraSensNum.ToString());
 
     }
 
@@ -47,7 +48,8 @@ public class SettingsMenu : MonoBehaviour
         musicLevel.SetText(musicLevelNum.ToString());
         sfxLevelNum = (int)(sfxSlider.value * 100);
         sfxLevel.SetText(sfxLevelNum.ToString());
-        cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
+        cameraSensNum = (int)(cameraSensitivitySlider.value / 10);
+        cameraSensitivity.SetText(cameraSensNum.ToString());
     }        
 
     public float GetAudioLevel()
@@ -78,8 +80,8 @@ public class SettingsMenu : MonoBehaviour
         musicSlider.onValueChanged.AddListener((v) =>
         {
 
-            musicLevelNum = (int)(musicSlider.value * 100);
-            musicLevel.SetText(musicLevelNum.ToString());
+            cameraSensNum = (int)(cameraSensitivitySlider.value / 100);
+            cameraSensitivity.SetText(cameraSensNum.ToString());
             musicSlider.value = v;
         });
 
@@ -114,7 +116,8 @@ public class SettingsMenu : MonoBehaviour
     {
         cameraSensitivitySlider.onValueChanged.AddListener((v) =>
         {
-            cameraSensitivity.SetText(v.ToString());
+            cameraSensNum = (int)(v / 10);
+            cameraSensitivity.SetText(cameraSensNum.ToString());
             cameraSensitivitySlider.value = v;
         });
 

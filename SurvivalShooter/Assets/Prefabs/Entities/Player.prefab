@@ -732,8 +732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d47bce34029c2c40a699f0b249a3bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivityHor: 500
-  sensitivityVer: 500
+  sensitivityHor: 300
+  sensitivityVer: 300
   lockVerMin: -70
   lockVerMax: 90
   invertY: 0
