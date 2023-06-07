@@ -7,6 +7,8 @@ using UnityEngine.AI;
 
 public class playerController : MonoBehaviour, IDamage, IPhysics
 {
+    public CameraShake cameraShake;
+
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
@@ -408,6 +410,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     {
         if (shieldActive == false || shieldHP <= 0)
         {
+            StartCoroutine(cameraShake.Shake(.1f,.3f));
             HP -= damage;
             aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
             StartCoroutine(damageFlash());
