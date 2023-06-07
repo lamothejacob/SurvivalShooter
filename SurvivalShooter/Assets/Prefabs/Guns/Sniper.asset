@@ -16,10 +16,10 @@ MonoBehaviour:
   gunObject: {fileID: 919132149155446097, guid: 3e0c271583faf1d449d9642af7ec7363, type: 3}
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   muzzleEffect: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
-  muzzleOffset: {x: 0, y: 0, z: 0}
-  clipEmptyAudio: {fileID: 0}
-  fireAudio: {fileID: 0}
-  reloadAudio: {fileID: 0}
+  muzzleOffset: {x: 0, y: 0.004, z: 0.08}
+  clipEmptyAudio: {fileID: 8300000, guid: 2c669ff329ea8524893f00ac20d54647, type: 3}
+  fireAudio: {fileID: 8300000, guid: 8d4da10a1c755af49ad53f56fd652224, type: 3}
+  reloadAudio: {fileID: 8300000, guid: f948ede34dc955340bf1c2ee9fd20a6d, type: 3}
   cost: 1500
   baseDamage: 100
   shootDist: 200
