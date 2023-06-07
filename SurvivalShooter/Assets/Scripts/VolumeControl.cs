@@ -38,7 +38,7 @@ public class VolumeControl : MonoBehaviour
 
     private void HandleSliderChange(float value)
     {
-        mixer.SetFloat(volPrmtr, MathF.Log10(value)*30f);
+        mixer.SetFloat(volPrmtr, MathF.Log10(value)*25f);
         disableToggleEvent = true;
         toggle.isOn = slider.value > slider.minValue;
         disableToggleEvent = false;

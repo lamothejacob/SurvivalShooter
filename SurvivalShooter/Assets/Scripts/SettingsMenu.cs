@@ -20,6 +20,9 @@ public class SettingsMenu : MonoBehaviour
 
     public static bool bDisplayHUD;
     private bool bInvertY;
+    private int audioLevelNum;
+    private int musicLevelNum;
+    private int sfxLevelNum;
 
 
     // Start is called before the first frame update
@@ -27,17 +30,23 @@ public class SettingsMenu : MonoBehaviour
     {
         bDisplayHUD = true;
         bInvertY = false;
-        audioLevel.SetText(audioSlider.value.ToString());
-        musicLevel.SetText(musicSlider.value.ToString());
+        audioLevelNum = (int)(audioSlider.value * 100);
+        audioLevel.SetText(audioLevelNum.ToString());
+        musicLevelNum = (int)(musicSlider.value * 100);
+        musicLevel.SetText(musicLevelNum.ToString());
         sfxLevel.SetText(sfxSlider.value.ToString());
         cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
+
     }
 
     void Update()
     {
-        audioLevel.SetText(audioSlider.value.ToString());
-        musicLevel.SetText(musicSlider.value.ToString());
-        sfxLevel.SetText(sfxSlider.value.ToString());
+        audioLevelNum = (int)(audioSlider.value * 100);
+        audioLevel.SetText(audioLevelNum.ToString());
+        musicLevelNum = (int)(musicSlider.value * 100);
+        musicLevel.SetText(musicLevelNum.ToString());
+        sfxLevelNum = (int)(sfxSlider.value * 100);
+        sfxLevel.SetText(sfxLevelNum.ToString());
         cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
     }        
 
@@ -50,8 +59,8 @@ public class SettingsMenu : MonoBehaviour
     {
         audioSlider.onValueChanged.AddListener((v) =>
         {
-            
-            audioLevel.SetText(v.ToString());
+            audioLevelNum = (int)(audioSlider.value * 100);
+            audioLevel.SetText(audioLevelNum.ToString());
             audioSlider.value = v;
         });
         
@@ -69,7 +78,8 @@ public class SettingsMenu : MonoBehaviour
         musicSlider.onValueChanged.AddListener((v) =>
         {
 
-            musicLevel.SetText(v.ToString());
+            musicLevelNum = (int)(musicSlider.value * 100);
+            musicLevel.SetText(musicLevelNum.ToString());
             musicSlider.value = v;
         });
 
@@ -77,6 +87,24 @@ public class SettingsMenu : MonoBehaviour
         return audio.value;
     }
 
+    public float GetSFXLevel()
+    {
+        return sfxSlider.value;
+    }
+
+    public float SetsfxLevel(Slider audio)
+    {
+        musicSlider.onValueChanged.AddListener((v) =>
+        {
+
+            sfxLevelNum = (int)(sfxSlider.value * 100);
+            sfxLevel.SetText(sfxLevelNum.ToString());
+            sfxSlider.value = v;
+        });
+
+
+        return audio.value;
+    }
     public float GetCameraSliderValue()
     {
         return cameraSensitivitySlider.value; 

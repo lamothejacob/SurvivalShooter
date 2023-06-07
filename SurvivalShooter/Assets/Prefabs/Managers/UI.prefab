@@ -1348,7 +1348,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1042563321}
   m_HandleRect: {fileID: 41821565}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.8
@@ -4168,7 +4168,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1315885349}
   m_HandleRect: {fileID: 473940864}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.8
@@ -4775,7 +4775,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1421434563}
   m_HandleRect: {fileID: 231155739}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.8
@@ -5125,7 +5125,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 870839565}
   m_HandleRect: {fileID: 1229243590}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.8
@@ -6508,7 +6508,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 8551387257820452491}
   m_HandleRect: {fileID: 8551387256468147377}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.8
@@ -7080,6 +7080,7 @@ MonoBehaviour:
   loseMenu: {fileID: 8551387257948679086}
   winMenu: {fileID: 801276464}
   HUD: {fileID: 8551387257695825124}
+  CrateBuyMenu: {fileID: 0}
   playerDamageFlash: {fileID: 1545768668}
   shieldActiveImage: {fileID: 5388217}
   interactText: {fileID: 1490212091}
@@ -11259,7 +11260,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 8551387257508352318}
   m_HandleRect: {fileID: 8551387257139289589}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.8
