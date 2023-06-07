@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Levels/MainMenu.unity
     guid: 8dd95250876b6ec468d0cf7ca37a7e1d
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Levels/Collect.unity
+    guid: 4fd2fc62c710fdd4299fffac04dab3f8
+  - enabled: 1
+    path: Assets/Scenes/Levels/TheGauntlet.unity
+    guid: c0a6a1a90f68f524fb08e938b103dc42
+  - enabled: 1
+    path: Assets/Scenes/Levels/Destruction.unity
+    guid: 6060d0566b39cc14dbfa38166fb2296c
+  - enabled: 1
+    path: Assets/Scenes/Levels/Boss.unity
+    guid: b98ee5517f1e9cb418ea5e0af2bb7855
   m_configObjects: {}

@@ -125,6 +125,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void goToNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        gameManager.instance.unPausedState();
     }
 }
