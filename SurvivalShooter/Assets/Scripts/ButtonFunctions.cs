@@ -90,6 +90,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.audioScript.Play("MainTheme");
         gameManager.instance.audioScript.Stop("CombatMusic");
         gameManager.instance.audioScript.Play("ButtonClicked");
+        gameManager.instance.unPausedState();
     }
 
     // ******************************

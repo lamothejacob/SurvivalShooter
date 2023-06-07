@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FinishLine : MonoBehaviour
@@ -27,9 +28,15 @@ public class FinishLine : MonoBehaviour
             Debug.Log("Player has passed the level. ");
             mFinished = true;
 
-            //GoToNextLevel.gameObject.SetActive(true);
-            gameManager.instance.WinState(0);
-            gameManager.instance.pauseState();     
+            if (SceneManager.GetActiveScene().name == "Boss")
+            {
+                GoToNextLevel.gameObject.SetActive(true);
+                gameManager.instance.pauseState();
+            }
+            else
+            {
+                gameManager.instance.WinState(0);
+            }
         }
     }
 }
