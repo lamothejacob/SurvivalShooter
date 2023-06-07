@@ -2,30 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
+using System;
 
 public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] Slider audioSlider;
     [SerializeField] TMPro.TextMeshProUGUI audioLevel;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] TMPro.TextMeshProUGUI musicLevel;
+    [SerializeField] Slider sfxSlider;
+    [SerializeField] TMPro.TextMeshProUGUI sfxLevel;
     [SerializeField] Slider cameraSensitivitySlider; 
     [SerializeField] TMPro.TextMeshProUGUI cameraSensitivity;
     [SerializeField] Toggle invertY;
     [SerializeField] Toggle displayHUD;
 
     public static bool bDisplayHUD;
-    private bool bInvertY; 
+    private bool bInvertY;
+
+
     // Start is called before the first frame update
     void Start()
     {
         bDisplayHUD = true;
         bInvertY = false;
         audioLevel.SetText(audioSlider.value.ToString());
+        musicLevel.SetText(musicSlider.value.ToString());
+        sfxLevel.SetText(sfxSlider.value.ToString());
         cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
     }
 
     void Update()
     {
         audioLevel.SetText(audioSlider.value.ToString());
+        musicLevel.SetText(musicSlider.value.ToString());
+        sfxLevel.SetText(sfxSlider.value.ToString());
         cameraSensitivity.SetText(cameraSensitivitySlider.value.ToString());
     }        
 
@@ -38,11 +50,31 @@ public class SettingsMenu : MonoBehaviour
     {
         audioSlider.onValueChanged.AddListener((v) =>
         {
+            
             audioLevel.SetText(v.ToString());
             audioSlider.value = v;
         });
+        
 
         return audio.value; 
+    }
+
+    public float GetMusicLevel()
+    {
+        return musicSlider.value;
+    }
+
+    public float SetMusicLevel(Slider audio)
+    {
+        musicSlider.onValueChanged.AddListener((v) =>
+        {
+
+            musicLevel.SetText(v.ToString());
+            musicSlider.value = v;
+        });
+
+
+        return audio.value;
     }
 
     public float GetCameraSliderValue()
