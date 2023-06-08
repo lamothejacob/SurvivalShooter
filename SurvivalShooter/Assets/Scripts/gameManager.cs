@@ -108,6 +108,7 @@ public class gameManager : MonoBehaviour
 
     public void WinState(int timeUntilMenu)
     {
+        PlayerPrefs.SetInt("Points", gameManager.instance.playerScript.getPoints());
         StartCoroutine(NewWin(timeUntilMenu));
     }
 

@@ -78,8 +78,8 @@ public class Charger : Enemy
                 {
                     StartCoroutine(PlaySteps());
                 }
-                
-                if (agent.remainingDistance <= 3)
+
+                if ((agent.remainingDistance <= 3) && (agent.remainingDistance > 0))
                 {
                     Explode();
                 }
