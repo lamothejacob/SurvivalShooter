@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,7 @@ public class CrateBuy : MonoBehaviour
     itemSelection userSelection;
 
     [Header("=== Menu Components ===")]
+    [SerializeField] GameObject CratePrefab; 
     [SerializeField] GameObject CrateBuyMenu; 
     [SerializeField] TextMeshProUGUI ItemType_Text;
     [SerializeField] TextMeshProUGUI CurrentPoints;
@@ -121,7 +123,7 @@ public class CrateBuy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString()); 
     }
 
     void UpdatePlayerPoints(int cost)
@@ -289,10 +291,11 @@ public class CrateBuy : MonoBehaviour
         {
             case itemSelection.pistol:
             {
-               if (gameManager.instance.playerScript.getPoints() > pistolCost)
+               if (gameManager.instance.playerScript.getPoints() >= pistolCost)
                {
                   gameManager.instance.playerScript.addGun(pistol);
-                  playerPoints -= pistolCost;
+                  playerPoints -= pistolCost; 
+                  
                }
                else
                  StartCoroutine(notEnoughPoints());
@@ -300,7 +303,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.machineGun:
             {
-               if(gameManager.instance.playerScript.getPoints() > machineGunCost)
+               if(gameManager.instance.playerScript.getPoints() >= machineGunCost)
                {
                    gameManager.instance.playerScript.addGun(machineGun);
                     playerPoints -= machineGunCost;
@@ -312,11 +315,12 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.shotgun:
             {
-                if (gameManager.instance.playerScript.getPoints() > shotgunCost)
+                if (gameManager.instance.playerScript.getPoints() >= shotgunCost)
                 {
                     gameManager.instance.playerScript.addGun(shotgun);
                     playerPoints -= shotgunCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+                        
                 }
                 else
                  StartCoroutine(notEnoughPoints());
@@ -324,7 +328,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.sniper:
             {
-                if (gameManager.instance.playerScript.getPoints() > sniperCost)
+                if (gameManager.instance.playerScript.getPoints() >= sniperCost)
                 {
                     gameManager.instance.playerScript.addGun(sniper);
                     playerPoints -= sniperCost;
@@ -336,7 +340,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.uzi:
             {
-                if (gameManager.instance.playerScript.getPoints() > uziCost)
+                if (gameManager.instance.playerScript.getPoints() >= uziCost)
                 { 
                     gameManager.instance.playerScript.addGun(uzi);
                     playerPoints -= uziCost;
@@ -348,7 +352,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.rocketLauncher:
             {
-                if (gameManager.instance.playerScript.getPoints() > rocketCost)
+                if (gameManager.instance.playerScript.getPoints() >= rocketCost)
                 {
                     gameManager.instance.playerScript.addGun(rocket);
                     playerPoints -= rocketCost;
@@ -360,7 +364,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.flameThrower:
             {
-                if (gameManager.instance.playerScript.getPoints() > sniperCost)
+                if (gameManager.instance.playerScript.getPoints() >= sniperCost)
                 {
                     gameManager.instance.playerScript.addGun(sniper);
                     playerPoints -= sniperCost;
@@ -372,7 +376,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.grenade:
             {
-                if(gameManager.instance.playerScript.getPoints() > grenadeCost)
+                if(gameManager.instance.playerScript.getPoints() >= grenadeCost)
                 {
                    gameManager.instance.playerScript.addGrenade(3);
                    playerPoints -= grenadeCost;
@@ -384,7 +388,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.shield:
             {
-                if (gameManager.instance.playerScript.getPoints() > shieldCost)
+                if (gameManager.instance.playerScript.getPoints() >= shieldCost)
                 {
                     gameManager.instance.playerScript.addShield(1);
                     playerPoints -= shieldCost;
@@ -396,7 +400,7 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.dash:
             {
-                if (gameManager.instance.playerScript.getPoints() > dashCost)
+                if (gameManager.instance.playerScript.getPoints() >= dashCost)
                 {
                     gameManager.instance.playerScript.getDashNumCurrent();
                     playerPoints -= dashCost;
@@ -408,10 +412,11 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.ammo:
             {
-                if (gameManager.instance.playerScript.getPoints() > ammoCost)
+                if (gameManager.instance.playerScript.getPoints() >= ammoCost)
                 {
                     gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 50, ammoCost);
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+                    
                 }
                 else
                  StartCoroutine(notEnoughPoints());
@@ -422,11 +427,12 @@ public class CrateBuy : MonoBehaviour
     }
 
     public void backButtonClicked()
-    {
-        CrateBuyMenu.SetActive(false);
+    {  
         gameManager.instance.activeMenu = null;
         gameManager.instance.unPausedState();
-        
+        CrateBuyMenu.SetActive(false);
+
+        Destroy(CratePrefab); 
     }
 
     IEnumerator notEnoughPoints()

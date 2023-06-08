@@ -7,11 +7,12 @@ public class CrateInteraction : MonoBehaviour
     [SerializeField] GameObject crateBuyMenu;
     [SerializeField] GameObject InteractText;
 
-    bool bPlayerInRange; 
+    public bool bPlayerInRange; 
     // Start is called before the first frame update
     void Start()
     {
-        bPlayerInRange = false; 
+        bPlayerInRange = false;
+        InteractText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,7 +20,8 @@ public class CrateInteraction : MonoBehaviour
     {
         if(bPlayerInRange)
             InteractText.SetActive(true);
-        else if(!bPlayerInRange)
+        
+        if(!bPlayerInRange)
             InteractText.SetActive(false);
 
         if(bPlayerInRange && Input.GetButtonDown("Interact"))
@@ -32,27 +34,24 @@ public class CrateInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             bPlayerInRange = true;
             InteractText.SetActive(true);
 
-            Debug.Log("The Player is in Range of the crate"); 
+            Debug.Log("The Player is in Range of the crate");
         }
+
     }
 
-    //void showCrateBuyMenu()
-    //{
-    //    if (bPlayerInRange) 
-    //    {
-    //        if(Input.GetKeyDown(KeyCode.E)) 
-    //        {
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            bPlayerInRange=false;
+            InteractText.SetActive(false);
 
-    //            crateBuyMenu.SetActive(true);
-    //            gameManager.instance.pauseState(); 
-    //        }
-
-    //    }
-
-    //}
+            Debug.Log("The Player is out of range of the crate"); 
+        }
+    }
 }
