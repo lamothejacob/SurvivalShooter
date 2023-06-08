@@ -22,7 +22,7 @@ public class ButtonFunctions : MonoBehaviour
     public void playMain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        gameManager.instance.unPausedState(); 
+        gameManager.instance.unPausedState();
     }
 
     public void settingsMain()

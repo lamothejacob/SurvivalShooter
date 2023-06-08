@@ -109,6 +109,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         currentGun = gunInventory.Count - 1;
         gameManager.instance.displayScript.setCurrentGun(starterGun);
         gameManager.instance.hudScript.DisplayGunType();
+
+        points = PlayerPrefs.GetInt("Points");
     }
 
     void Update()
