@@ -6187,7 +6187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72487955225f82c44bcf0e38e3305273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CrateBuyMenu: {fileID: 0}
+  CratePrefab: {fileID: 0}
+  CrateBuyMenu: {fileID: 2006093749}
   ItemType_Text: {fileID: 124189866}
   CurrentPoints: {fileID: 1083525960}
   itemImage: {fileID: 2077698896}
@@ -7141,6 +7142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crateBuyMenu: {fileID: 2006093749}
   InteractText: {fileID: 6425655677236746116}
+  bPlayerInRange: 0
 --- !u!1 &5900993306821970254
 GameObject:
   m_ObjectHideFlags: 0
