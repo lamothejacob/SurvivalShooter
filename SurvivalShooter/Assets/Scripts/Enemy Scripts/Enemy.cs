@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     [SerializeField] protected Transform headPos;
     [SerializeField] protected Animator anim;
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] GameObject GoToNextLevel;
 
     [Header("Enemy Stats")]
     [SerializeField] protected int HPMax;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     protected Color colorOrig;
     protected int HP;
     protected bool isDead;
+    protected bool isBoss = false;
 
 
     // Start is called before the first frame update
@@ -58,6 +60,12 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
             int spawn = Random.Range(0, 1000);
             if (spawn % 2 == 0)
                 Instantiate(drops[Random.Range(0, drops.Length)], transform.position, transform.rotation);
+        }
+
+        if (isBoss)
+        {
+            GoToNextLevel.gameObject.SetActive(true);
+            gameManager.instance.pauseState();
         }
 
 

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4020163759473480251}
   - component: {fileID: 4020163759473480245}
   - component: {fileID: 4020163759473480246}
+  - component: {fileID: 58001214}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -105,8 +106,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {fileID: 4020163759472480506}
   headPos: {fileID: 8041461225119706981}
-  anim: {fileID: 0}
+  anim: {fileID: 58001214}
   agent: {fileID: 4020163759473480251}
+  GoToNextLevel: {fileID: 0}
   HPMax: 500
   deathTimer: 10
   drops: []
@@ -261,6 +263,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.9812008
   m_Center: {x: -0.000000059604645, y: 0.1767767, z: 0.00000011920929}
+--- !u!95 &58001214
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020163759474675258}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8041461223261833479
 GameObject:
   m_ObjectHideFlags: 0

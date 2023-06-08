@@ -47,6 +47,7 @@ public class DroneBoss : Enemy
         agent.speed = Random.Range(speed - speedVariance, speed + speedVariance);
         agent.radius = Random.Range(avoidRadius - avoidRadiusVariance, avoidRadius + avoidRadiusVariance);
         audioPlayer = GetComponent<AudioSource>();
+        isBoss = true;
     }
 
     void Update()
@@ -142,13 +143,6 @@ public class DroneBoss : Enemy
         isShooting = false;
     }
 
-    private void BossDeath()
-    {
-        isDead = true;
-        Destroy(gameObject, deathTimer);
-
-
-    }
 
     IEnumerator flashColor()
     {
