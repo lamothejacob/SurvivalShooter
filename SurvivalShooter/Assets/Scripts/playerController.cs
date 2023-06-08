@@ -617,6 +617,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         return dashNum;
     }
 
+    public Vector3 getVelocity()
+    {
+        return move;
+    }
+
     public void addShield(int amount)
     {
         if (shieldHP + amount > shieldHPMax)

@@ -140,7 +140,14 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         isShooting = true;
         anim.SetTrigger("Shoot");
 
-        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0,.25f,0) - shootPos.transform.position));
+        //Instantiate(bullet, shootPos.position, Quaternion.FromToRotation(shootPos.transform.forward, gameManager.instance.player.transform.forward));
+        Vector3 playerPosition = gameManager.instance.player.transform.position;
+        Vector3 playerVelocity = gameManager.instance.playerScript.getVelocity();
+        playerPosition += playerVelocity;
+
+        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerPosition - shootPos.position + (Vector3.up * shootPos.position.y * 0.75f)));
+
+
 
         audioPlayer.PlayOneShot(gunshots[Random.Range(0, gunshots.Length)]);
 
