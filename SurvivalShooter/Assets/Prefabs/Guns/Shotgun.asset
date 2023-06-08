@@ -21,7 +21,7 @@ MonoBehaviour:
   fireAudio: {fileID: 8300000, guid: 6996ffafc1511e24d857a49db435cba1, type: 3}
   reloadAudio: {fileID: 8300000, guid: d1dac29456b04b342a4d5cc57863bca7, type: 3}
   cost: 500
-  baseDamage: 50
+  baseDamage: 30
   shootDist: 25
   fireRate: 0.25
   reserveAmmoMax: 64
@@ -33,7 +33,7 @@ MonoBehaviour:
   verticalRecoil: 0.75
   verticalSpread: 0.125
   horizontalSpread: 0.125
-  damage: 50
+  damage: 30
   level: 0
   color: {r: 0.6509804, g: 0.6117647, b: 0.5803922, a: 1}
   projectile: {fileID: 0}
