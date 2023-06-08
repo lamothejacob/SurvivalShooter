@@ -308,6 +308,7 @@ public class CrateBuy : MonoBehaviour
                if (gameManager.instance.playerScript.getPoints() >= pistolCost)
                {
                   gameManager.instance.playerScript.addGun(pistol);
+                  gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 100, 0);
                   playerPoints -= pistolCost; 
                   
                }
@@ -322,6 +323,7 @@ public class CrateBuy : MonoBehaviour
                    gameManager.instance.playerScript.addGun(machineGun);
                     playerPoints -= machineGunCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+                    gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 100, 0);
                }
                else
                  StartCoroutine(notEnoughPoints());
@@ -332,7 +334,8 @@ public class CrateBuy : MonoBehaviour
                 if (gameManager.instance.playerScript.getPoints() >= shotgunCost)
                 {
                     gameManager.instance.playerScript.addGun(shotgun);
-                    playerPoints -= shotgunCost;
+                        gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 100, 0);
+                        playerPoints -= shotgunCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                         
                 }
@@ -345,7 +348,8 @@ public class CrateBuy : MonoBehaviour
                 if (gameManager.instance.playerScript.getPoints() >= sniperCost)
                 {
                     gameManager.instance.playerScript.addGun(sniper);
-                    playerPoints -= sniperCost;
+                        gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 40, 0);
+                        playerPoints -= sniperCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                 }
                 else
@@ -357,7 +361,8 @@ public class CrateBuy : MonoBehaviour
                 if (gameManager.instance.playerScript.getPoints() >= uziCost)
                 { 
                     gameManager.instance.playerScript.addGun(uzi);
-                    playerPoints -= uziCost;
+                        gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 100, 0);
+                        playerPoints -= uziCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                 }
                 else
@@ -369,7 +374,8 @@ public class CrateBuy : MonoBehaviour
                 if (gameManager.instance.playerScript.getPoints() >= rocketCost)
                 {
                     gameManager.instance.playerScript.addGun(rocket);
-                    playerPoints -= rocketCost;
+                        gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 5, 0);
+                        playerPoints -= rocketCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                 }
                 else
@@ -381,7 +387,8 @@ public class CrateBuy : MonoBehaviour
                 if (gameManager.instance.playerScript.getPoints() >= sniperCost)
                 {
                     gameManager.instance.playerScript.addGun(sniper);
-                    playerPoints -= sniperCost;
+                        gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 100, 0);
+                        playerPoints -= sniperCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                 }
                 else
