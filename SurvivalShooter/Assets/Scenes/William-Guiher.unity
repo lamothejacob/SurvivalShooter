@@ -653,10 +653,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: beamRate
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4020163759474675258, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
       propertyPath: m_Name
       value: Boss
