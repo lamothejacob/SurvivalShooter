@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
 
     [Header("Enemy Stats")]
     [SerializeField] protected int HPMax;
+    [SerializeField] protected int deathTimer;
 
     [Header("Drops")]
     [SerializeField] GameObject[] drops;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     protected Color colorOrig;
     protected int HP;
     protected bool isDead;
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +53,6 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     protected void Death()
     {
         isDead = true;
-        gameManager.instance.enemySpawnerScript.EnemyDecrement();
         if (drops.Length > 0)
         {
             int spawn = Random.Range(0, 1000);
@@ -60,7 +61,7 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
         }
 
 
-        Destroy(gameObject, 3);
+        Destroy(gameObject, deathTimer);
     }
 
     IEnumerator flashColor()
