@@ -1,0 +1,287 @@
+fileFormatVersion: 2
+guid: cc50bf2d024c8374d81f4275826a31ce
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_ConcreteGrayIndustrial
+    second: {fileID: 2100000, guid: d3ca7ac148476d1449ed52ee4ed8cb7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_Decals
+    second: {fileID: 2100000, guid: 9e39969a2c9a31a489f179919a2dd313, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_EmisBlue
+    second: {fileID: 2100000, guid: 251e050ebdeba244da270b957b4519bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_EmisGreen
+    second: {fileID: 2100000, guid: 5dbf81b7a853cf347a1dc95c6446ecc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_EmisLight
+    second: {fileID: 2100000, guid: 606f18393ef88a441997250a12c2c39b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_EmisRed
+    second: {fileID: 2100000, guid: 2d353dff63c1b9146a89ecd7f9f1186b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_FloorPanelsSpots
+    second: {fileID: 2100000, guid: ebc309bd17dad8845b193e9f058f1e0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_FloorPanelsSpotsB
+    second: {fileID: 2100000, guid: 2775a225373261e49bce4d9ca1c37e38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_GlassArmored
+    second: {fileID: 2100000, guid: ada72602af70d3d4fb340ff45ebe558a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_GlassArmoredLight
+    second: {fileID: 2100000, guid: bda894c61abd67242adfa2eb76dae186, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_GlassArmoredMDarkKapton
+    second: {fileID: 2100000, guid: 4a8246fa316c74241aba2c82f49ae541, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_GrassLawnC
+    second: {fileID: 2100000, guid: d31c4c45292839341965e43e841e0606, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_HoloColors
+    second: {fileID: 2100000, guid: e159aca61aab33d4597f9331d5adc50a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_LeatherWhiteOldA
+    second: {fileID: 2100000, guid: 25a8c2daca8af4449801e0cda2b0aa78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MagneticEnergy
+    second: {fileID: 2100000, guid: 061ea7f2877c1194d95ee9498c792a01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelBlueTrimA
+    second: {fileID: 2100000, guid: 4cd9c74ba93d0d041bebf68bd0d1a040, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelDGrayFill
+    second: {fileID: 2100000, guid: 33cad953c232ef44faa79571d4a7d593, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelDGrayTrimA
+    second: {fileID: 2100000, guid: 98b9c8884b0b6fb44b4d3c98d8487c1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelDGrayTrimD
+    second: {fileID: 2100000, guid: 05afa582ac2ea044683386fb97b5fe71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelDGrayTrimStrapsA
+    second: {fileID: 2100000, guid: cccc0f44415dbac4ea3e2555ef65c841, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelGrayFill
+    second: {fileID: 2100000, guid: 7e1b261b94400b3459b1db18a34aa56c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelGrayTrimA
+    second: {fileID: 2100000, guid: 0cb1a082a8722d749abb2f40e3bb0c2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelGrayTrimD
+    second: {fileID: 2100000, guid: be2bff720b8ddbc4dacd44c28f3cb1c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelRedTrimA
+    second: {fileID: 2100000, guid: b9b6489bb801b1243b5db4ca771d6148, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelWhiteFill
+    second: {fileID: 2100000, guid: 90cbaea3f533fa247ab88e8d4d9a18ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelWhiteTrimA
+    second: {fileID: 2100000, guid: 583c2084627d73b4fb831cea3e2b5f9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelWhiteTrimC
+    second: {fileID: 2100000, guid: 9cd057456005516488867227eaecc162, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelWhiteTrimD
+    second: {fileID: 2100000, guid: 7f4dbf12008130b4ba2f70485ea0f038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelWhiteTrimE
+    second: {fileID: 2100000, guid: 77e4985150f96ba46874a42fa03b1601, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelWhiteTrimF
+    second: {fileID: 2100000, guid: d13da1a1f7ae11a44ac5a8725c3c649a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelWhiteTrimStrapsA
+    second: {fileID: 2100000, guid: b9af904437b03984482188be83944ee9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelYellowTrimA
+    second: {fileID: 2100000, guid: 5d4baa126053e014797b7476c145919c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalPanelYellowTrimStrapsA
+    second: {fileID: 2100000, guid: d3673780a9dc033498143434cd68c9db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalShinyB
+    second: {fileID: 2100000, guid: ddcfe4a521c414c40a60eea7deae2e14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_MetalWornFillA
+    second: {fileID: 2100000, guid: 27228a1bf9ac90f4bbd73ec5513d1b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_RubberTrimA
+    second: {fileID: 2100000, guid: cba1d4fdea8c1984a84a6ede13a8d5fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_Screens
+    second: {fileID: 2100000, guid: 9fa249aaade8ffa4ca880203162dd346, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KB3D_MTM_WaterB
+    second: {fileID: 2100000, guid: 62a28187efc6ef24bae921a503655d81, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
