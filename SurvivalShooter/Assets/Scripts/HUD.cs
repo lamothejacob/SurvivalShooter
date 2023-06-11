@@ -197,12 +197,16 @@ public class HUD : MonoBehaviour
     public void UpdateHUD()
     {
         DisplayAmmo(); 
-        DisplayKills();
         UpdateHealthBar();
         UpdateShieldBar();
-        UpdateWave();
         updatePoints();
         DisplayGrenadeAmount();
         DisplayDash();
+
+        if (GameObject.FindGameObjectWithTag("EnemySpawner"))
+        {
+            DisplayKills();
+            UpdateWave();
+        }
     }
 }

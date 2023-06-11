@@ -41,12 +41,16 @@ public class gameManager : MonoBehaviour
         displayScript = player.GetComponentInChildren<gunDisplay>();
         playerScript = player.GetComponent<playerController>();
         cameraScript = player.GetComponentInChildren<cameraController>();
-        enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
         hudScript = HUD.GetComponent<HUD>();
         audioScript = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
         buttonsScript = gameObject.GetComponent<ButtonFunctions>();
         timeScaleOriginal = Time.timeScale;
+
+        if (GameObject.FindGameObjectWithTag("EnemySpawner"))
+        {
+            enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
+            enemySpawnerScript = enemySpawner.GetComponent<EnemySpawner>();
+        }
     }
 
     private void Start()
