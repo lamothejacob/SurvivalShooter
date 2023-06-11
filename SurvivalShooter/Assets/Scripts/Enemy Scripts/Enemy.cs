@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
             gameManager.instance.pauseState();
         }
 
-
+        gameManager.instance.enemySpawnerScript.EnemyDecrement();
         Destroy(gameObject, deathTimer);
     }
 
@@ -83,5 +83,15 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
     {
         agent.velocity += direc;
         TakeDamage(damage);
+    }
+
+    public int GetHP()
+    {
+        return HPMax;
+    }
+
+    public void SetHP(int newHP)
+    {
+        HPMax = newHP;
     }
 }

@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     int spawnPos = Random.Range(0, currentWave.GetSpawnPointsCount());
                     GameObject newEnemy = Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetSpawnPosition(spawnPos).position, Quaternion.identity, transform);
-                    newEnemy.GetComponent<enemyAI>().HP += HpMod;
+                    newEnemy.GetComponent<Enemy>().SetHP(HpMod);
                     EnemyIncrement();
 
                     yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
