@@ -52,7 +52,7 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] Button ammoButton;
 
     [Header("=== Ability Buttons ===")]
-    [SerializeField] Button Shield;
+    [SerializeField] Button ShieldUpgradeButton;
 
 
     [Header("=== Item Components ===")]
@@ -155,9 +155,9 @@ public class CrateBuy : MonoBehaviour
         WeaponsMenu.SetActive(false);
     }
 
-    public void ShieldButton()
+    public void UpgradeShield()
     {
-
+        gameManager.instance.playerScript.UpgradeShield();
     }
 
     public void pistolButtonClicked()
@@ -441,6 +441,7 @@ public class CrateBuy : MonoBehaviour
                     gameManager.instance.playerScript.BuyShield();
                     gameManager.instance.playerScript.subPoints(shieldCost);
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+                    ShieldUpgradeButton.interactable = true;
                 }
                 else
                   StartCoroutine(notEnoughPoints());

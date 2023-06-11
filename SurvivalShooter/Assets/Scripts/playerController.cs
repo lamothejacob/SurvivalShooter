@@ -84,6 +84,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
     //Ability Progression Variables
     bool shieldPurchased;
+    bool shieldUpgraded;
 
     //Goal Item Variables
     bool hasGoalItem;
@@ -373,12 +374,20 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
                 HP = HPOrig;
                 gameManager.instance.loseState();
             }
-        } else {
+        } 
+        else 
+        {
             shieldHP -= damage;
-            if (HP + damage > HPOrig) {
-                HP = HPOrig;
-            } else {
-                HP += damage;
+            if (shieldUpgraded)
+            {
+                if (HP + damage > HPOrig)
+                {
+                    HP = HPOrig;
+                }
+                else
+                {
+                    HP += damage;
+                }
             }
         }
     }
@@ -474,6 +483,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         dashRecharging = false;
     }
 
+    public void BuyShield()
+    {
+        shieldPurchased = true;
+    }
+
     void ActivateShield()
     {
         if (shieldPurchased)
@@ -486,6 +500,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     public bool isShieldPurchased()
     {
         return shieldPurchased;
+    }
+
+    public void UpgradeShield()
+    {
+        shieldUpgraded = true;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -557,11 +576,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
     public Vector3 getVelocity() {
         return move;
-    }
-
-    public void BuyShield()
-    {
-        shieldPurchased = true;
     }
 
     public void addShield(int amount) {
