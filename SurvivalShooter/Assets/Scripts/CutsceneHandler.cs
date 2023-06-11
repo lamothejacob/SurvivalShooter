@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -29,6 +30,10 @@ public class CutsceneHandler : MonoBehaviour {
             cutsceneCamera = Camera.main;
         }
 
+        if(cutsceneCamera.GetComponent<AudioSource>() == null) { 
+            cutsceneCamera.AddComponent<AudioSource>();
+        }
+
         StartCoroutine(MoveToPosition(0f));
     }
 
@@ -47,12 +52,12 @@ public class CutsceneHandler : MonoBehaviour {
         cutsceneCamera.transform.SetPositionAndRotation(cut.position, cut.rotation);
 
         if (cut.clipToPlay != null) {
-            AudioSource a = new AudioSource();
-            a.volume = cut.volume;
+            AudioSource a = cutsceneCamera.GetComponent<AudioSource>();
 
-            Instantiate(a);
+            a.volume = cut.volume;
             a.PlayOneShot(cut.clipToPlay);
-            Destroy(a, cut.clipToPlay.length);
+
+            yield return null;
         }
 
         yield return new WaitForSeconds(cut.timeStay);

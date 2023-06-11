@@ -320,7 +320,11 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
     timeFadeNext: 5
+    clipToPlay: {fileID: 8300000, guid: c0cac287582e89042a3429855168e94a, type: 3}
+    volume: 1
   - timeStay: 1
     position: {x: 10, y: 0, z: 0}
     rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
     timeFadeNext: 0
+    clipToPlay: {fileID: 0}
+    volume: 0
