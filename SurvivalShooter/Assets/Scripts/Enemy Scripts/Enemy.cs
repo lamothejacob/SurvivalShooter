@@ -68,7 +68,9 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
             gameManager.instance.pauseState();
         }
 
-        gameManager.instance.enemySpawnerScript.EnemyDecrement();
+        if (GameObject.FindGameObjectWithTag("EnemySpawner"))
+            gameManager.instance.enemySpawnerScript.EnemyDecrement();
+
         Destroy(gameObject, deathTimer);
     }
 

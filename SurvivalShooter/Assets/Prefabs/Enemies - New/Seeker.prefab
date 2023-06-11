@@ -372,12 +372,13 @@ MonoBehaviour:
   headPos: {fileID: 9143398651681409142}
   anim: {fileID: 9143398651691231120}
   agent: {fileID: 9143398651681707041}
+  GoToNextLevel: {fileID: 0}
   HPMax: 25
+  deathTimer: 3
   drops:
   - {fileID: 7037816211700263963, guid: ce7f6877a92ca8247a725e3a32b9200e, type: 3}
   - {fileID: 5810608857643126188, guid: 34990b4fee0c34d4383b9afaace12570, type: 3}
   - {fileID: 8515776622482380095, guid: 2163ab50727c72d48a32d22d7157949e, type: 3}
-  dropRate: 2
   audioPlayer: {fileID: 0}
   shootPos: {fileID: 9143398651681409118}
   playerFaceSpeed: 1.5
