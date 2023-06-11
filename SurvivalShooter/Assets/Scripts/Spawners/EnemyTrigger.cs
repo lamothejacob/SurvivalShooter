@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class EnemyTrigger : MonoBehaviour
 {
+    [Header("----- Enemy -----")]
     [SerializeField] GameObject[] enemy;
     [SerializeField] Transform[] enemySpawnLoc;
-    [SerializeField] float timeBetweenSpawn;
+
+    [Header("----- Spawn Parameters -----")]
     [SerializeField] int spawnNumber;
+    [SerializeField] float timeBetweenSpawn;
     [SerializeField] bool continuousSpawn;
 
     private bool isSpawning;
