@@ -6187,12 +6187,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72487955225f82c44bcf0e38e3305273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponsMenu: {fileID: 0}
+  AbilitiesMenu: {fileID: 0}
   CratePrefab: {fileID: 0}
   CrateBuyMenu: {fileID: 2006093749}
   ItemType_Text: {fileID: 124189866}
   CurrentPoints: {fileID: 1083525960}
   itemImage: {fileID: 2077698896}
   NotEnoughPointsText: {fileID: 1001891856}
+  Weapons: {fileID: 0}
+  Abilities: {fileID: 0}
   pistolButton: {fileID: 1023734611}
   machineGunButton: {fileID: 2055370079}
   shotgunButton: {fileID: 35163955}
@@ -6204,6 +6208,8 @@ MonoBehaviour:
   shieldButton: {fileID: 921070645}
   dashButton: {fileID: 726741233}
   ammoButton: {fileID: 2058994701}
+  ShieldUpgradeButton: {fileID: 0}
+  DashUpgradeButton: {fileID: 0}
   pistolLabel: {fileID: 1017449533}
   machineGunLabel: {fileID: 1246700164}
   shotgunLabel: {fileID: 42653323}
@@ -6219,6 +6225,7 @@ MonoBehaviour:
   shieldCost: 200
   dashCost: 200
   ammoCost: 500
+  itemImages: []
   damageSlider: {fileID: 1374003983}
   fireRateSlider: {fileID: 1264087354}
   rangeSlider: {fileID: 1026707011}
@@ -7028,7 +7035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5900993306821970252}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -303.8, y: 0.78, z: -138.6}
+  m_LocalPosition: {x: 50, y: 4, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
