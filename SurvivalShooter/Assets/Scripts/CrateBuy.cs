@@ -53,6 +53,7 @@ public class CrateBuy : MonoBehaviour
 
     [Header("=== Ability Buttons ===")]
     [SerializeField] Button ShieldUpgradeButton;
+    [SerializeField] Button DashUpgradeButton;
 
 
     [Header("=== Item Components ===")]
@@ -158,6 +159,11 @@ public class CrateBuy : MonoBehaviour
     public void UpgradeShield()
     {
         gameManager.instance.playerScript.UpgradeShield();
+    }
+
+    public void UpgradeDash()
+    {
+        gameManager.instance.playerScript.UpgradeDash();
     }
 
     public void pistolButtonClicked()
@@ -451,8 +457,9 @@ public class CrateBuy : MonoBehaviour
             {
                 if (gameManager.instance.playerScript.getPoints() >= dashCost)
                 {
-                    gameManager.instance.playerScript.getDashNumCurrent();
-                    playerPoints -= dashCost;
+                    gameManager.instance.playerScript.BuyDash();
+                    DashUpgradeButton.interactable = true;
+                    gameManager.instance.playerScript.subPoints(shieldCost);
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                 }
                 else

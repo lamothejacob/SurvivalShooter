@@ -85,6 +85,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     //Ability Progression Variables
     bool shieldPurchased;
     bool shieldUpgraded;
+    bool dashPurchased;
+    bool dashUpgraded;
 
     //Goal Item Variables
     bool hasGoalItem;
@@ -101,7 +103,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     private void Start() {
         HPOrig = HP;
         shieldHPMax = shieldHP;
-        dashNum = dashNumMax;
+        //dashNum = dashNumMax;
         playerSpeedOrig = playerSpeed;
         scaleOrig = transform.localScale;
         originalFOV = Camera.main.fieldOfView;
@@ -142,7 +144,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
                 StartCoroutine(Dash());
             }
 
-            if (dashNum < dashNumMax && !dashRecharging)
+            if (dashNum < dashNumMax && !dashRecharging && dashPurchased)
                 StartCoroutine(DashRecharge());
 
             SwitchWeapon();
@@ -464,6 +466,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         grenadeAmount--;
     }
 
+    #region ----- Abilities -----
+
     IEnumerator Dash() {
         dashActive = true;
         playerSpeed = dashSpeed;
@@ -481,6 +485,22 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
         dashNum++;
         dashRecharging = false;
+    }
+
+    public void BuyDash()
+    {
+        dashPurchased = true;
+        dashNum = dashNumMax;
+    }
+
+    public bool isDashUpgraded()
+    {
+        return dashUpgraded;
+    }
+
+    public void UpgradeDash()
+    {
+        dashUpgraded = true;
     }
 
     public void BuyShield()
@@ -506,6 +526,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     {
         shieldUpgraded = true;
     }
+    #endregion
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Goal Item")) {

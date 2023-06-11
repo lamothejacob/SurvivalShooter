@@ -19,7 +19,7 @@ public class Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.instance.playerScript.getDashState())
+        if (gameManager.instance.playerScript.getDashState() && gameManager.instance.playerScript.isDashUpgraded())
             coll.enabled = true;
         else
             coll.enabled = false;
