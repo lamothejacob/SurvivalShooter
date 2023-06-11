@@ -8,6 +8,7 @@ public class EnemyTrigger : MonoBehaviour
     [SerializeField] Transform[] enemySpawnLoc;
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] int spawnNumber;
+    [SerializeField] bool continuousSpawn;
 
     private bool isSpawning;
     private int numberSpawned;
@@ -23,7 +24,8 @@ public class EnemyTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        numberSpawned = transform.childCount;
+        if (continuousSpawn)
+            numberSpawned = transform.childCount;
 
         if (!isSpawning && playerInRange && numberSpawned < spawnNumber)
         {

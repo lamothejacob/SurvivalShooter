@@ -368,6 +368,7 @@ MonoBehaviour:
   - {fileID: 1883420319256439978}
   timeBetweenSpawn: 3
   spawnNumber: 4
+  continuousSpawn: 0
 --- !u!33 &4101745224356232865
 MeshFilter:
   m_ObjectHideFlags: 0
