@@ -32,6 +32,9 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOriginal;
+    private int enemiesAlive;
+    private int totalEnemiesSpawned;
+    private int enemiesKilled;
 
     // Start is called before the first frame update
     void Awake()
@@ -125,5 +128,22 @@ public class gameManager : MonoBehaviour
         activeMenu.SetActive(true);
         pauseState();
 
+    }
+
+    public void AddEnemiesAlive(int spawned)
+    {
+        enemiesAlive += spawned;
+        totalEnemiesSpawned += spawned;
+    }
+
+    public void SubEnemiesAlive(int amount)
+    {
+        enemiesAlive -= amount;
+        enemiesKilled += amount;
+    }
+
+    public int EnemiesAliveCurr()
+    {
+        return enemiesAlive;
     }
 }

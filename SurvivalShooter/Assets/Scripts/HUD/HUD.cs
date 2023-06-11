@@ -185,13 +185,5 @@ public class HUD : MonoBehaviour
         updatePoints();
         DisplayGrenadeAmount();
         DisplayDash();
-
-        /**
-        if (GameObject.FindGameObjectWithTag("EnemySpawner"))
-        {
-            DisplayKills();
-            UpdateWave();
-        }
-        **/
     }
 }

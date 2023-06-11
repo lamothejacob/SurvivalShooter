@@ -71,6 +71,8 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
         if (GameObject.FindGameObjectWithTag("EnemySpawner"))
             gameManager.instance.enemySpawnerScript.EnemyDecrement();
 
+        gameManager.instance.SubEnemiesAlive(1);
+
         Destroy(gameObject, deathTimer);
     }
 
