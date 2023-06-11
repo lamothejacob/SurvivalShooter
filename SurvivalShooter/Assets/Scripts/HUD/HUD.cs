@@ -9,14 +9,12 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     [Header("------ HUD Components ------")]
-    [SerializeField] TextMeshProUGUI waveInfo;
-    [SerializeField] TextMeshProUGUI enemies;
     [SerializeField] TextMeshProUGUI points;
     [SerializeField] TextMeshProUGUI ammoCount;
     [SerializeField] TextMeshProUGUI grenadeAmount;
     [SerializeField] Slider healthBar;
-    [SerializeField] Slider shieldBar;
-    [SerializeField] Image gunType;
+    [SerializeField] protected Slider shieldBar;
+    [SerializeField] protected Image gunType;
     [SerializeField] Image miniMap;
     [SerializeField] Image dashIcon;
     [SerializeField] TextMeshProUGUI dashText;
@@ -24,17 +22,16 @@ public class HUD : MonoBehaviour
     [Header("------ Ammo Icons ------")]
     [SerializeField] Image[] ammoIcons = new Image[11];
 
-    private bool bHUDVisible;
+    protected bool bHUDVisible;
     private int ammoLeft;
     private int clipSize; 
     private float enemiesKilled;
-    private float enemiesLeft;
     private float pointScored;
     private float waveNumber;
 
-    private Color ammoColorTrans;
-    private Color ammoColor;
-    private Color ammoColorEmpty;
+    protected Color ammoColorTrans;
+    protected Color ammoColor;
+    protected Color ammoColorEmpty;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +50,7 @@ public class HUD : MonoBehaviour
         UpdateHUD();
     }
 
-    void DisplayAmmo()
+    protected void DisplayAmmo()
     {
         Gun tempGun = gameManager.instance.playerScript.getCurrentGun();
 
@@ -79,7 +76,7 @@ public class HUD : MonoBehaviour
         DisplayAmmo();
     }
 
-    void UpdateHealthBar()
+    protected void UpdateHealthBar()
     {
         // Update Health Bar
         int currentHP = gameManager.instance.playerScript.getHP();       
@@ -87,25 +84,19 @@ public class HUD : MonoBehaviour
         
     }
 
-    void UpdateShieldBar()
+    protected void UpdateShieldBar()
     {
         int currentShieldHP = gameManager.instance.playerScript.getShieldHP();
         shieldBar.value = currentShieldHP;
     }
 
-    void UpdateWave()
-    {
-       int waveNumber = gameManager.instance.enemySpawnerScript.GetWaveNumber();
-       waveInfo.SetText("Wave " + waveNumber.ToString());
-    }
-
-    void updatePoints()
+    protected void updatePoints()
     {
         // Add a get points method to the playerController
         points.SetText(gameManager.instance.playerScript.getPoints().ToString());
     }
 
-    void DisplayAmmoIcons()
+    protected void DisplayAmmoIcons()
     {
         // Get the current guns clip size, divide it by the current ammo left. If the ammo is over 10, we will just use that
         // percentage to display the opacity of the bullets
@@ -163,20 +154,12 @@ public class HUD : MonoBehaviour
         }
     }
 
-    void DisplayKills()
-    {
-        // This will display how many enemies are left in the game.
-        enemiesLeft = gameManager.instance.enemySpawnerScript.EnemiesLeft();
-        enemies.SetText(enemiesLeft.ToString());
-        
-    }
-
-    void DisplayGrenadeAmount()
+    protected void DisplayGrenadeAmount()
     {
         grenadeAmount.text = gameManager.instance.playerScript.getGrenadeAmount().ToString();
     }
 
-    void DisplayDash()
+    protected void DisplayDash()
     {
         int dashNumCurrent = gameManager.instance.playerScript.getDashNumCurrent();
 
@@ -203,10 +186,12 @@ public class HUD : MonoBehaviour
         DisplayGrenadeAmount();
         DisplayDash();
 
+        /**
         if (GameObject.FindGameObjectWithTag("EnemySpawner"))
         {
             DisplayKills();
             UpdateWave();
         }
+        **/
     }
 }
