@@ -25,6 +25,10 @@ public class CrateBuy : MonoBehaviour
     itemSelection userSelection;
 
     [Header("=== Menu Components ===")]
+    [SerializeField] GameObject WeaponsMenu;
+    [SerializeField] GameObject AbilitiesMenu;
+
+    [Header("=== Menu Components ===")]
     [SerializeField] GameObject CratePrefab; 
     [SerializeField] GameObject CrateBuyMenu; 
     [SerializeField] TextMeshProUGUI ItemType_Text;
@@ -33,6 +37,8 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] GameObject NotEnoughPointsText; 
 
     [Header("=== Item Buttons ===")]
+    [SerializeField] Button Weapons;
+    [SerializeField] Button Abilities;
     [SerializeField] Button pistolButton;
     [SerializeField] Button machineGunButton;
     [SerializeField] Button shotgunButton;
@@ -43,7 +49,10 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] Button grenadeButton;
     [SerializeField] Button shieldButton;
     [SerializeField] Button dashButton;
-    [SerializeField] Button ammoButton; 
+    [SerializeField] Button ammoButton;
+
+    [Header("=== Ability Buttons ===")]
+    [SerializeField] Button Shield;
 
 
     [Header("=== Item Components ===")]
@@ -132,6 +141,23 @@ public class CrateBuy : MonoBehaviour
     void UpdatePlayerPoints(int cost)
     {
         CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+    }
+
+    public void WeaponsButton()
+    {
+        WeaponsMenu.SetActive(true);
+        AbilitiesMenu.SetActive(false);
+    }
+
+    public void AbilitiesButton()
+    {
+        AbilitiesMenu.SetActive(true);
+        WeaponsMenu.SetActive(false);
+    }
+
+    public void ShieldButton()
+    {
+
     }
 
     public void pistolButtonClicked()
@@ -384,11 +410,11 @@ public class CrateBuy : MonoBehaviour
             }
             case itemSelection.flameThrower:
             {
-                if (gameManager.instance.playerScript.getPoints() >= sniperCost)
+                if (gameManager.instance.playerScript.getPoints() >= flameCost)
                 {
-                    gameManager.instance.playerScript.addGun(sniper);
+                    gameManager.instance.playerScript.addGun(flame);
                         gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 100, 0);
-                        playerPoints -= sniperCost;
+                        playerPoints -= flameCost;
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                 }
                 else
@@ -400,7 +426,7 @@ public class CrateBuy : MonoBehaviour
                 if(gameManager.instance.playerScript.getPoints() >= grenadeCost)
                 {
                    gameManager.instance.playerScript.addGrenade(3);
-                   playerPoints -= grenadeCost;
+                   gameManager.instance.playerScript.subPoints(shieldCost);
                    CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString()); 
                 }
                 else
@@ -411,8 +437,9 @@ public class CrateBuy : MonoBehaviour
             {
                 if (gameManager.instance.playerScript.getPoints() >= shieldCost)
                 {
-                    gameManager.instance.playerScript.addShield(1);
-                    playerPoints -= shieldCost;
+                    gameManager.instance.playerScript.addShield(50);
+                    gameManager.instance.playerScript.BuyShield();
+                    gameManager.instance.playerScript.subPoints(shieldCost);
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
                 }
                 else

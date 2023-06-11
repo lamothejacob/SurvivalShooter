@@ -82,6 +82,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     int dashNum;
     bool dashRecharging;
 
+    //Ability Progression Variables
+    bool shieldPurchased;
+
     //Goal Item Variables
     bool hasGoalItem;
 
@@ -108,7 +111,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         gameManager.instance.displayScript.setCurrentGun(starterGun);
         gameManager.instance.hudScript.DisplayGunType();
 
-        points = PlayerPrefs.GetInt("Points");
+        shieldHP = 0;
     }
 
     void Update() {
@@ -128,9 +131,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
             }
 
             if (Input.GetButtonDown("Shield") && shieldHP > 0) {
-                shieldActive = !shieldActive;
-                gameManager.instance.shieldActiveImage.SetActive(shieldActive);
-            } else if (shieldHP <= 0)
+                ActivateShield();
+            } 
+            else if (shieldHP <= 0)
                 gameManager.instance.shieldActiveImage.SetActive(false);
 
             if (Input.GetButtonDown("Dash") && dashNum > 0) {
@@ -471,6 +474,20 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         dashRecharging = false;
     }
 
+    void ActivateShield()
+    {
+        if (shieldPurchased)
+        {
+            shieldActive = !shieldActive;
+            gameManager.instance.shieldActiveImage.SetActive(shieldActive);
+        }
+    }
+
+    public bool isShieldPurchased()
+    {
+        return shieldPurchased;
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Goal Item")) {
             Destroy(other.gameObject);
@@ -498,6 +515,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         points += amount;
     }
 
+    public void subPoints(int amount)
+    {
+        points -= amount;
+    }
+
     public void toggleShooting(bool change) {
         isShooting = change;
     }
@@ -507,7 +529,10 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     }
 
     public int getShieldHP() {
-        return shieldHP;
+        if (shieldPurchased)
+            return shieldHP;
+        else
+            return 0;
     }
 
     public int getShieldHPMax() {
@@ -532,6 +557,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
     public Vector3 getVelocity() {
         return move;
+    }
+
+    public void BuyShield()
+    {
+        shieldPurchased = true;
     }
 
     public void addShield(int amount) {

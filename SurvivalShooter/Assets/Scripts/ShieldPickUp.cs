@@ -17,7 +17,7 @@ public class ShieldPickUp : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.playerScript.isShieldPurchased())
         {
             gameManager.instance.playerScript.addShield(addShieldAmount);
             if (!isInteracting)
