@@ -5,8 +5,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class playerController : MonoBehaviour, IDamage, IPhysics
-{
+public class playerController : MonoBehaviour, IDamage, IPhysics {
     public CameraShake cameraShake;
 
     [Header("----- Components -----")]
@@ -34,9 +33,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
     [Header("----- Mechanics -----")]
     [SerializeField] int points = 0;
-    [Range (0, 1)]
+    [Range(0, 1)]
     [SerializeField] int currentGun = 0;
-    [Range (0, 5)]
+    [Range(0, 5)]
     [SerializeField] int grenadeAmount;
     [SerializeField] GameObject grenade;
 
@@ -46,16 +45,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     public Vector3 adsLocation;
 
     [Header("----- Abilities -----")]
-        [Header("Shield")]
-        [SerializeField] int shieldHP;
+    [Header("Shield")]
+    [SerializeField] int shieldHP;
 
-        [Header("Dash")]
-        [SerializeField] int dashNumMax;
-        [SerializeField] float dashCoolDown;
-        [SerializeField] float dashLength;
-        [SerializeField] float dashSpeed;
-        [SerializeField] int dashDamage;
-        [SerializeField] int dashPushBack;
+    [Header("Dash")]
+    [SerializeField] int dashNumMax;
+    [SerializeField] float dashCoolDown;
+    [SerializeField] float dashLength;
+    [SerializeField] float dashSpeed;
+    [SerializeField] int dashDamage;
+    [SerializeField] int dashPushBack;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -95,8 +94,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
     [Range(0f, 1f)][SerializeField] float stepsAudioVol;
 
 
-    private void Start()
-    {
+    private void Start() {
         HPOrig = HP;
         shieldHPMax = shieldHP;
         dashNum = dashNumMax;
@@ -113,37 +111,29 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         points = PlayerPrefs.GetInt("Points");
     }
 
-    void Update()
-    {
-        if (gameManager.instance.activeMenu == null)
-        {
+    void Update() {
+        if (gameManager.instance.activeMenu == null) {
             Movement();
 
-            if (((Input.GetButton("Shoot") && gunInventory[currentGun].automatic) || (Input.GetButtonDown("Shoot") && !gunInventory[currentGun].automatic)) && !isShooting)
-            {
+            if (((Input.GetButton("Shoot") && gunInventory[currentGun].automatic) || (Input.GetButtonDown("Shoot") && !gunInventory[currentGun].automatic)) && !isShooting) {
                 StartCoroutine(Shoot());
             }
 
-            if (Input.GetButton("Interact") && !isInteracting)
-            {
+            if (Input.GetButton("Interact") && !isInteracting) {
                 StartCoroutine(interact());
             }
 
-            if (Input.GetButtonDown("Grenade") && grenadeAmount > 0)
-            {
+            if (Input.GetButtonDown("Grenade") && grenadeAmount > 0) {
                 throwGrenade();
             }
 
-            if (Input.GetButtonDown("Shield") && shieldHP > 0)
-            {
+            if (Input.GetButtonDown("Shield") && shieldHP > 0) {
                 shieldActive = !shieldActive;
                 gameManager.instance.shieldActiveImage.SetActive(shieldActive);
-            }
-            else if (shieldHP <= 0)
+            } else if (shieldHP <= 0)
                 gameManager.instance.shieldActiveImage.SetActive(false);
 
-            if (Input.GetButtonDown("Dash") && dashNum > 0)
-            {
+            if (Input.GetButtonDown("Dash") && dashNum > 0) {
                 dashNum--;
                 StartCoroutine(Dash());
             }
@@ -163,17 +153,13 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         AimDownSights();
     }
 
-    void AimDownSights()
-    {
-        if (Input.GetButtonDown("Aim"))
-        {
+    void AimDownSights() {
+        if (Input.GetButtonDown("Aim")) {
             GameObject gun = gameManager.instance.displayScript.currentActive;
             gun.transform.localPosition = adsLocation;
             Camera.main.fieldOfView /= 1.75f;
             isAiming = true;
-        }
-        else if (Input.GetButtonUp("Aim"))
-        {
+        } else if (Input.GetButtonUp("Aim")) {
             GameObject gun = gameManager.instance.displayScript.currentActive;
             gun.transform.localPosition = gunLocation;
             Camera.main.fieldOfView = originalFOV;
@@ -181,17 +167,14 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
     }
 
-    void Movement()
-    {
+    void Movement() {
         groundedPlayer = controller.isGrounded;
 
-        if(groundedPlayer)
-        {
-            if(!stepsIsPlaying && move.normalized.magnitude > 0.5f)
+        if (groundedPlayer) {
+            if (!stepsIsPlaying && move.normalized.magnitude > 0.5f)
                 StartCoroutine(playSteps());
 
-            if(playerVelocity.y < 0)
-            {
+            if (playerVelocity.y < 0) {
                 playerVelocity.y = 0f;
                 jumpedTimes = 0;
             }
@@ -202,8 +185,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps)
-        {
+        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) {
             aud.PlayOneShot(jumpAudio[Random.Range(0, jumpAudio.Length)], jumpAudioVol);
             playerVelocity.y += jumpHeight;
             jumpedTimes++;
@@ -214,38 +196,29 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, pushBackResolve * Time.deltaTime);
     }
 
-    public void takePushBack(Vector3 direc, int damage)
-    {
+    public void takePushBack(Vector3 direc, int damage) {
         pushBack = direc;
         TakeDamage(damage);
     }
 
-    void Sprint()
-    {
-        if (Input.GetButtonDown("Sprint"))
-        {
+    void Sprint() {
+        if (Input.GetButtonDown("Sprint")) {
             isSprinting = true;
             playerSpeed *= sprintMod;
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
+        } else if (Input.GetButtonUp("Sprint")) {
             isSprinting = false;
             playerSpeed /= sprintMod;
         }
     }
 
-    void Crouch()
-    {
-        if (Input.GetButtonDown("Crouch"))
-        {
+    void Crouch() {
+        if (Input.GetButtonDown("Crouch")) {
             Transform gts = gameManager.instance.displayScript.currentActive.transform;
 
-            transform.localScale = new Vector3(scaleOrig.x, scaleOrig.y/2, scaleOrig.z);
+            transform.localScale = new Vector3(scaleOrig.x, scaleOrig.y / 2, scaleOrig.z);
             gts.localScale = new Vector3(gts.localScale.x, gts.localScale.y * 2, gts.localScale.z);
             playerSpeed /= crouchMod;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
+        } else if (Input.GetButtonUp("Crouch")) {
             Transform gts = gameManager.instance.displayScript.currentActive.transform;
 
             transform.localScale = scaleOrig;
@@ -254,37 +227,30 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
     }
 
-    void SwitchWeapon()
-    {
-        if (Input.GetButtonDown("Switch") && gunInventory.Count > 1 && !isShooting)
-        {
+    void SwitchWeapon() {
+        if (Input.GetButtonDown("Switch") && gunInventory.Count > 1 && !isShooting) {
             currentGun = currentGun == 0 ? 1 : 0;
             gameManager.instance.displayScript.setCurrentGun(gunInventory[currentGun]);
             gameManager.instance.hudScript.DisplayGunType();
         }
     }
 
-    void Reload()
-    {
-        if (Input.GetButtonDown("Reload") && !isShooting)
-        {
+    void Reload() {
+        if (Input.GetButtonDown("Reload") && !isShooting) {
             Gun gun = getCurrentGun();
-            if (gun.getAmmoInClip() < gun.clipSize && gun.getReserveAmmo() > 0)
-            {
+            if (gun.getAmmoInClip() < gun.clipSize && gun.getReserveAmmo() > 0) {
                 StartCoroutine(Reloading());
             }
         }
     }
 
-    IEnumerator Reloading()
-    {
+    IEnumerator Reloading() {
         isShooting = true;
         GameObject gun = gameManager.instance.displayScript.currentActive;
         Vector3 startPosition = gun.transform.localPosition, endPosition = startPosition - Vector3.up * 2;
 
         float elapsedTime = 0f, totalTime = .1f;
-        while(elapsedTime < totalTime)
-        {
+        while (elapsedTime < totalTime) {
             gun.transform.localPosition = Vector3.Lerp(startPosition, endPosition, elapsedTime / totalTime);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -297,8 +263,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
 
         elapsedTime = 0f;
         totalTime = .1f;
-        while (elapsedTime < totalTime)
-        {
+        while (elapsedTime < totalTime) {
             gun.transform.localPosition = Vector3.Lerp(endPosition, gunLocation, elapsedTime / totalTime);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -310,15 +275,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         gameManager.instance.hudScript.UpdateHUD();
     }
 
-    IEnumerator Shoot()
-    {
-        if (gunInventory.Count == 0)
-        {
+    IEnumerator Shoot() {
+        if (gunInventory.Count == 0) {
             yield break;
         }
 
-        if(gunInventory[currentGun].getAmmoInClip() == 0)
-        {
+        if (gunInventory[currentGun].getAmmoInClip() == 0) {
             isShooting = true;
             gameManager.instance.audioScript.Play(getCurrentGun().clipEmptyAudio);
             yield return new WaitForSeconds(getCurrentGun().clipEmptyAudio.length * .75f);
@@ -333,25 +295,20 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         gun.removeAmmo(1);
         gameManager.instance.audioScript.Play(getCurrentGun().fireAudio);
 
-        if (!gun.projectileBased)
-        {
+        if (!gun.projectileBased) {
             List<RaycastHit> raycastHits = gun.GetRayList();
 
-            foreach (RaycastHit hit in raycastHits)
-            {
+            foreach (RaycastHit hit in raycastHits) {
                 IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-                if (damageable != null)
-                {
+                if (damageable != null) {
                     damageable.TakeDamage(gun.damage);
                     points += 50;
                 }
 
                 Destroy(Instantiate(gun.hitEffect, hit.point, Quaternion.identity), 1);
             }
-        }
-        else
-        {
+        } else {
             Instantiate(gun.GetProjectile(), Camera.main.transform.position, Camera.main.transform.rotation);
         }
 
@@ -365,8 +322,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         isShooting = false;
     }
 
-    IEnumerator Recoil()
-    {
+    IEnumerator Recoil() {
         float recoil = gunInventory[currentGun].verticalRecoil;
 
         if (isAiming) {
@@ -374,26 +330,22 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         }
 
         float timeElapsed = 0f;
-        while(timeElapsed < gunInventory[currentGun].fireRate)
-        {
+        while (timeElapsed < gunInventory[currentGun].fireRate) {
             gameManager.instance.cameraScript.AddRecoil(Mathf.Lerp(0, recoil, timeElapsed / gunInventory[currentGun].fireRate));
             timeElapsed += Time.deltaTime;
             yield return null;
         }
     }
 
-    IEnumerator interact()
-    {
+    IEnumerator interact() {
         isInteracting = true;
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, interactDistance))
-        {
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, interactDistance)) {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
-            if (interactable != null)
-            {
+            if (interactable != null) {
                 interactable.interact();
             }
         }
@@ -403,54 +355,43 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         isInteracting = false;
     }
 
-    public void AddHealth(int amount)
-    {
+    public void AddHealth(int amount) {
         HP += amount;
     }
 
-    public void TakeDamage(int damage)
-    {
-        if (shieldActive == false || shieldHP <= 0)
-        {
-            StartCoroutine(cameraShake.Shake(.1f,.3f));
+    public void TakeDamage(int damage) {
+        if (shieldActive == false || shieldHP <= 0) {
+            StartCoroutine(cameraShake.Shake(.1f, .3f));
             HP -= damage;
             aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
             StartCoroutine(damageFlash());
 
-            if (HP <= 0)
-            {
+            if (HP <= 0) {
                 HP = HPOrig;
                 gameManager.instance.loseState();
             }
-        }
-        else
-        {
+        } else {
             shieldHP -= damage;
-            if (HP + damage > HPOrig)
-            {
+            if (HP + damage > HPOrig) {
                 HP = HPOrig;
-            }
-            else
+            } else {
                 HP += damage;
+            }
         }
     }
 
-    IEnumerator damageFlash()
-    {
+    IEnumerator damageFlash() {
         gameManager.instance.playerDamageFlash.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
-    public bool hasGun(Gun gun)
-    {
-        if(gun == null) return false;
-        if(gunInventory.Count <=  0) return false;
+    public bool hasGun(Gun gun) {
+        if (gun == null) return false;
+        if (gunInventory.Count <= 0) return false;
 
-        foreach (Gun g in gunInventory)
-        {
-            if (g.gunImage == gun.gunImage)
-            {
+        foreach (Gun g in gunInventory) {
+            if (g.gunImage == gun.gunImage) {
                 return true;
             }
         }
@@ -458,20 +399,15 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         return false;
     }
 
-    public void addGun(Gun gun)
-    {
-        if(points < gun.cost)
-        {
+    public void addGun(Gun gun) {
+        if (points < gun.cost) {
             return;
         }
 
-        if(gunInventory.Count < 2)
-        {
+        if (gunInventory.Count < 2) {
             gunInventory.Add(gun);
             currentGun = gunInventory.Count - 1;
-        }
-        else
-        {
+        } else {
             gunInventory[currentGun] = gun;
         }
 
@@ -481,26 +417,21 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         gameManager.instance.hudScript.DisplayGunType();
     }
 
-    public void addAmmo(Gun gun, int ammoAmount, int cost)
-    {
-        if (points < cost || !hasGun(gun))
-        {
+    public void addAmmo(Gun gun, int ammoAmount, int cost) {
+        if (points < cost || !hasGun(gun)) {
             return;
         }
 
-        foreach (Gun g in gunInventory)
-        {
-            if (g.gunImage == gun.gunImage)
-            {
+        foreach (Gun g in gunInventory) {
+            if (g.gunImage == gun.gunImage) {
                 g.addAmmo(ammoAmount);
             }
         }
-        
+
         points -= cost;
     }
 
-    public void upgradeCurrentGun(float mult)
-    {
+    public void upgradeCurrentGun(float mult) {
         Gun gun = getCurrentGun();
 
         gun.level++;
@@ -508,24 +439,20 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         gun.damage = (int)(gun.damage * mult);
     }
 
-    public Gun getCurrentGun()
-    {
-        if(gunInventory.Count == 0)
-        {
+    public Gun getCurrentGun() {
+        if (gunInventory.Count == 0) {
             return null;
         }
 
-        return gunInventory[currentGun]; 
+        return gunInventory[currentGun];
     }
 
-    void throwGrenade()
-    {
+    void throwGrenade() {
         Instantiate(grenade, transform.position, transform.rotation);
         grenadeAmount--;
     }
 
-    IEnumerator Dash()
-    {
+    IEnumerator Dash() {
         dashActive = true;
         playerSpeed = dashSpeed;
 
@@ -535,8 +462,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         dashActive = false;
     }
 
-    IEnumerator DashRecharge()
-    {
+    IEnumerator DashRecharge() {
         dashRecharging = true;
 
         yield return new WaitForSeconds(dashCoolDown);
@@ -545,95 +471,77 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         dashRecharging = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Goal Item"))
-        {
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Goal Item")) {
             Destroy(other.gameObject);
             hasGoalItem = true;
         }
     }
 
-    public int getHP()
-    {
-        return HP; 
+    public int getHP() {
+        return HP;
     }
 
-    public int getPoints()
-    {
+    public int getPoints() {
         return points;
     }
 
-    public int getGrenadeAmount()
-    {
+    public int getGrenadeAmount() {
         return grenadeAmount;
     }
 
-    public void addGrenade(int amount)
-    {
+    public void addGrenade(int amount) {
         grenadeAmount += amount;
     }
 
-    public void addPoints(int amount)
-    {
+    public void addPoints(int amount) {
         points += amount;
     }
 
-    public void toggleShooting(bool change)
-    {
+    public void toggleShooting(bool change) {
         isShooting = change;
     }
 
-    public bool getShootingState()
-    {
+    public bool getShootingState() {
         return isShooting;
     }
 
-    public int getShieldHP()
-    {
+    public int getShieldHP() {
         return shieldHP;
     }
 
-    public int getShieldHPMax()
-    {
+    public int getShieldHPMax() {
         return shieldHPMax;
     }
 
-    public bool getDashState()
-    {
+    public bool getDashState() {
         return dashActive;
     }
 
-    public int getDashPushBack()
-    {
+    public int getDashPushBack() {
         return dashPushBack;
     }
 
-    public int getDashDamage()
-    {
+    public int getDashDamage() {
         return dashDamage;
     }
 
-    public int getDashNumCurrent()
-    {
+    public int getDashNumCurrent() {
         return dashNum;
     }
 
-    public Vector3 getVelocity()
-    {
+    public Vector3 getVelocity() {
         return move;
     }
 
-    public void addShield(int amount)
-    {
+    public void addShield(int amount) {
         if (shieldHP + amount > shieldHPMax)
             shieldHP = shieldHPMax;
         else
             shieldHP += amount;
     }
 
-    IEnumerator playSteps()
-    {
+    IEnumerator playSteps() {
         stepsIsPlaying = true;
         aud.PlayOneShot(stepsAudio[Random.Range(0, stepsAudio.Length)], stepsAudioVol);
 
@@ -642,6 +550,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics
         else
             yield return new WaitForSeconds(0.2f);
 
-        stepsIsPlaying = false;         
+        stepsIsPlaying = false;
     }
 }
