@@ -9,6 +9,7 @@ TagManager:
   - HUD
   - AudioManager
   - Goal Item
+  - ScreenshotCamera
   layers:
   - Default
   - TransparentFX
