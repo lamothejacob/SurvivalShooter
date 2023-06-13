@@ -7,11 +7,13 @@ public class Explosion : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int pushBack;
     [SerializeField] GameObject sound;
+    [SerializeField] GameObject effect;
 
     // Start is called before the first frame update
     void Start()
     {
         Instantiate(sound, transform.position, transform.rotation);
+        Instantiate(effect, transform.position, transform.rotation);
         Destroy(gameObject, 0.1f);
     }
 
