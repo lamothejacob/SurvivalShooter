@@ -37,7 +37,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     [SerializeField] int currentGun = 0;
     [Range(0, 5)]
     [SerializeField] int grenadeAmount;
-    [SerializeField] GameObject grenade;
+    [SerializeField] GameObject[] grenade;
 
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
@@ -71,6 +71,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     bool isAiming;
     float originalFOV;
     bool hasItem;
+
+    bool hasImpact;
 
     //Shield Variables
     bool shieldActive;
@@ -463,8 +465,17 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
     void throwGrenade() {
         Vector3 throwPos = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-        Instantiate(grenade, throwPos, transform.rotation);
+
+        if (!hasImpact)
+            Instantiate(grenade[0], throwPos, transform.rotation);
+        else if (hasImpact)
+            Instantiate(grenade[1], throwPos, transform.rotation);
         grenadeAmount--;
+    }
+
+    public void toggleImpactGrenade(bool toggle)
+    {
+        hasImpact = toggle;
     }
 
     #region ------------- Player Abilities -------------

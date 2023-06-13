@@ -19,7 +19,10 @@ public class CrateBuy : MonoBehaviour
         grenade, 
         shield, 
         dash, 
-        ammo
+        ammo,
+        upgradeShield,
+        upgradeDash,
+        impactGrenade
     }
 
     itemSelection userSelection;
@@ -65,12 +68,16 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] TextMeshProUGUI rocketLauncherLabel;
     [SerializeField] TextMeshProUGUI flameThrowerLabel;
     [SerializeField] TextMeshProUGUI grenadeLabel;
+    [SerializeField] TextMeshProUGUI impactGrenadeLabel;
     [SerializeField] TextMeshProUGUI shieldLabel;
     [SerializeField] TextMeshProUGUI dashLabel;
     [SerializeField] TextMeshProUGUI ammoLabel; 
     [SerializeField] int grenadeCost;
+    [SerializeField] int impactGrenadeCost;
     [SerializeField] int shieldCost;
+    [SerializeField] int upgradeShieldCost;
     [SerializeField] int dashCost;
+    [SerializeField] int upgradeDashCost;
     [SerializeField] int ammoCost;
     int pistolCost;
     int machineGunCost; 
@@ -123,8 +130,9 @@ public class CrateBuy : MonoBehaviour
         rocketLauncherLabel.SetText("Rocket Launcher - " +  rocketCost);
         flameThrowerLabel.SetText("Flame Thrower - " +  flameCost);
         grenadeLabel.SetText("3 Grenades - " +  grenadeCost);
-        shieldLabel.SetText("1 Shield - " + shieldCost);
-        dashLabel.SetText("2 Dash - " +  dashCost); 
+        impactGrenadeLabel.SetText("3 Impact Grenades - " +  grenadeCost);
+        //shieldLabel.SetText("1 Shield - " + shieldCost);
+        //dashLabel.SetText("2 Dash - " +  dashCost); 
         ammoLabel.SetText("50 Rounds - " + ammoCost);
 
 
@@ -158,12 +166,12 @@ public class CrateBuy : MonoBehaviour
 
     public void UpgradeShield()
     {
-        gameManager.instance.playerScript.UpgradeShield();
+        userSelection = itemSelection.upgradeShield;
     }
 
     public void UpgradeDash()
     {
-        gameManager.instance.playerScript.UpgradeDash();
+        userSelection = itemSelection.upgradeDash;
     }
 
     public void pistolButtonClicked()
@@ -331,6 +339,13 @@ public class CrateBuy : MonoBehaviour
         ItemType_Text.SetText("50 Ammo Rounds");
     }
 
+    public void impactGrenadeButtonClicked()
+    {
+        userSelection = itemSelection.impactGrenade;
+
+        ItemType_Text.SetText("Grenade");
+    }
+
     public void purchaseItem()
     {
         switch(userSelection)
@@ -431,8 +446,9 @@ public class CrateBuy : MonoBehaviour
             {
                 if(gameManager.instance.playerScript.getPoints() >= grenadeCost)
                 {
+                   gameManager.instance.playerScript.toggleImpactGrenade(false);
                    gameManager.instance.playerScript.addGrenade(3);
-                   gameManager.instance.playerScript.subPoints(shieldCost);
+                   gameManager.instance.playerScript.subPoints(grenadeCost);
                    CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString()); 
                 }
                 else
@@ -447,7 +463,9 @@ public class CrateBuy : MonoBehaviour
                     gameManager.instance.playerScript.BuyShield();
                     gameManager.instance.playerScript.subPoints(shieldCost);
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+
                     ShieldUpgradeButton.interactable = true;
+                    shieldButton.interactable = false;
                 }
                 else
                   StartCoroutine(notEnoughPoints());
@@ -458,9 +476,11 @@ public class CrateBuy : MonoBehaviour
                 if (gameManager.instance.playerScript.getPoints() >= dashCost)
                 {
                     gameManager.instance.playerScript.BuyDash();
-                    DashUpgradeButton.interactable = true;
-                    gameManager.instance.playerScript.subPoints(shieldCost);
+                    gameManager.instance.playerScript.subPoints(dashCost);
                     CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+
+                    DashUpgradeButton.interactable = true;
+                    dashButton.interactable = false;
                 }
                 else
                  StartCoroutine(notEnoughPoints());
@@ -478,7 +498,44 @@ public class CrateBuy : MonoBehaviour
                  StartCoroutine(notEnoughPoints());
                 break;
             }
-             
+            case itemSelection.upgradeShield:
+                {
+                    if (gameManager.instance.playerScript.getPoints() >= upgradeShieldCost)
+                    {
+                        gameManager.instance.playerScript.UpgradeShield();
+                        ShieldUpgradeButton.interactable = false;
+
+                    }
+                    else
+                        StartCoroutine(notEnoughPoints());
+                    break;
+                }
+            case itemSelection.upgradeDash:
+                {
+                    if (gameManager.instance.playerScript.getPoints() >= upgradeDashCost)
+                    {
+                        gameManager.instance.playerScript.UpgradeDash();
+                        DashUpgradeButton.interactable = false;
+
+                    }
+                    else
+                        StartCoroutine(notEnoughPoints());
+                    break;
+                }
+            case itemSelection.impactGrenade:
+                {
+                    if (gameManager.instance.playerScript.getPoints() >= impactGrenadeCost)
+                    {
+                        gameManager.instance.playerScript.toggleImpactGrenade(true);
+                        gameManager.instance.playerScript.addGrenade(3);
+                        gameManager.instance.playerScript.subPoints(grenadeCost);
+                        CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
+                    }
+                    else
+                        StartCoroutine(notEnoughPoints());
+                    break;
+                }
+
         }
     }
 
