@@ -403,14 +403,16 @@ MonoBehaviour:
   maxJumps: 1
   interactDistance: 2
   pushBackResolve: 3
-  points: 0
+  points: 10000
   currentGun: 0
   grenadeAmount: 5
-  grenade: {fileID: 3833154100948993197, guid: 32b3b34af57b89a4fb96b191a6045781, type: 3}
+  grenade:
+  - {fileID: 3833154100948993197, guid: 32b3b34af57b89a4fb96b191a6045781, type: 3}
+  - {fileID: 6264566592746213633, guid: 70ec52d58467bd74aa03775f3d7b679a, type: 3}
   starterGun: {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
   gunLocation: {x: 0.5, y: -0.5, z: 1}
   adsLocation: {x: 0, y: -0.3, z: 1}
-  shieldHP: 25
+  shieldHP: 100
   dashNumMax: 2
   dashCoolDown: 1
   dashLength: 0.1

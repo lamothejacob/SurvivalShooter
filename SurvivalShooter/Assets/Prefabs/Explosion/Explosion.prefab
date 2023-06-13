@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492315a05d50578448417d72f7162065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 30
   pushBack: 10
   sound: {fileID: 8112699945987675136, guid: 827c86c3c0f4f5d4483a21406eea0e43, type: 3}
   effect: {fileID: 8415776257441103637, guid: ef50f2939caae5043b410afa13aefd94, type: 3}
