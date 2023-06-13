@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    [SerializeField] GameObject explosion;
-    [SerializeField] Rigidbody rb;
-    [SerializeField] int timer;
-    [SerializeField] int speed;
-    [SerializeField] int curve;
+    [SerializeField] protected GameObject explosion;
+    [SerializeField] protected Rigidbody rb;
+    [SerializeField] protected int timer;
+    [SerializeField] protected int speed;
+    [SerializeField] protected int curve;
 
     // Start is called before the first frame update
     IEnumerator Start()

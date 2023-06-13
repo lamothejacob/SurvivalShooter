@@ -462,11 +462,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     }
 
     void throwGrenade() {
-        Instantiate(grenade, transform.position, transform.rotation);
+        Vector3 throwPos = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+        Instantiate(grenade, throwPos, transform.rotation);
         grenadeAmount--;
     }
 
-    #region ----- Abilities -----
+    #region ------------- Player Abilities -------------
 
     IEnumerator Dash() {
         dashActive = true;
