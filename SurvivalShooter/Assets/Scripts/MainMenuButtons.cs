@@ -91,6 +91,13 @@ public class MainMenuButtons : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
+    public void EndlessButtonClicked()
+    {
+        SceneManager.LoadScene("Main");
+        Cursor.visible = false;
+        Time.timeScale = TimeScaleOriginal;
+    }
+
     public void SetScreenRes()
     {
         // get the name of the button clicked
