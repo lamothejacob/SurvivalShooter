@@ -9,7 +9,7 @@ public class CollectableObject : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.player.GetComponentInChildren<CollectableObject>() == null)
         {
             transform.parent = gameManager.instance.player.transform;
-            transform.localPosition = gameManager.instance.playerScript.gunLocation - Vector3.right * .5f;
+            transform.localPosition = gameManager.instance.playerScript.getCurrentGun().handOffset - Vector3.right * .5f;
             gameManager.instance.interactText.text = "Return " + gameObject.name + " to Ship!";
             Destroy(gameObject.GetComponent<Collider>());
         }

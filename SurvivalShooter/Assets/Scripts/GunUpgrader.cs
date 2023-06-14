@@ -97,7 +97,7 @@ public class GunUpgrader : MonoBehaviour, IInteractable
         elapsedTime = 0f;
         while (elapsedTime < 1f)
         {
-            g.transform.localPosition = Vector3.Lerp(g.transform.localPosition, gameManager.instance.playerScript.gunLocation, elapsedTime / 1f);
+            g.transform.localPosition = Vector3.Lerp(g.transform.localPosition, gameManager.instance.playerScript.getCurrentGun().handOffset, elapsedTime / 1f);
             g.transform.rotation = Quaternion.Lerp(g.transform.rotation, Camera.main.transform.rotation, elapsedTime / 1f);
             elapsedTime += Time.deltaTime;
 

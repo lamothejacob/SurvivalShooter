@@ -12,7 +12,11 @@ public class Gun : ScriptableObject
     public GameObject gunObject;
     public GameObject hitEffect;
     public GameObject muzzleEffect;
+
+    [Header("----- Position Offsets -----")]
     public Vector3 muzzleOffset;
+    public Vector3 handOffset;
+    public Vector3 aimOffset;
 
     [Header("----- Audio -----")]
     public AudioClip clipEmptyAudio;
@@ -27,7 +31,6 @@ public class Gun : ScriptableObject
     public int reserveAmmoMax;
     public int clipSize;
     public bool automatic = true;
-    public bool projectileBased = false;
     public Color baseColor;
 
     [Header("----- Shooting Stats -----")]
@@ -40,11 +43,6 @@ public class Gun : ScriptableObject
     public int damage;
     public int level = 0;
     public Color color;
-
-    [Header("----- Projectile -----")]
-    [SerializeField] GameObject projectile;
-    public GameObject projReference;
-    GameObject projCopy;
 
     int ammoInClip;
     int reserveAmmo;
@@ -100,11 +98,6 @@ public class Gun : ScriptableObject
             ammoInClip += reserveAmmo;
             reserveAmmo = 0;
         }
-
-        if (projectileBased)
-        {
-            projCopy.SetActive(true);
-        }
     }
 
     public List<RaycastHit> GetRayList()
@@ -124,17 +117,5 @@ public class Gun : ScriptableObject
         }
 
         return raycastHits;
-    }
-
-    public GameObject GetProjectile()
-    {
-        projCopy.SetActive(false);
-
-        return projectile;
-    }
-
-    public void SetProjectile(GameObject proj)
-    {
-        projCopy = proj;
     }
 }

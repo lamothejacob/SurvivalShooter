@@ -16,7 +16,9 @@ MonoBehaviour:
   gunObject: {fileID: 3074820787765227200, guid: 28333b66917308f40ab8fade8b5961f2, type: 3}
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   muzzleEffect: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
-  muzzleOffset: {x: 0, y: 0.0125, z: 0.02}
+  muzzleOffset: {x: 0, y: 0.013280011, z: 0.0267}
+  handOffset: {x: 0.5, y: -0.5, z: 0.85}
+  aimOffset: {x: 0, y: -0.19, z: 0.5}
   clipEmptyAudio: {fileID: 8300000, guid: 372bb139a0e3a024cbdcf0e59d3c0768, type: 3}
   fireAudio: {fileID: 8300000, guid: dc2fdf244019c1a4ab77563808a1a3dd, type: 3}
   reloadAudio: {fileID: 8300000, guid: 0420c1b326a1d2d4a93b1dc8db550a81, type: 3}
@@ -27,7 +29,6 @@ MonoBehaviour:
   reserveAmmoMax: 80
   clipSize: 8
   automatic: 0
-  projectileBased: 0
   baseColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
   projectileAmount: 1
   verticalRecoil: 0.1
@@ -36,5 +37,3 @@ MonoBehaviour:
   damage: 10
   level: 0
   color: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
-  projectile: {fileID: 0}
-  projReference: {fileID: 0}
