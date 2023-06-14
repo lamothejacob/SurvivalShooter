@@ -143,6 +143,16 @@ public class DroneBoss : Enemy
         isShooting = false;
     }
 
+    private IEnumerator Bombs()
+    {
+        isShooting = true;
+
+        
+
+        yield return new WaitForSeconds(5f);
+        isShooting = false;
+    }
+
 
     IEnumerator flashColor()
     {
