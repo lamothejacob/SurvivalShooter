@@ -313,7 +313,11 @@ MonoBehaviour:
   GoToNextLevel: {fileID: 0}
   HPMax: 20
   deathTimer: 10
-  drops: []
+  drops:
+  - {fileID: 6661328104518233846}
+  - {fileID: 8515776622482380095, guid: 2163ab50727c72d48a32d22d7157949e, type: 3}
+  - {fileID: 5810608857643126188, guid: 34990b4fee0c34d4383b9afaace12570, type: 3}
+  - {fileID: 7037816211700263963, guid: ce7f6877a92ca8247a725e3a32b9200e, type: 3}
   audioPlayer: {fileID: 5552848129494469602}
   shootPos: {fileID: 6661328104518520054}
   playerFaceSpeed: 1.5

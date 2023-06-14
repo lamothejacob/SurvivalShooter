@@ -22,6 +22,8 @@ public class LevelDestruction : MonoBehaviour
     bool encounter1Compl;
     bool encounter2Compl;
     bool encounter3Compl;
+    bool goalTextChanged;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,9 +60,9 @@ public class LevelDestruction : MonoBehaviour
             gameManager.instance.levelGoalText.SetText("");
             gameManager.instance.WinState(2);
         }
-        else if (encountersCompleted == 1)
+        else if (encountersCompleted == 1 && goalTextChanged == false)
         {
-            gameManager.instance.levelGoalText.SetText("Find and destroy Generator");
+            StartCoroutine(ChangeGoalText());
         }
     }
 
@@ -71,5 +73,15 @@ public class LevelDestruction : MonoBehaviour
         door.transform.rotation = Quaternion.Slerp(door.transform.rotation, rot, Time.deltaTime * 1.5f);
         if (door.transform.rotation == rot)
             doorOpen = true;
+    }
+
+    IEnumerator ChangeGoalText()
+    {
+        goalTextChanged = true;
+        gameManager.instance.levelGoalText.color = Color.green;
+        yield return new WaitForSeconds(1);
+        gameManager.instance.levelGoalText.color = Color.white;
+        gameManager.instance.levelGoalText.SetText("Find and destroy Generator");
+
     }
 }
