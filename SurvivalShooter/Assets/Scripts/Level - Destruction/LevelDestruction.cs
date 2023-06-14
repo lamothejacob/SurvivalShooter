@@ -25,7 +25,7 @@ public class LevelDestruction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 1");
+        gameManager.instance.levelGoalText.SetText("Find and destroy Fuel Deposit");
 
     }
 
@@ -47,23 +47,20 @@ public class LevelDestruction : MonoBehaviour
             encounter1Compl = true;
         }
 
-        if (encounter2Compl == false && generators[0] == null)
+        if (encounter2Compl == false && generators[2] == null)
         {
             encountersCompleted++;
             encounter2Compl = true;
         }
 
-        if (encountersCompleted >= 3)
+        if (encountersCompleted == 2)
         {
+            gameManager.instance.levelGoalText.SetText("");
             gameManager.instance.WinState(2);
-        }
-        else if (encountersCompleted == 2)
-        {
-            gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 3");
         }
         else if (encountersCompleted == 1)
         {
-            gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 2");
+            gameManager.instance.levelGoalText.SetText("Find and destroy Generator");
         }
     }
 
