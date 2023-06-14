@@ -10,6 +10,8 @@ TagManager:
   - AudioManager
   - Goal Item
   - ScreenshotCamera
+  - SeekerSpawn
+  - DroneSpawn
   layers:
   - Default
   - TransparentFX
