@@ -1,35 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Recorder.OutputPath;
 
 public class LevelDestruction : MonoBehaviour
 {
-    [SerializeField] GameObject[] weakPoint;
 
-    public int totalHealth;
+    [Header("----- Encounter 1 -----")]
+    [SerializeField] GameObject door;
+    [SerializeField] List<GameObject> fuel;
 
+
+    [Header("----- Encounter 2 -----")]
+    [SerializeField] List<GameObject> generators;
+
+
+
+    public int encountersCompleted;
+
+    bool doorOpen;
+    bool encounter1Compl;
+    bool encounter2Compl;
+    bool encounter3Compl;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < weakPoint.Length; i++)
-        {
-            totalHealth += weakPoint[i].GetComponent<WeakPoint>().getHP();
-        }
+        gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 1");
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (totalHealth <= 0)
+        if (gameManager.instance.GetEnemiesKilled() == 25)
         {
-            Destroy(gameObject);
-            gameManager.instance.WinState(0);
+            if (!doorOpen)
+            {
+                OpenDoor();
+            }
+        }
+
+        if (encounter1Compl == false && fuel[0] == null)
+        {
+            encountersCompleted++;
+            encounter1Compl = true;
+        }
+
+        if (encounter2Compl == false && generators[0] == null)
+        {
+            encountersCompleted++;
+            encounter2Compl = true;
+        }
+
+        if (encountersCompleted >= 3)
+        {
+            gameManager.instance.WinState(2);
+        }
+        else if (encountersCompleted == 2)
+        {
+            gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 3");
+        }
+        else if (encountersCompleted == 1)
+        {
+            gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 2");
         }
     }
 
-    public void updateHealth(int amount)
+    void OpenDoor()
     {
-        totalHealth += amount;
+        //door.transform.Rotate(door.transform.rotation.x, door.transform.rotation.y, -90);
+        Quaternion rot = Quaternion.Euler(door.transform.rotation.x, 41, -90f);
+        door.transform.rotation = Quaternion.Slerp(door.transform.rotation, rot, Time.deltaTime * 1.5f);
+        if (door.transform.rotation == rot)
+            doorOpen = true;
     }
 }

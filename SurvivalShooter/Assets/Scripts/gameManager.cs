@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public GameObject shieldActiveImage;
     public TextMeshProUGUI interactText;
+    public TextMeshProUGUI levelGoalText;
 
     public bool isPaused;
     float timeScaleOriginal;
@@ -144,5 +145,10 @@ public class gameManager : MonoBehaviour
     public int EnemiesAliveCurr()
     {
         return enemiesAlive;
+    }
+
+    public int GetEnemiesKilled()
+    {
+        return enemiesKilled;
     }
 }
