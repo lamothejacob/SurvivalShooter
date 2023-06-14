@@ -445,49 +445,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: bomb
-      value: 
-      objectReference: {fileID: 3833154100948993197, guid: f364be38297f2c447b226c5ce2923597, type: 3}
-    - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: test
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: HPMax
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: bombRate
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: avoidRadius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480244, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
       propertyPath: GoToNextLevel
       value: 
       objectReference: {fileID: 462664778}
-    - target: {fileID: 4020163759473480251, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: m_Radius
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480251, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: m_Acceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480251, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759473480251, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 4020163759474675258, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -495,18 +455,6 @@ PrefabInstance:
     - target: {fileID: 4020163759474774554, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759474774554, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759474774554, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020163759474774554, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4020163759474774554, guid: 9fe9e4f32f4e36545937025efe908fbd, type: 3}
       propertyPath: m_LocalPosition.x
