@@ -22,10 +22,12 @@ public class LevelDestruction : MonoBehaviour
     bool encounter1Compl;
     bool encounter2Compl;
     bool encounter3Compl;
+    bool goalTextChanged;
+
     // Start is called before the first frame update
     void Start()
     {
-        gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 1");
+        gameManager.instance.levelGoalText.SetText("Find and destroy Fuel Deposit");
 
     }
 
@@ -47,23 +49,20 @@ public class LevelDestruction : MonoBehaviour
             encounter1Compl = true;
         }
 
-        if (encounter2Compl == false && generators[0] == null)
+        if (encounter2Compl == false && generators[2] == null)
         {
             encountersCompleted++;
             encounter2Compl = true;
         }
 
-        if (encountersCompleted >= 3)
+        if (encountersCompleted == 2)
         {
+            gameManager.instance.levelGoalText.SetText("");
             gameManager.instance.WinState(2);
         }
-        else if (encountersCompleted == 2)
+        else if (encountersCompleted == 1 && goalTextChanged == false)
         {
-            gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 3");
-        }
-        else if (encountersCompleted == 1)
-        {
-            gameManager.instance.levelGoalText.SetText("Find and destroy Weak Point 2");
+            StartCoroutine(ChangeGoalText());
         }
     }
 
@@ -74,5 +73,15 @@ public class LevelDestruction : MonoBehaviour
         door.transform.rotation = Quaternion.Slerp(door.transform.rotation, rot, Time.deltaTime * 1.5f);
         if (door.transform.rotation == rot)
             doorOpen = true;
+    }
+
+    IEnumerator ChangeGoalText()
+    {
+        goalTextChanged = true;
+        gameManager.instance.levelGoalText.color = Color.green;
+        yield return new WaitForSeconds(1);
+        gameManager.instance.levelGoalText.color = Color.white;
+        gameManager.instance.levelGoalText.SetText("Find and destroy Generator");
+
     }
 }

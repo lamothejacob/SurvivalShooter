@@ -118,7 +118,8 @@ public class Gun : ScriptableObject
 
             if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(spread.x * horizontalSpread + 0.5f, spread.y * verticalSpread + 0.5f)), out hit, shootDist))
             {
-                raycastHits.Add(hit);
+                if(hit.transform.gameObject.layer != 2)
+                    raycastHits.Add(hit);
             }
         }
 

@@ -502,6 +502,7 @@ public class CrateBuy : MonoBehaviour
                 {
                     if (gameManager.instance.playerScript.getPoints() >= upgradeShieldCost)
                     {
+                        gameManager.instance.playerScript.addShield(100);
                         gameManager.instance.playerScript.UpgradeShield();
                         ShieldUpgradeButton.interactable = false;
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rocket Launcher
   m_EditorClassIdentifier: 
   gunImage: {fileID: 2800000, guid: afbfd00b50cabe24e8abe0b8042e0b1e, type: 3}
-  gunObject: {fileID: 919132149155446097, guid: ef4278f049111df408cfb5e818905044, type: 3}
+  gunObject: {fileID: 5167490212161759006, guid: 22bb951e3f3a4854d82992a8bec6d356, type: 3}
   hitEffect: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976, type: 3}
   muzzleEffect: {fileID: 4667467557000708651, guid: e256376740bece6459ac0d773316913f, type: 3}
   muzzleOffset: {x: 0, y: 0.0107, z: 0.0511}

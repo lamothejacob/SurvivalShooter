@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 struct cutscene {
@@ -16,10 +18,14 @@ struct cutscene {
     public AudioClip clipToPlay;
     [Range(0f, 1f)]
     public float volume;
+
+    [Header("----- Text -----")]
+    public string textToDisplay;
 }
 
 public class CutsceneHandler : MonoBehaviour {
     [SerializeField] Camera cutsceneCamera;
+    [SerializeField] TextMeshProUGUI tmp;
     [SerializeField] List<cutscene> cutsceneList;
     Queue<cutscene> cutsceneQueue;
 
@@ -35,6 +41,12 @@ public class CutsceneHandler : MonoBehaviour {
         }
 
         StartCoroutine(MoveToPosition(0f));
+    }
+
+    void Update() {
+        if (Input.GetKeyUp(KeyCode.Escape)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     IEnumerator MoveToPosition(float time) {
@@ -58,6 +70,10 @@ public class CutsceneHandler : MonoBehaviour {
             a.PlayOneShot(cut.clipToPlay);
 
             yield return null;
+        }
+
+        if (tmp != null) {
+            tmp.text = cut.textToDisplay;
         }
 
         yield return new WaitForSeconds(cut.timeStay);

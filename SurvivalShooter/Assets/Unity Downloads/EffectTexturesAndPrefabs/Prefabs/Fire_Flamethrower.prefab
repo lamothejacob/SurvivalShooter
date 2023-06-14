@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6165866075905701095}
   - component: {fileID: 6286675962000673463}
   - component: {fileID: 6288335426148712037}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4835,7 @@ GameObject:
   - component: {fileID: 6164893384968531895}
   - component: {fileID: 6287111557004885163}
   - component: {fileID: 6287776946353150651}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9668,7 +9668,7 @@ GameObject:
   - component: {fileID: 6165125277660709973}
   - component: {fileID: 1452058501401234227}
   - component: {fileID: 1370940908932061603}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fire_Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9730,7 +9730,7 @@ GameObject:
   - component: {fileID: 6164971889144954487}
   - component: {fileID: 6288022380647688245}
   - component: {fileID: 6287654604774177073}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

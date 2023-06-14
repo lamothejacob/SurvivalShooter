@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7735953810072705077}
   - component: {fileID: 7634988941057369701}
   - component: {fileID: 7606166659380941495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4835,7 @@ GameObject:
   - component: {fileID: 7729389459028562597}
   - component: {fileID: 7604790375332250855}
   - component: {fileID: 7604348910678758883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9659,7 +9659,7 @@ GameObject:
   - component: {fileID: 7729362616958534501}
   - component: {fileID: 7604997716343279737}
   - component: {fileID: 7604473477068633705}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14490,7 +14490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7729517545898944647}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flamethrower_Muzzle_Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
