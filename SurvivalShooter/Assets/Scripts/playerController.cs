@@ -73,6 +73,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     bool hasItem;
 
     bool hasImpact;
+    float jumpHeightOrig;
 
     //Shield Variables
     bool shieldActive;
@@ -117,6 +118,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         gameManager.instance.hudScript.DisplayGunType();
 
         shieldHP = 0;
+        jumpHeightOrig = jumpHeight;
     }
 
     void Update() {
@@ -616,6 +618,16 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
             shieldHP = shieldHPMax;
         else
             shieldHP += amount;
+    }
+
+    public void LowGravity(float amount)
+    {
+        jumpHeight = amount;
+    }
+
+    public void ResetGravity()
+    {
+        jumpHeight = jumpHeightOrig;
     }
 
     IEnumerator playSteps() {
