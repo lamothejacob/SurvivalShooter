@@ -21,9 +21,10 @@ public class GauntletEnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(bHasBeenPassed == false) 
-        {
-            bHasBeenPassed = true;
+        Debug.Log("Enemy Spawn Trigger has been succesfully entered. "); 
+        //if(bHasBeenPassed == false) 
+        //{
+            //bHasBeenPassed = true;
             if (other.CompareTag("Player"))
             {
                 foreach (GameObject t in spawnPoints)
@@ -43,7 +44,7 @@ public class GauntletEnemySpawner : MonoBehaviour
                     }
                 }
             }
-        }
+        //}
         
         //Destroy(gameObject);
     }

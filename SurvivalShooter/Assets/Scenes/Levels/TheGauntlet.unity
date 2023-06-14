@@ -8810,7 +8810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02faaf8e3f7f3c24e9f88c6d6c5ebf65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekerEnemy: {fileID: 6964906914919956325, guid: 5dc6ff671386d464c9d6bbee3f3a749e, type: 3}
+  seekerEnemy: {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
   robotSeeker: {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
   spawnPoints:
   - {fileID: 767306218}
@@ -15462,6 +15462,11 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!82 &1115605100 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1933287690, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+  m_PrefabInstance: {fileID: 1813063011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1121967298
 GameObject:
   m_ObjectHideFlags: 0
@@ -17721,7 +17726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02faaf8e3f7f3c24e9f88c6d6c5ebf65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekerEnemy: {fileID: 6964906914919956325, guid: 5dc6ff671386d464c9d6bbee3f3a749e, type: 3}
+  seekerEnemy: {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
   robotSeeker: {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
   spawnPoints:
   - {fileID: 732395957}
@@ -18373,7 +18378,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 25.93
+  m_Radius: 41.61
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1310105109
 MeshRenderer:
@@ -18452,7 +18457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02faaf8e3f7f3c24e9f88c6d6c5ebf65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekerEnemy: {fileID: 6964906914919956325, guid: 5dc6ff671386d464c9d6bbee3f3a749e, type: 3}
+  seekerEnemy: {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
   robotSeeker: {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
   spawnPoints:
   - {fileID: 1656155894}
@@ -18523,7 +18528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02faaf8e3f7f3c24e9f88c6d6c5ebf65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekerEnemy: {fileID: 6964906914919956325, guid: 5dc6ff671386d464c9d6bbee3f3a749e, type: 3}
+  seekerEnemy: {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
   robotSeeker: {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
   spawnPoints:
   - {fileID: 1284942427}
@@ -18873,8 +18878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02faaf8e3f7f3c24e9f88c6d6c5ebf65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekerEnemy: {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
-  robotSeeker: {fileID: 6964906914919956325, guid: 5dc6ff671386d464c9d6bbee3f3a749e, type: 3}
+  seekerEnemy: {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
+  robotSeeker: {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
   spawnPoints:
   - {fileID: 213153422}
   - {fileID: 246003258}
@@ -25886,6 +25891,7 @@ GameObject:
   - component: {fileID: 1782974997}
   - component: {fileID: 1782974996}
   - component: {fileID: 1782975000}
+  - component: {fileID: 1782975002}
   m_Layer: 0
   m_Name: EnemySpawnTrigger1
   m_TagString: Untagged
@@ -25983,7 +25989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02faaf8e3f7f3c24e9f88c6d6c5ebf65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekerEnemy: {fileID: 6964906914919956325, guid: 5dc6ff671386d464c9d6bbee3f3a749e, type: 3}
+  seekerEnemy: {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
   robotSeeker: {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
   spawnPoints:
   - {fileID: 91585934}
@@ -26002,6 +26008,20 @@ MonoBehaviour:
   - {fileID: 1876555354}
   - {fileID: 754978112}
   - {fileID: 1195715881}
+--- !u!114 &1782975002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782974995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3642a857669239a43b3feead9fa05c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioS: {fileID: 1115605100}
+  audioT: {fileID: 8300000, guid: f8027b7c26fee424c840a7f792198c9b, type: 3}
 --- !u!4 &1785019922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4a00019a227b8d64ba559454bad2838f, type: 3}
@@ -26265,6 +26285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1933287690, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 662619540623452665, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_Name
       value: Player
@@ -54543,7 +54567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112234796350723719}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.53540945, y: 0.50584644, z: 14.721315}
+  m_LocalPosition: {x: 0.54, y: 0.54, z: 14.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
