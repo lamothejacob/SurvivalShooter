@@ -27,15 +27,10 @@ public class gunDisplay : MonoBehaviour
         SetGunColor(currentActive, gun.color);
 
         //Adjust scale to 10x
-        currentActive.transform.localScale = Vector3.one * 10f;
+        //currentActive.transform.localScale = Vector3.one * 10f;
 
         //Put gun and child meshes into gun layer
-        currentActive.layer = 6;
-
-        foreach (Transform child in currentActive.transform)
-        {
-            child.gameObject.layer = 6;
-        }
+        SetLayer(currentActive.transform);
 
         //Attach to the camera
         currentActive.transform.parent = Camera.main.transform;
@@ -66,6 +61,14 @@ public class gunDisplay : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SetLayer(Transform go) {
+        foreach(Transform child in go) {
+            SetLayer(child);
+        }
+
+        go.gameObject.layer = 6;
     }
 
     /// <summary>

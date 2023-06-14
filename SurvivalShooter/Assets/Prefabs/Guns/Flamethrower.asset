@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Flamethrower
   m_EditorClassIdentifier: 
   gunImage: {fileID: 2800000, guid: 960e9031c98c6484c824fa33db551005, type: 3}
-  gunObject: {fileID: 919132149155446097, guid: ee0532cc54664db418fe0b34ce85e809, type: 3}
+  gunObject: {fileID: 8064530316040591478, guid: e27a1cd9f52040844970bcdc0f8ab0dd, type: 3}
   hitEffect: {fileID: 6162491079622838693, guid: 6a0b6756d6c185d44a5c9a923bf82587, type: 3}
   muzzleEffect: {fileID: 7732609621674026359, guid: 03c1dea72b10ad14fa915bcdd7602e49, type: 3}
-  muzzleOffset: {x: 0, y: 0.01, z: 0.04}
+  muzzleOffset: {x: -0.021, y: -0.007, z: 0.621}
   clipEmptyAudio: {fileID: 8300000, guid: 39ce0e3ef8c38db40836672e7ba655ce, type: 3}
   fireAudio: {fileID: 8300000, guid: 6b4f637b5c561004b8e39a10e057d3c7, type: 3}
   reloadAudio: {fileID: 8300000, guid: 4dc7dfe7acd0abf4ea7ed385bdd7950e, type: 3}

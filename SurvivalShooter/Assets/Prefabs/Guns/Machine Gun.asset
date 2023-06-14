@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
   gunImage: {fileID: 2800000, guid: 2ec1e2f800f792b438dec0819f3d2d80, type: 3}
-  gunObject: {fileID: 919132149155446097, guid: 13d77e9ed239d7744bdc47252acfa31f, type: 3}
+  gunObject: {fileID: 1548701299681053599, guid: 4d9c0025efc712446beb63a6cc016131, type: 3}
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   muzzleEffect: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
   muzzleOffset: {x: 0, y: 0.006, z: 0.045}

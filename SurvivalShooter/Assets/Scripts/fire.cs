@@ -5,6 +5,7 @@ using UnityEngine;
 public class fire : MonoBehaviour
 {
     [SerializeField] int damagePerSecond;
+    bool points;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,11 @@ public class fire : MonoBehaviour
         {
             transform.SetParent(other.transform);
             StartCoroutine(Damage(damageable));
+            if (other.CompareTag("Enemy")) {
+                points = true;
+            } else {
+                points = false;
+            }
         }
     }
 
@@ -23,6 +29,11 @@ public class fire : MonoBehaviour
         while(damageDealt < damagePerSecond)
         {
             damagable.TakeDamage((int)dpt);
+
+            if (points) {
+                gameManager.instance.playerScript.addPoints(10);
+            }
+
             damageDealt += dpt;
             yield return new WaitForSeconds(dpt / damagePerSecond);
         }
