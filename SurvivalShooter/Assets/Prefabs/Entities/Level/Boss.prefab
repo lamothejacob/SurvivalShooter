@@ -109,7 +109,7 @@ MonoBehaviour:
   anim: {fileID: 58001214}
   agent: {fileID: 4020163759473480251}
   GoToNextLevel: {fileID: 0}
-  HPMax: 500
+  HPMax: 100
   deathTimer: 10
   drops: []
   audioPlayer: {fileID: 4020163759473480245}
@@ -125,6 +125,7 @@ MonoBehaviour:
   bullet: {fileID: 5537543527767281464, guid: 08db00689ae2e9341971779fd91d176b, type: 3}
   beam: {fileID: 5537543527767281464, guid: 64dd2b4f24ae9d649898a694526426cf, type: 3}
   shootAngle: 90
+  explosion: {fileID: 3880940643182147616, guid: 0768b10d4f483bc4aa543b61f516ee22, type: 3}
   speed: 0
   speedVariance: 0
   avoidRadius: 0

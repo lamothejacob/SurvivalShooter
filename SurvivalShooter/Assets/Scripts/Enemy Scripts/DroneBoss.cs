@@ -20,6 +20,8 @@ public class DroneBoss : Enemy
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject beam;
     [SerializeField] int shootAngle;
+    [SerializeField] GameObject explosion;
+    [SerializeField] GameObject bomb;
 
     [Header("----- Nav Mesh Stats -----")]
     [SerializeField] float speed;
@@ -33,12 +35,15 @@ public class DroneBoss : Enemy
 
     [Header("Abilities")]
     [SerializeField] float beamRate;
+    [SerializeField] float bombRate;
     
     Vector3 playerDir;
     bool isShooting;
     bool stepping;
     float angleToPlayer;
     int beamCounter = 0;
+    int bombCounter = 0;
+    int shootinghand= 0;
 
     private void Start()
     {
@@ -60,6 +65,11 @@ public class DroneBoss : Enemy
             {
 
             }
+        }
+
+        if (isDead)
+        {
+            DeathExplosion();
         }
     }
 
@@ -83,16 +93,26 @@ public class DroneBoss : Enemy
                 }
 
                 if (!isShooting && angleToPlayer <= shootAngle)
-                    if (beamCounter < 10)
-                    {
-                        StartCoroutine(shoot());
-                        beamCounter++;
-                    }
-                    else
+                {
+                    
+
+                    if (beamCounter >= 10)
                     {
                         StartCoroutine(Beam());
                         beamCounter = 0;
                     }
+                    else if (bombCounter >= 13)
+                    {
+                        StartCoroutine(Bombs());
+                        bombCounter = 0;
+                    }
+                    else
+                    {
+                        StartCoroutine(shoot());
+                        beamCounter++;
+                        bombCounter++;
+                    }
+                }
 
                 return true;
             }
@@ -105,15 +125,25 @@ public class DroneBoss : Enemy
     IEnumerator shoot()
     {
         isShooting = true;
-        int num = Random.Range(0, shootPos.Length - 1);
-        Transform shootingspot = shootPos[num];
-        Instantiate(bullet, shootPos[0].position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0, test, 0) - shootPos[0].position));
-        
-        //audioPlayer.PlayOneShot(gunshots[Random.Range(0, gunshots.Length)]);
-
+        if (shootinghand % 2 == 0)
+        {
+            Instantiate(bullet, shootPos[0].position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0, test, 0) - shootPos[0].position));
+        }
+        else
+        {
+            Instantiate(bullet, shootPos[1].position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0, test, 0) - shootPos[1].position));
+        }
+        shootinghand++;
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
+    }
+
+    void DeathExplosion()
+    {
+        Instantiate(explosion, transform.position, transform.rotation);
+        Instantiate(explosion, transform.position + new Vector3(0,10,0), transform.rotation);
+        Instantiate(explosion, transform.position + new Vector3(0, -10, 0), transform.rotation);
     }
 
     void facePLayer()
@@ -136,7 +166,7 @@ public class DroneBoss : Enemy
 
         for (float i = 0f; i < 25f; i++)
         {
-            Instantiate(beam, BeamPos.position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0, (i/50f), 0) - BeamPos.position));
+            Instantiate(beam, BeamPos.position, Quaternion.LookRotation(gameManager.instance.player.transform.position + new Vector3(0, (i/5f), 0) - BeamPos.position));
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(beamRate);
@@ -147,9 +177,18 @@ public class DroneBoss : Enemy
     {
         isShooting = true;
 
-        
+        for (int i = 0; i < 3; i++)
+        {
+            StartCoroutine(flashColor());
+            yield return new WaitForSeconds(0.75f);
+        }
 
-        yield return new WaitForSeconds(5f);
+        for (float i = 0; i < 10; i++)
+        {
+            Instantiate(bomb, transform.position, Quaternion.LookRotation(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360))));
+            yield return new WaitForSeconds(1f);
+        }
+        yield return new WaitForSeconds(bombRate);
         isShooting = false;
     }
 

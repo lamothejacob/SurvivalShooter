@@ -64,8 +64,12 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
 
         if (isBoss)
         {
+
+            StartCoroutine(WaitForEnd());
             GoToNextLevel.gameObject.SetActive(true);
             gameManager.instance.pauseState();
+
+
         }
 
         if (GameObject.FindGameObjectWithTag("EnemySpawner"))
@@ -74,6 +78,11 @@ public class Enemy : MonoBehaviour, IDamage, IPhysics
         gameManager.instance.SubEnemiesAlive(1);
 
         Destroy(gameObject, deathTimer);
+    }
+
+    IEnumerator WaitForEnd()
+    {
+        yield return new WaitForSeconds(5f);
     }
 
     IEnumerator flashColor()
