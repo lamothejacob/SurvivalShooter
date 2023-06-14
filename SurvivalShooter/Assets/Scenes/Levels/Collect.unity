@@ -7213,10 +7213,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
-      propertyPath: starterGun
-      value: 
-      objectReference: {fileID: 11400000, guid: ff3f7f612142a5e4e9c772a11d110a25, type: 2}
     - target: {fileID: 662619540623452671, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7260,18 +7256,6 @@ PrefabInstance:
     - target: {fileID: 662619540623452671, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 662619541693809446, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.48393556
-      objectReference: {fileID: 0}
-    - target: {fileID: 662619541693809446, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.80578285
-      objectReference: {fileID: 0}
-    - target: {fileID: 662619541693809446, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.8207547
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
