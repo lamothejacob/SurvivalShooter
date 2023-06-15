@@ -31,6 +31,7 @@ public class Gun : ScriptableObject
     public int reserveAmmoMax;
     public int clipSize;
     public bool automatic = true;
+    public bool hasAimOverlay;
     public Color baseColor;
 
     [Header("----- Shooting Stats -----")]
