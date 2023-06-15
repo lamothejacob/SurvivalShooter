@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class playerController : MonoBehaviour, IDamage, IPhysics {
+public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersistence {
     public CameraShake cameraShake;
 
     [Header("----- Components -----")]
@@ -503,6 +503,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         dashNum = dashNumMax;
     }
 
+    public bool isDashPurchased()
+    {
+        return dashPurchased;
+    }
+
     public bool isDashUpgraded()
     {
         return dashUpgraded;
@@ -530,6 +535,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     public bool isShieldPurchased()
     {
         return shieldPurchased;
+    }
+
+    public bool isShieldUpgraded()
+    {
+        return shieldUpgraded;
     }
 
     public void UpgradeShield()
@@ -636,5 +646,26 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
             yield return new WaitForSeconds(0.2f);
 
         stepsIsPlaying = false;
+    }
+
+    public void LoadData(GameData data)
+    {
+
+        this.points = data.points;
+        this.dashPurchased = data.dashPurchased;
+        this.dashUpgraded = data.dashUpgraded;
+        this.shieldPurchased = data.shieldPurchased;
+        this.shieldUpgraded = data.ShieldUpgraded;
+        this.gunInventory = data.guns;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.points = this.points;
+        data.dashPurchased = this.dashPurchased;
+        data.dashUpgraded = this.dashUpgraded;
+        data.shieldPurchased = this.shieldPurchased;
+        data.ShieldUpgraded = this.shieldUpgraded;
+        data.guns = this.gunInventory;
     }
 }
