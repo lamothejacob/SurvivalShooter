@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour, IDamage, IPhysics {
     public CameraShake cameraShake;
@@ -38,6 +40,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     [Range(0, 5)]
     [SerializeField] int grenadeAmount;
     [SerializeField] GameObject[] grenade;
+    [SerializeField] GameObject aimOverlay;
 
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
@@ -167,11 +170,21 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
             gun.transform.localPosition = getCurrentGun().aimOffset;
             Camera.main.fieldOfView /= 1.75f;
             isAiming = true;
+
+            if (getCurrentGun().hasAimOverlay) {
+                gun.SetActive(false);
+                aimOverlay.SetActive(true);
+            }
         } else if (Input.GetButtonUp("Aim")) {
             GameObject gun = gameManager.instance.displayScript.currentActive;
             gun.transform.localPosition = getCurrentGun().handOffset;
             Camera.main.fieldOfView = originalFOV;
             isAiming = false;
+
+            if (getCurrentGun().hasAimOverlay) {
+                gun.SetActive(true);
+                aimOverlay.SetActive(false);
+            }
         }
     }
 

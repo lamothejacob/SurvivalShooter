@@ -16,6 +16,8 @@ MonoBehaviour:
   gunObject: {fileID: 6516595467368797590, guid: 1704914ab8fe3e541a911ec1dd32fad6, type: 3}
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   muzzleEffect: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
+  hasAimOverlay: 1
+  aimOverlay: {fileID: 8551387256827997920, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
   muzzleOffset: {x: 0, y: 0.0171, z: 0.083}
   handOffset: {x: 0.5, y: -0.5, z: 1}
   aimOffset: {x: 0.006, y: -0.33, z: 1.5}
