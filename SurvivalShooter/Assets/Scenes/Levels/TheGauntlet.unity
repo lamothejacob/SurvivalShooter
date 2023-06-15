@@ -2078,6 +2078,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70a67db9df370aa479abf4b6b9ebfd17, type: 3}
+--- !u!114 &219768393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4977334349559543550, guid: 70a67db9df370aa479abf4b6b9ebfd17, type: 3}
+  m_PrefabInstance: {fileID: 219768392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2b48aa694852342b4068a27b9ef670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &230350377
 GameObject:
   m_ObjectHideFlags: 0
@@ -11838,6 +11849,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 1933287690, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
   m_PrefabInstance: {fileID: 1813063011}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1115605101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1933287695, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+  m_PrefabInstance: {fileID: 1813063011}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115605085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086cb356343dd0f4b9d6b8a4f7786549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1121967298
 GameObject:
   m_ObjectHideFlags: 0
@@ -18891,17 +18913,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1115605085}
     - target: {fileID: 8551387256460061742, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
+      propertyPath: audioScript
+      value: 
+      objectReference: {fileID: 219768393}
+    - target: {fileID: 8551387256460061742, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
       propertyPath: cameraScript
       value: 
       objectReference: {fileID: 1430247181}
     - target: {fileID: 8551387256460061742, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
       propertyPath: enemySpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1030757634}
     - target: {fileID: 8551387256460061742, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 1115605092}
+    - target: {fileID: 8551387256460061742, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
+      propertyPath: buttonsScript
+      value: 
+      objectReference: {fileID: 1994625878}
+    - target: {fileID: 8551387256460061742, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
+      propertyPath: displayScript
+      value: 
+      objectReference: {fileID: 1115605101}
     - target: {fileID: 8551387256460061742, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
       propertyPath: enemySpawnerScript
       value: 
