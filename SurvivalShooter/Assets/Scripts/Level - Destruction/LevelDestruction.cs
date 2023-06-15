@@ -34,7 +34,7 @@ public class LevelDestruction : MonoBehaviour
     void Update()
     {
 
-        if (gameManager.instance.GetEnemiesKilled() == 25)
+        if (gameManager.instance.GetEnemiesKilled() >= 25)
         {
             if (!doorOpen)
             {
