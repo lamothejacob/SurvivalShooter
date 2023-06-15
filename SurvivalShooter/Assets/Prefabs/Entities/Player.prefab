@@ -391,14 +391,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7d404a9df54bc4881202bceba29910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraShake: {fileID: 8717751738501616430}
   controller: {fileID: 3674606059404510839}
   aud: {fileID: 1933287690}
   HP: 100
   playerSpeed: 5
   sprintMod: 2.5
   crouchMod: 3
-  jumpHeight: 5
+  jumpHeight: 7
   gravityValue: -9.81
   maxJumps: 1
   interactDistance: 2
@@ -409,9 +408,8 @@ MonoBehaviour:
   grenade:
   - {fileID: 3833154100948993197, guid: 32b3b34af57b89a4fb96b191a6045781, type: 3}
   - {fileID: 6264566592746213633, guid: 70ec52d58467bd74aa03775f3d7b679a, type: 3}
+  aimOverlay: {fileID: 0}
   starterGun: {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
-  gunLocation: {x: 0.5, y: -0.5, z: 1}
-  adsLocation: {x: 0, y: -0.3, z: 1}
   shieldHP: 100
   dashNumMax: 2
   dashCoolDown: 1
