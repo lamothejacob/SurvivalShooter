@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 551c4e142be203345a82398367638b9f
+guid: a5d71998c51aaf340addaa8c73636228
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: polished_brass
+    second: {fileID: 2100000, guid: b1db0023196703e4491bfc72103cd901, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

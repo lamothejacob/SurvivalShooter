@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
-public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersistence {
+public class playerController : MonoBehaviour, IDamage, IPhysics {
     public CameraShake cameraShake;
 
     [Header("----- Components -----")]
@@ -40,7 +38,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
     [Range(0, 5)]
     [SerializeField] int grenadeAmount;
     [SerializeField] GameObject[] grenade;
-    [SerializeField] GameObject aimOverlay;
 
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
@@ -170,21 +167,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
             gun.transform.localPosition = getCurrentGun().aimOffset;
             Camera.main.fieldOfView /= 1.75f;
             isAiming = true;
-
-            if (getCurrentGun().hasAimOverlay) {
-                gun.SetActive(false);
-                aimOverlay.SetActive(true);
-            }
         } else if (Input.GetButtonUp("Aim")) {
             GameObject gun = gameManager.instance.displayScript.currentActive;
             gun.transform.localPosition = getCurrentGun().handOffset;
             Camera.main.fieldOfView = originalFOV;
             isAiming = false;
-
-            if (getCurrentGun().hasAimOverlay) {
-                gun.SetActive(true);
-                aimOverlay.SetActive(false);
-            }
         }
     }
 
@@ -516,11 +503,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
         dashNum = dashNumMax;
     }
 
-    public bool isDashPurchased()
-    {
-        return dashPurchased;
-    }
-
     public bool isDashUpgraded()
     {
         return dashUpgraded;
@@ -548,11 +530,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
     public bool isShieldPurchased()
     {
         return shieldPurchased;
-    }
-
-    public bool isShieldUpgraded()
-    {
-        return shieldUpgraded;
     }
 
     public void UpgradeShield()
@@ -659,26 +636,5 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
             yield return new WaitForSeconds(0.2f);
 
         stepsIsPlaying = false;
-    }
-
-    public void LoadData(GameData data)
-    {
-
-        this.points = data.points;
-        this.dashPurchased = data.dashPurchased;
-        this.dashUpgraded = data.dashUpgraded;
-        this.shieldPurchased = data.shieldPurchased;
-        this.shieldUpgraded = data.ShieldUpgraded;
-        this.gunInventory = data.guns;
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.points = this.points;
-        data.dashPurchased = this.dashPurchased;
-        data.dashUpgraded = this.dashUpgraded;
-        data.shieldPurchased = this.shieldPurchased;
-        data.ShieldUpgraded = this.shieldUpgraded;
-        data.guns = this.gunInventory;
     }
 }
