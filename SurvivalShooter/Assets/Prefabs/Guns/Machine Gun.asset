@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
   gunImage: {fileID: 2800000, guid: 2ec1e2f800f792b438dec0819f3d2d80, type: 3}
-  gunObject: {fileID: 1548701299681053599, guid: 4d9c0025efc712446beb63a6cc016131, type: 3}
+  gunObject: {fileID: 5167490212161759006, guid: 22bb951e3f3a4854d82992a8bec6d356, type: 3}
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   muzzleEffect: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
-  muzzleOffset: {x: 0, y: 0.006, z: 0.045}
+  muzzleOffset: {x: 0, y: 0.0217, z: 0.0903}
+  handOffset: {x: 0.5, y: -0.5, z: 1.25}
+  aimOffset: {x: 0, y: -0.4, z: 1.25}
   clipEmptyAudio: {fileID: 8300000, guid: 2c669ff329ea8524893f00ac20d54647, type: 3}
-  fireAudio: {fileID: 8300000, guid: 756c06572af2010498c01359f66f1127, type: 3}
+  fireAudio: {fileID: 8300000, guid: 2a633b968a74d2c438fd19415684eaa1, type: 3}
   reloadAudio: {fileID: 8300000, guid: dbf6fbca3c48e5941a97247a7c5caa8e, type: 3}
   cost: 1000
   baseDamage: 20
@@ -27,7 +29,6 @@ MonoBehaviour:
   reserveAmmoMax: 180
   clipSize: 30
   automatic: 1
-  projectileBased: 0
   baseColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
   projectileAmount: 1
   verticalRecoil: 0.01
@@ -36,5 +37,3 @@ MonoBehaviour:
   damage: 20
   level: 0
   color: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
-  projectile: {fileID: 0}
-  projReference: {fileID: 0}

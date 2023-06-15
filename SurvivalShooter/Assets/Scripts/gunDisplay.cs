@@ -37,30 +37,14 @@ public class gunDisplay : MonoBehaviour
         currentActive.SetActive(true);
 
         //Adjust position
-        currentActive.transform.localPosition = gameManager.instance.playerScript.gunLocation;
+        currentActive.transform.localPosition = gun.handOffset;
 
-        //
+        //Instantiate Muzzle Effect
         muzzleEffect = Instantiate(gun.muzzleEffect, Camera.main.transform.position, Camera.main.transform.rotation);
         muzzleEffect.layer = 6;
         muzzleEffect.transform.parent = currentActive.transform;
         muzzleEffect.SetActive(false);
         muzzleEffect.transform.localPosition = gun.muzzleOffset;
-        //muzzleEffect.transform.localEulerAngles = Vector3.right * 90;
-
-        //Sets the projectile prop for the display gun
-        //AKA what to hide when the projectile is fired
-        //And what to unhide when the gun reloads
-        if (gun.projectileBased)
-        {
-            foreach(Transform child in currentActive.transform)
-            {
-                if(child.name == gun.projReference.name)
-                {
-                    gun.SetProjectile(child.gameObject);
-                    break;
-                }
-            }
-        }
     }
 
     void SetLayer(Transform go) {

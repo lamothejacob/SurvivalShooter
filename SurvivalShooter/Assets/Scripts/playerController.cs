@@ -41,8 +41,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
     [Header("----- Starting Gun -----")]
     [SerializeField] Gun starterGun;
-    public Vector3 gunLocation;
-    public Vector3 adsLocation;
 
     [Header("----- Abilities -----")]
     [Header("Shield")]
@@ -166,12 +164,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     void AimDownSights() {
         if (Input.GetButtonDown("Aim")) {
             GameObject gun = gameManager.instance.displayScript.currentActive;
-            gun.transform.localPosition = adsLocation;
+            gun.transform.localPosition = getCurrentGun().aimOffset;
             Camera.main.fieldOfView /= 1.75f;
             isAiming = true;
         } else if (Input.GetButtonUp("Aim")) {
             GameObject gun = gameManager.instance.displayScript.currentActive;
-            gun.transform.localPosition = gunLocation;
+            gun.transform.localPosition = getCurrentGun().handOffset;
             Camera.main.fieldOfView = originalFOV;
             isAiming = false;
         }
@@ -273,6 +271,8 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
         elapsedTime = 0f;
         totalTime = .1f;
+        Vector3 gunLocation = getCurrentGun().handOffset;
+
         while (elapsedTime < totalTime) {
             gun.transform.localPosition = Vector3.Lerp(endPosition, gunLocation, elapsedTime / totalTime);
             elapsedTime += Time.deltaTime;
@@ -305,21 +305,17 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         gun.removeAmmo(1);
         gameManager.instance.audioScript.Play(getCurrentGun().fireAudio);
 
-        if (!gun.projectileBased) {
-            List<RaycastHit> raycastHits = gun.GetRayList();
+        List<RaycastHit> raycastHits = gun.GetRayList();
 
-            foreach (RaycastHit hit in raycastHits) {
-                IDamage damageable = hit.collider.GetComponent<IDamage>();
+        foreach (RaycastHit hit in raycastHits) {
+            IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-                if (damageable != null) {
-                    damageable.TakeDamage(gun.damage);
-                    points += 50;
-                }
-
-                Destroy(Instantiate(gun.hitEffect, hit.point, Quaternion.identity), 1);
+            if (damageable != null) {
+                damageable.TakeDamage(gun.damage);
+                points += 50;
             }
-        } else {
-            Instantiate(gun.GetProjectile(), Camera.main.transform.position, Camera.main.transform.rotation);
+
+            Destroy(Instantiate(gun.hitEffect, hit.point, Quaternion.identity), 1);
         }
 
         gameManager.instance.displayScript.MuzzleFlash();
