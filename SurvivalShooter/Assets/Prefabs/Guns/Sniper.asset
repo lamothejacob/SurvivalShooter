@@ -29,7 +29,6 @@ MonoBehaviour:
   reserveAmmoMax: 45
   clipSize: 5
   automatic: 0
-  hasAimOverlay: 1
   baseColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 1}
   projectileAmount: 1
   verticalRecoil: 1.5

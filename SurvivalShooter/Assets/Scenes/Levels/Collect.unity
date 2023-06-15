@@ -3039,11 +3039,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300006, guid: 05e04fedc78047c48af519e94c595e13, type: 3}
---- !u!1 &1002154679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8079302345475432529, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
-  m_PrefabInstance: {fileID: 1737342064}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002394741 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013155481704, guid: d7ba4fe833670a140b9b6085652f0e26, type: 3}
@@ -7223,13 +7218,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
-      propertyPath: aimOverlay
-      value: 
-      objectReference: {fileID: 1002154679}
-    - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: starterGun
       value: 
-      objectReference: {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
+      objectReference: {fileID: 11400000, guid: 65488e5d8cd87e348b3fe2ea47156e48, type: 2}
     - target: {fileID: 662619540623452671, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_RootOrder
       value: 0
