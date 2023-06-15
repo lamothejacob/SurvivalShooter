@@ -1028,7 +1028,13 @@ MonoBehaviour:
   headPos: {fileID: 6060474062772965209}
   anim: {fileID: 6144894412928116735}
   agent: {fileID: 174701631408314663}
-  HPMax: 0
+  GoToNextLevel: {fileID: 0}
+  HPMax: 20
+  deathTimer: 0
+  drops:
+  - {fileID: 8515776622482380095, guid: 2163ab50727c72d48a32d22d7157949e, type: 3}
+  - {fileID: 5810608857643126188, guid: 34990b4fee0c34d4383b9afaace12570, type: 3}
+  - {fileID: 7037816211700263963, guid: ce7f6877a92ca8247a725e3a32b9200e, type: 3}
   audioPlayer: {fileID: 0}
   playerFaceSpeed: 1.5
   ViewCone: 90

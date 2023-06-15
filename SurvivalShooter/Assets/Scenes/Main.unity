@@ -1083,6 +1083,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 261657754, guid: f4f3aa54c6907154293c38beffb97fc3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6811171644798460548, guid: f4f3aa54c6907154293c38beffb97fc3, type: 3}
       propertyPath: m_Name
       value: Bunker 3.0

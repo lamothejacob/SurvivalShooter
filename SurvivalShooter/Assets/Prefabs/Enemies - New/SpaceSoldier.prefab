@@ -311,7 +311,7 @@ MonoBehaviour:
   anim: {fileID: 6661328104527573078}
   agent: {fileID: 3295498698171550014}
   GoToNextLevel: {fileID: 0}
-  HPMax: 20
+  HPMax: 50
   deathTimer: 10
   drops:
   - {fileID: 8515776622482380095, guid: 2163ab50727c72d48a32d22d7157949e, type: 3}
