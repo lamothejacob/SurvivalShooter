@@ -669,7 +669,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
         this.dashUpgraded = data.dashUpgraded;
         this.shieldPurchased = data.shieldPurchased;
         this.shieldUpgraded = data.ShieldUpgraded;
-        this.gunInventory = data.guns;
     }
 
     public void SaveData(ref GameData data)
