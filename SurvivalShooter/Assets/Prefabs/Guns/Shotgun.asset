@@ -20,7 +20,7 @@ MonoBehaviour:
   handOffset: {x: 0.5, y: -0.5, z: 0.85}
   aimOffset: {x: 0, y: -0.2, z: 0.9}
   clipEmptyAudio: {fileID: 8300000, guid: 2c669ff329ea8524893f00ac20d54647, type: 3}
-  fireAudio: {fileID: 8300000, guid: 6996ffafc1511e24d857a49db435cba1, type: 3}
+  fireAudio: {fileID: 8300000, guid: 357845a768064d34e95f26141e2d6f54, type: 3}
   reloadAudio: {fileID: 8300000, guid: d1dac29456b04b342a4d5cc57863bca7, type: 3}
   cost: 500
   baseDamage: 30
