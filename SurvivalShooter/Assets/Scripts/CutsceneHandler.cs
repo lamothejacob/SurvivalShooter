@@ -29,6 +29,8 @@ public class CutsceneHandler : MonoBehaviour {
     [SerializeField] List<cutscene> cutsceneList;
     Queue<cutscene> cutsceneQueue;
 
+    bool isLoading, activateLoadedScene;
+
     void Start() {
         cutsceneQueue = new Queue<cutscene>(cutsceneList);
 
@@ -41,12 +43,37 @@ public class CutsceneHandler : MonoBehaviour {
         }
 
         StartCoroutine(MoveToPosition(0f));
+        StartCoroutine(LoadSceneWait(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     void Update() {
         if (Input.GetKeyUp(KeyCode.Escape)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            activateLoadedScene = true;
         }
+    }
+
+    public void ActivateLoadedScene() {
+        activateLoadedScene = true;
+    }
+
+    IEnumerator LoadSceneWait(int scene) {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        // Don't allow scene activation until it's fully loaded
+        asyncLoad.allowSceneActivation = false;
+        isLoading = true;
+
+        // Wait until the loading progress reaches 0.9 (90%)
+        while (!asyncLoad.isDone && asyncLoad.progress < 0.9f) {
+            yield return null;
+        }
+
+        yield return new WaitUntil(() => activateLoadedScene == true);
+
+        // Loading is complete, allow scene activation
+        asyncLoad.allowSceneActivation = true;
+
+        isLoading = false;
     }
 
     IEnumerator MoveToPosition(float time) {
