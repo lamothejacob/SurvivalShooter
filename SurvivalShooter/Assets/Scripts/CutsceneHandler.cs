@@ -52,10 +52,6 @@ public class CutsceneHandler : MonoBehaviour {
         }
     }
 
-    public void ActivateLoadedScene() {
-        activateLoadedScene = true;
-    }
-
     IEnumerator LoadSceneWait(int scene) {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
 

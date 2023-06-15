@@ -10093,7 +10093,7 @@ MonoBehaviour:
   - {fileID: 1774301887}
   - {fileID: 758254560}
   - {fileID: 1050600483}
-  timeToExplosion: 26
+  timeToExplosion: 25
 --- !u!1 &758254560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976, type: 3}
