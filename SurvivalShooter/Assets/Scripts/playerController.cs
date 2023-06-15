@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class playerController : MonoBehaviour, IDamage, IPhysics {
-    public CameraShake cameraShake;
-
+public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersistence {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
@@ -378,7 +378,6 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
 
     public void TakeDamage(int damage) {
         if (shieldActive == false || shieldHP <= 0) {
-            StartCoroutine(cameraShake.Shake(.1f, .3f));
             HP -= damage;
             aud.PlayOneShot(damageAudio[Random.Range(0, damageAudio.Length)], damageAudioVol);
             StartCoroutine(damageFlash());
@@ -514,6 +513,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
         dashNum = dashNumMax;
     }
 
+    public bool isDashPurchased()
+    {
+        return dashPurchased;
+    }
+
     public bool isDashUpgraded()
     {
         return dashUpgraded;
@@ -541,6 +545,11 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
     public bool isShieldPurchased()
     {
         return shieldPurchased;
+    }
+
+    public bool isShieldUpgraded()
+    {
+        return shieldUpgraded;
     }
 
     public void UpgradeShield()
@@ -647,5 +656,25 @@ public class playerController : MonoBehaviour, IDamage, IPhysics {
             yield return new WaitForSeconds(0.2f);
 
         stepsIsPlaying = false;
+    }
+
+    public void LoadData(GameData data)
+    {
+
+        this.points = data.points;
+        this.dashPurchased = data.dashPurchased;
+        this.dashUpgraded = data.dashUpgraded;
+        this.shieldPurchased = data.shieldPurchased;
+        this.shieldUpgraded = data.ShieldUpgraded;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.points = this.points;
+        data.dashPurchased = this.dashPurchased;
+        data.dashUpgraded = this.dashUpgraded;
+        data.shieldPurchased = this.shieldPurchased;
+        data.ShieldUpgraded = this.shieldUpgraded;
+        data.guns = this.gunInventory;
     }
 }

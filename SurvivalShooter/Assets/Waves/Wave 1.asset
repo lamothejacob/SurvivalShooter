@@ -24,13 +24,13 @@ MonoBehaviour:
   - {fileID: 7348363931575766396, guid: af1f7531c9248b34da3334f7a8fe9b8b, type: 3}
   - {fileID: 7022146652925231085, guid: 13fed294f9e93a54399f2b964c18da04, type: 3}
   enemyPrefabs:
-  - {fileID: 9143398651681707052, guid: c543084be836c17448527c405fdeec78, type: 3}
+  - {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
   - {fileID: 9143398651681707052, guid: c543084be836c17448527c405fdeec78, type: 3}
   - {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
   - {fileID: 6057560538999575373, guid: 9c19d8edc9adf174e8c7c07bcb4860fa, type: 3}
-  - {fileID: 9143398651681707052, guid: c543084be836c17448527c405fdeec78, type: 3}
-  - {fileID: 9143398651681707052, guid: c543084be836c17448527c405fdeec78, type: 3}
-  health: 60
+  - {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
+  - {fileID: 6661328104518233846, guid: b09522db2b7abe845a4137d187494ce0, type: 3}
+  health: 90
   timeBetweenEnemySpawns: 1
   spawnTimeVariance: 0.5
   minimumSpawnTime: 0.1
