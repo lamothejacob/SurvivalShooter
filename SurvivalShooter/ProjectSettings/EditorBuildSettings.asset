@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/TheGauntlet.unity
     guid: c0a6a1a90f68f524fb08e938b103dc42
   - enabled: 1
+    path: Assets/Scenes/Cutscenes/Destruction_Cutscne.unity
+    guid: 2f91044a0db49104bb990133fd654eb4
+  - enabled: 1
     path: Assets/Scenes/Levels/Destruction.unity
     guid: 6060d0566b39cc14dbfa38166fb2296c
   - enabled: 1
