@@ -2559,7 +2559,6 @@ MonoBehaviour:
   shotgunButton: {fileID: 7759993285539022472}
   sniperButton: {fileID: 7759993284942756847}
   uziButton: {fileID: 7759993285462293899}
-  rocketLauncherButton: {fileID: 0}
   flameThrowerButton: {fileID: 7759993284485874915}
   grenadeButton: {fileID: 7759993284141013644}
   shieldButton: {fileID: 7759993284295287126}
@@ -2572,7 +2571,6 @@ MonoBehaviour:
   shotgunLabel: {fileID: 7759993285529706288}
   sniperLabel: {fileID: 7759993284115767985}
   uziLabel: {fileID: 7759993285809946523}
-  rocketLauncherLabel: {fileID: 0}
   flameThrowerLabel: {fileID: 7759993284315649170}
   grenadeLabel: {fileID: 7759993285840616945}
   impactGrenadeLabel: {fileID: 2011335630}
@@ -2580,12 +2578,13 @@ MonoBehaviour:
   dashLabel: {fileID: 0}
   ammoLabel: {fileID: 7759993283900544355}
   grenadeCost: 200
-  impactGrenadeCost: 0
+  impactGrenadeCost: 200
   shieldCost: 200
   upgradeShieldCost: 400
   dashCost: 200
   upgradeDashCost: 400
-  ammoCost: 500
+  ammoAmount: 100
+  ammoCost: 100
   itemImages: []
   damageSlider: {fileID: 7759993284667468468}
   fireRateSlider: {fileID: 7759993284310120577}
@@ -2596,7 +2595,6 @@ MonoBehaviour:
   shotgun: {fileID: 11400000, guid: d698e332bafde874488f14c774205281, type: 2}
   sniper: {fileID: 11400000, guid: c62b2fe3f49b678439e3d5bf13e85b82, type: 2}
   uzi: {fileID: 11400000, guid: 65488e5d8cd87e348b3fe2ea47156e48, type: 2}
-  rocket: {fileID: 11400000, guid: fd3876fe34890234c92eea57dda6306e, type: 2}
   flame: {fileID: 11400000, guid: ff3f7f612142a5e4e9c772a11d110a25, type: 2}
 --- !u!1 &7759993284249990965
 GameObject:
@@ -3440,10 +3438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3545,10 +3543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -6070,10 +6068,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

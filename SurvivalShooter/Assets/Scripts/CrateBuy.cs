@@ -14,7 +14,7 @@ public class CrateBuy : MonoBehaviour
         shotgun, 
         sniper, 
         uzi, 
-        rocketLauncher, 
+        //rocketLauncher, 
         flameThrower, 
         grenade, 
         shield, 
@@ -47,7 +47,7 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] Button shotgunButton;
     [SerializeField] Button sniperButton;
     [SerializeField] Button uziButton;
-    [SerializeField] Button rocketLauncherButton;
+    //[SerializeField] Button rocketLauncherButton;
     [SerializeField] Button flameThrowerButton;
     [SerializeField] Button grenadeButton;
     [SerializeField] Button shieldButton;
@@ -65,7 +65,7 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] TextMeshProUGUI shotgunLabel;
     [SerializeField] TextMeshProUGUI sniperLabel;
     [SerializeField] TextMeshProUGUI uziLabel;
-    [SerializeField] TextMeshProUGUI rocketLauncherLabel;
+    //[SerializeField] TextMeshProUGUI rocketLauncherLabel;
     [SerializeField] TextMeshProUGUI flameThrowerLabel;
     [SerializeField] TextMeshProUGUI grenadeLabel;
     [SerializeField] TextMeshProUGUI impactGrenadeLabel;
@@ -78,13 +78,14 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] int upgradeShieldCost;
     [SerializeField] int dashCost;
     [SerializeField] int upgradeDashCost;
+    [SerializeField] int ammoAmount;
     [SerializeField] int ammoCost;
     int pistolCost;
     int machineGunCost; 
     int shotgunCost;
     int sniperCost;
     int uziCost; 
-    int rocketCost;
+    //int rocketCost;
     int flameCost;
 
     [Header("=== Item Image ===")]
@@ -102,7 +103,7 @@ public class CrateBuy : MonoBehaviour
     [SerializeField] Gun shotgun;
     [SerializeField] Gun sniper;
     [SerializeField] Gun uzi;
-    [SerializeField] Gun rocket;
+    //[SerializeField] Gun rocket;
     [SerializeField] Gun flame;
     
 
@@ -119,7 +120,6 @@ public class CrateBuy : MonoBehaviour
         shotgunCost = 500;
         sniperCost = 1500; 
         uziCost = 1000;
-        rocketCost = 2000;
         flameCost = 1250;
 
         pistolLabel.SetText("Pistol - " + pistolCost); 
@@ -127,13 +127,12 @@ public class CrateBuy : MonoBehaviour
         shotgunLabel.SetText("Shotgun - " +  shotgunCost);
         sniperLabel.SetText("Sniper  - " + sniperCost);
         uziLabel.SetText("Uzi - " +  uziCost); 
-        rocketLauncherLabel.SetText("Rocket Launcher - " +  rocketCost);
         flameThrowerLabel.SetText("Flame Thrower - " +  flameCost);
         grenadeLabel.SetText("3 Grenades - " +  grenadeCost);
         impactGrenadeLabel.SetText("3 Impact Grenades - " +  grenadeCost);
         //shieldLabel.SetText("1 Shield - " + shieldCost);
         //dashLabel.SetText("2 Dash - " +  dashCost); 
-        ammoLabel.SetText("50 Rounds - " + ammoCost);
+        ammoLabel.SetText(ammoAmount + " Rounds - " + ammoCost);
 
 
         pistolButtonClicked(); 
@@ -247,21 +246,6 @@ public class CrateBuy : MonoBehaviour
         ammoCapacitySlider.value = 0.4f;
 
         ItemType_Text.SetText("Uzi"); 
-    }
-
-    public void rocketLancherButtonClicked()
-    {
-        userSelection = itemSelection.rocketLauncher;
-
-        // set the Item Image
-        itemImage.sprite = itemImages[5]; 
-
-        damageSlider.value = 1f;
-        fireRateSlider.value = 0.1f;
-        rangeSlider.value = .75f;
-        ammoCapacitySlider.value = 0.02f;
-
-        ItemType_Text.SetText("Rocket Launcher");
     }
 
     public void flameThrowerButtonClicked()
@@ -414,19 +398,6 @@ public class CrateBuy : MonoBehaviour
                 }
                 else
                   StartCoroutine(notEnoughPoints());
-                break;
-            }
-            case itemSelection.rocketLauncher:
-            {
-                if (gameManager.instance.playerScript.getPoints() >= rocketCost)
-                {
-                    gameManager.instance.playerScript.addGun(rocket);
-                        gameManager.instance.playerScript.addAmmo(gameManager.instance.playerScript.getCurrentGun(), 5, 0);
-                        playerPoints -= rocketCost;
-                    CurrentPoints.SetText(gameManager.instance.playerScript.getPoints().ToString());
-                }
-                else
-                 StartCoroutine(notEnoughPoints());
                 break;
             }
             case itemSelection.flameThrower:
