@@ -224,7 +224,7 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
         if (Input.GetButtonDown("Sprint")) {
             isSprinting = true;
             playerSpeed *= sprintMod;
-        } else if (Input.GetButtonUp("Sprint")) {
+        } else if (Input.GetButtonUp("Sprint") && isSprinting) {
             isSprinting = false;
             playerSpeed /= sprintMod;
         }
@@ -489,6 +489,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
     #region ------------- Player Abilities -------------
 
     IEnumerator Dash() {
+        isSprinting = false;
+        playerSpeed /= sprintMod;
+
         dashActive = true;
         playerSpeed = dashSpeed;
 
@@ -496,6 +499,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
 
         playerSpeed = playerSpeedOrig;
         dashActive = false;
+
+        if (Input.GetButton("Sprint"))
+        {
+            isSprinting = true;
+            playerSpeed *= sprintMod;
+        }
     }
 
     IEnumerator DashRecharge() {
