@@ -373,7 +373,12 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
     }
 
     public void AddHealth(int amount) {
-        HP += amount;
+        if (HP + amount > HPOrig)
+        {
+            HP = HPOrig;
+        }
+        else
+            HP += amount;
     }
 
     public void TakeDamage(int damage) {
