@@ -18,6 +18,7 @@ public class MainMenuButtons : MonoBehaviour
     private bool bContinueGameMenuActive;
 
     float TimeScaleOriginal;
+    int currSave;
 
 
     private void Awake()
@@ -37,6 +38,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void NewGameClicked()
     {
+        PlayerPrefs.SetInt("CurrentScene", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Cursor.visible = false;
         Time.timeScale = TimeScaleOriginal;
@@ -53,9 +55,13 @@ public class MainMenuButtons : MonoBehaviour
 
     public void ContinueGameClicked() 
     {
-        bContinueGameMenuActive = true;
-        continueGameMenu.SetActive(true); 
-        mainMenu.SetActive(false);
+        //bContinueGameMenuActive = true;
+        //continueGameMenu.SetActive(true); 
+        //mainMenu.SetActive(false);
+
+        SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentScene"));
+        Cursor.visible = false;
+        Time.timeScale = TimeScaleOriginal;
     }
 
     public void GeneralSettingsButtonClicked()

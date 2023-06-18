@@ -151,4 +151,9 @@ public class gameManager : MonoBehaviour
     {
         return enemiesKilled;
     }
+
+    public void SetCurrSceneIndex(int sceneIndex)
+    {
+        PlayerPrefs.SetInt("CurrentScene", sceneIndex);
+    }
 }
