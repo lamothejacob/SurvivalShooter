@@ -23,6 +23,8 @@ public class Explosion : MonoBehaviour
 
         if (phys != null)
         {
+            if (other.CompareTag("Enemy"))
+                gameManager.instance.playerScript.addPoints(50);
             Vector3 direc = other.transform.position - transform.position;
             phys.takePushBack(pushBack * direc, damage);
         }

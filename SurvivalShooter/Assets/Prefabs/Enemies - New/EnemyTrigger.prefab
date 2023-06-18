@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4101745224356232865}
   - component: {fileID: 4101745224356232864}
   - component: {fileID: 4101745224356232879}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EnemyTigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
