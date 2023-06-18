@@ -14,7 +14,9 @@ public class ButtonFunctions : MonoBehaviour
     private bool cameraSensitivity;
 
     [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip buttonClicked; 
+    [SerializeField] AudioClip buttonClicked;
+
+    GameObject prevMenu;
  
     // ******************************
     // MAIN MENU BUTTONS
@@ -63,7 +65,8 @@ public class ButtonFunctions : MonoBehaviour
 
     public void pauseSettings()
     {
-        gameManager.instance.pauseMenu.SetActive(false);
+        prevMenu = gameManager.instance.activeMenu;
+        gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.settingsPause;
         gameManager.instance.activeMenu.SetActive(true);
         
@@ -99,7 +102,8 @@ public class ButtonFunctions : MonoBehaviour
     public void back()
     {
         gameManager.instance.activeMenu.SetActive(false);
-        gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
+        //gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
+        gameManager.instance.activeMenu = prevMenu;
         gameManager.instance.activeMenu.SetActive(true);
         gameManager.instance.audioScript.Play("ButtonClicked");
     }
