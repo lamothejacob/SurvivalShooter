@@ -178,7 +178,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.pistol;
 
         // set the Item Image
-        itemImage.sprite = itemImages[0]; 
+        //itemImage.sprite = itemImages[0]; 
 
         damageSlider.value = 0.1f;
         fireRateSlider.value = 0.8f;
@@ -193,7 +193,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.machineGun;
 
         // set the Item Image
-        itemImage.sprite = itemImages[1];
+        //itemImage.sprite = itemImages[1];
 
         damageSlider.value = 0.2f;
         fireRateSlider.value = 0.6f;
@@ -208,7 +208,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.shotgun;
 
         // set the Item Image
-        itemImage.sprite= itemImages[2];
+        //itemImage.sprite= itemImages[2];
 
         damageSlider.value = 0.5f;
         fireRateSlider.value = 0.4f;
@@ -223,7 +223,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.sniper;
 
         // set the Item Image
-        itemImage.sprite = itemImages[3]; 
+        //itemImage.sprite = itemImages[3]; 
 
         damageSlider.value = 1f;
         fireRateSlider.value = 0.4f;
@@ -238,7 +238,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.uzi;
 
         // set the Item Image
-        itemImage.sprite = itemImages[4];
+        //itemImage.sprite = itemImages[4];
 
         damageSlider.value = 0.15f;
         fireRateSlider.value = 0.85f;
@@ -253,7 +253,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.flameThrower;
 
         // set the Item Image
-        itemImage.sprite= itemImages[6];
+        //itemImage.sprite= itemImages[5];
 
         damageSlider.value = .75f;      //currently this says zero in the gun prefab?
         fireRateSlider.value = 1f;
@@ -268,12 +268,12 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.grenade;
 
         // set the Item Image
-        itemImage.sprite = itemImages[7]; 
+        //itemImage.sprite = itemImages[6]; 
 
-        damageSlider.value = .2f;      //currently this says zero in the gun prefab?
-        fireRateSlider.value = .2f;
-        rangeSlider.value = .125f;
-        ammoCapacitySlider.value = 0.2f;
+        damageSlider.value = .5f;      //currently this says zero in the gun prefab?
+        fireRateSlider.value = 0f;
+        rangeSlider.value = 0f;
+        ammoCapacitySlider.value = 0f;
 
         ItemType_Text.SetText("Grenade");
     }
@@ -283,7 +283,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.shield;
 
         // set the Item Image
-        itemImage.sprite = itemImages[8];
+        //itemImage.sprite = itemImages[8];
 
         damageSlider.value = 1f;      //currently this says zero in the gun prefab?
         fireRateSlider.value = 1f;
@@ -298,7 +298,7 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.dash;
 
         // set the Item Image
-        itemImage.sprite = itemImages[9]; 
+        //itemImage.sprite = itemImages[9]; 
 
         damageSlider.value = 0.1f;      
         fireRateSlider.value = .01f;
@@ -313,19 +313,26 @@ public class CrateBuy : MonoBehaviour
         userSelection = itemSelection.ammo;
 
         // set the Item Image; 
-        itemImage.sprite= itemImages[10];
+        //itemImage.sprite= itemImages[7];
 
-        damageSlider.value = 1f;
-        fireRateSlider.value = 1f;
-        rangeSlider.value = 1f;
-        ammoCapacitySlider.value = 1f;
+        damageSlider.value = 0f;
+        fireRateSlider.value = 0f;
+        rangeSlider.value = 0f;
+        ammoCapacitySlider.value = 0f;
 
-        ItemType_Text.SetText("50 Ammo Rounds");
+        ItemType_Text.SetText(ammoAmount + " Ammo Rounds");
     }
 
     public void impactGrenadeButtonClicked()
     {
         userSelection = itemSelection.impactGrenade;
+
+        //itemImage.sprite = itemImages[8];
+
+        damageSlider.value = .5f;
+        fireRateSlider.value = 0f;
+        rangeSlider.value = 0f;
+        ammoCapacitySlider.value = 0f;
 
         ItemType_Text.SetText("Grenade");
     }
