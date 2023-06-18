@@ -118,6 +118,9 @@ public class playerController : MonoBehaviour, IDamage, IPhysics, IdataPersisten
 
         shieldHP = 0;
         jumpHeightOrig = jumpHeight;
+
+        //PlayerPrefs
+        points = PlayerPrefs.GetInt("Points");
     }
 
     void Update() {

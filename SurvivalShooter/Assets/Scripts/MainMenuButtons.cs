@@ -38,7 +38,8 @@ public class MainMenuButtons : MonoBehaviour
 
     public void NewGameClicked()
     {
-        PlayerPrefs.SetInt("CurrentScene", 1);
+        ResetPlayerPrefs();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Cursor.visible = false;
         Time.timeScale = TimeScaleOriginal;
@@ -132,4 +133,11 @@ public class MainMenuButtons : MonoBehaviour
         }
     }
 
+
+    void ResetPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("CurrentScene", 1);
+        PlayerPrefs.SetInt("Points", 0);
+        PlayerPrefs.SetInt("", 0);
+    }
 }

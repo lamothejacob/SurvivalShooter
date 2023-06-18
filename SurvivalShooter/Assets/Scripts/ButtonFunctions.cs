@@ -130,7 +130,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void goToNextLevel()
     {
-        //PlayerPrefs.SetInt("Points",gameManager.instance.playerScript.getPoints());
+        PlayerPrefs.SetInt("Points",gameManager.instance.playerScript.getPoints());
         gameManager.instance.SetCurrSceneIndex(SceneManager.GetActiveScene().buildIndex + 1);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
