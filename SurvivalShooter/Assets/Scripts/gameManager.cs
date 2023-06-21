@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject winMenu;
     public GameObject HUD;
+    public GameObject ControlsMenu;
     public GameObject playerDamageFlash;
     public GameObject shieldActiveImage;
     public TextMeshProUGUI interactText;

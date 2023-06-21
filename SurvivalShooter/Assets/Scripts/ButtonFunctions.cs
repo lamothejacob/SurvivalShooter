@@ -128,6 +128,15 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene(0); 
     }
 
+    public void ControlsMenuClicked()
+    {
+        gameManager.instance.audioScript.Play("ButtonClicked");
+        gameManager.instance.activeMenu = null;
+        gameManager.instance.settingsPause.SetActive(false);
+        gameManager.instance.activeMenu = gameManager.instance.ControlsMenu; 
+        gameManager.instance.ControlsMenu.SetActive(true);
+    }
+
     public void goToNextLevel()
     {
         PlayerPrefs.SetInt("Points",gameManager.instance.playerScript.getPoints());
@@ -136,4 +145,6 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         gameManager.instance.unPausedState();
     }
+
+    
 }
