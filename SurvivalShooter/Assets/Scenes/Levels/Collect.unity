@@ -2720,6 +2720,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000010653347892, guid: d7ba4fe833670a140b9b6085652f0e26, type: 3}
   m_PrefabInstance: {fileID: 2092456348}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &906934283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8079302345475432529, guid: 8ae858c2a5953434591afe5c3846d454, type: 3}
+  m_PrefabInstance: {fileID: 1737342064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &909800876
 GameObject:
   m_ObjectHideFlags: 0
@@ -7234,9 +7239,13 @@ PrefabInstance:
       value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
+      propertyPath: aimOverlay
+      value: 
+      objectReference: {fileID: 906934283}
+    - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: starterGun
       value: 
-      objectReference: {fileID: 11400000, guid: d698e332bafde874488f14c774205281, type: 2}
+      objectReference: {fileID: 11400000, guid: c62b2fe3f49b678439e3d5bf13e85b82, type: 2}
     - target: {fileID: 662619540623452671, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_RootOrder
       value: 0
