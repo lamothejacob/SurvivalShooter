@@ -1939,7 +1939,7 @@ GameObject:
   - component: {fileID: 714626962}
   - component: {fileID: 714626961}
   m_Layer: 0
-  m_Name: Coolant Pipe
+  m_Name: Fuel Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
