@@ -23,7 +23,7 @@ MonoBehaviour:
   fireAudio: {fileID: 8300000, guid: 357845a768064d34e95f26141e2d6f54, type: 3}
   reloadAudio: {fileID: 8300000, guid: d1dac29456b04b342a4d5cc57863bca7, type: 3}
   cost: 500
-  baseDamage: 30
+  baseDamage: 10
   shootDist: 25
   fireRate: 0.25
   reserveAmmoMax: 64
