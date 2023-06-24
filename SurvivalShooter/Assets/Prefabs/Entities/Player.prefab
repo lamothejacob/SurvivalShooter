@@ -402,7 +402,7 @@ MonoBehaviour:
   maxJumps: 1
   interactDistance: 2
   pushBackResolve: 3
-  points: 0
+  points: 500
   currentGun: 0
   grenadeAmount: 5
   grenade:

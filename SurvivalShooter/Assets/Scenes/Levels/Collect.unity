@@ -7245,7 +7245,7 @@ PrefabInstance:
     - target: {fileID: 662619540623452670, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: starterGun
       value: 
-      objectReference: {fileID: 11400000, guid: c62b2fe3f49b678439e3d5bf13e85b82, type: 2}
+      objectReference: {fileID: 11400000, guid: 39621930bbff4164c8a40fc8460a32e6, type: 2}
     - target: {fileID: 662619540623452671, guid: 1485d3a7e0eb1754f87f50779941f7ce, type: 3}
       propertyPath: m_RootOrder
       value: 0
